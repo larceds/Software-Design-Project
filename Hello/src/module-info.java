@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author Admin
- *
- */
-module Hello {
-}
