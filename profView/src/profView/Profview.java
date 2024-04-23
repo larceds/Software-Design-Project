@@ -1,4 +1,5 @@
-package profWindow;
+package profView;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -10,7 +11,8 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JButton;
 
-public class ProfV {
+public class Profview {
+
 	private JFrame frame;
 
 	/**
@@ -20,7 +22,7 @@ public class ProfV {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ProfV window = new ProfV();
+					Profview window = new Profview();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -32,7 +34,7 @@ public class ProfV {
 	/**
 	 * Create the application.
 	 */
-	public ProfV() {
+	public Profview() {
 		initialize();
 	}
 
@@ -43,51 +45,56 @@ public class ProfV {
 		frame = new JFrame();
 		frame.getContentPane().setEnabled(false);
 		frame.getContentPane().setBackground(Color.PINK);
-		frame.setBounds(100, 100, 991, 610);
+		frame.setBounds(100, 100, 1192, 610);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(0, -11, 977, 98);
-		lblNewLabel.setIcon(new ImageIcon("d:\\Users\\Student\\Desktop\\Screenshot 2024-04-19 081803.png"));
+		lblNewLabel.setBounds(0, -11, 1178, 98);
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\ACER\\Downloads\\437055423_1161141725028274_4161512821301030128_n.jpg"));
 		frame.getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Grades");
-		btnNewButton.setBounds(188, 98, 112, 34);
+		btnNewButton.setBounds(161, 98, 101, 24);
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(204, 4, 34));
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Profile");
-		btnNewButton_1.setBounds(33, 98, 112, 34);
+		btnNewButton_1.setBounds(33, 98, 101, 24);
 		btnNewButton_1.setForeground(new Color(255, 255, 255));
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton_1.setBackground(new Color(204, 4, 34));
 		frame.getContentPane().add(btnNewButton_1);
 		
 		JButton btnSchedule = new JButton("Schedule");
-		btnSchedule.setBounds(342, 98, 112, 34);
+		btnSchedule.setBounds(294, 98, 101, 24);
 		btnSchedule.setForeground(new Color(255, 255, 255));
 		btnSchedule.setBackground(new Color(204, 4, 34));
 		btnSchedule.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		frame.getContentPane().add(btnSchedule);
 		
 		JButton btnLogout = new JButton("Log-out");
-		btnLogout.setBounds(832, 98, 112, 34);
+		btnLogout.setBounds(1054, 98, 101, 24);
 		btnLogout.setForeground(new Color(255, 255, 255));
 		btnLogout.setBackground(new Color(204, 4, 34));
 		btnLogout.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		frame.getContentPane().add(btnLogout);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(-10, 78, 987, 68);
+		panel.setBounds(-10, 78, 1188, 59);
 		panel.setBackground(new Color(149, 0, 0));
 		frame.getContentPane().add(panel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Welcome, ");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_1.setBounds(44, 163, 74, 24);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_1.setBounds(43, 147, 101, 24);
 		frame.getContentPane().add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("New label");
+		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\ACER\\Downloads\\434637222_2369367910121302_5462547168545990256_n.jpg"));
+		lblNewLabel_2.setBounds(-509, -24, 1687, 817);
+		frame.getContentPane().add(lblNewLabel_2);
 	}
 }
