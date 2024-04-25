@@ -14,6 +14,8 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class pfp {
 
@@ -131,5 +133,25 @@ public class pfp {
 		
 		JPanel grades = new JPanel();
 		adminPanel.addTab("Grades", null, grades, null);
+		
+		JButton btnPfp = new JButton("Profile");
+		btnPfp.setBounds(10, 31, 89, 23);
+		frame.getContentPane().add(btnPfp);
+		
+		JButton btnStd = new JButton("Student List");
+		btnStd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnStd.setBounds(109, 31, 89, 23);
+		frame.getContentPane().add(btnStd);
+		
+		JButton btnCrs = new JButton("Courses");
+		btnCrs.setBounds(208, 31, 89, 23);
+		frame.getContentPane().add(btnCrs);
+		
+		JButton btnSch = new JButton("Schedules");
+		btnSch.setBounds(307, 31, 89, 23);
+		frame.getContentPane().add(btnSch);
 	}
 }
