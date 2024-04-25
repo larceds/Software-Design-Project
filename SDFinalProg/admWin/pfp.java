@@ -1,4 +1,4 @@
-package adminWindow;
+package admWin;
 
 import java.awt.EventQueue;
 
@@ -15,7 +15,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class profile {
+public class pfp {
 
 	private JFrame frame;
 	private JTable gradesTable;
@@ -29,7 +29,7 @@ public class profile {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					profile window = new profile();
+					pfp window = new pfp();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +41,7 @@ public class profile {
 	/**
 	 * Create the application.
 	 */
-	public profile() {
+	public pfp() {
 		initialize();
 	}
 
