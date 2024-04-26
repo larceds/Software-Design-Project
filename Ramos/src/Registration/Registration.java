@@ -143,6 +143,12 @@ public class Registration {
                 String username = textField_2.getText();
                 String password = new String(passwordField.getPassword()); // Retrieve password as String
 
+                // Check for empty fields
+                if (lrn.isEmpty() || fullname.isEmpty() || username.isEmpty() || password.isEmpty()) {
+                    JOptionPane.showMessageDialog(frame, "Please fill in all the fields.");
+                    return; // Stop registration process
+                }
+
                 // Check if username is unique
                 if (registeredUsernames.contains(username)) {
                     JOptionPane.showMessageDialog(frame, "Username already exists. Please choose another one.");
@@ -166,7 +172,12 @@ public class Registration {
                 System.out.println("LRN: " + lrn);
                 System.out.println("Fullname: " + fullname);
                 System.out.println("Username: " + username);
-                System.out.println("Password: " + password);
+
+                System.out.print("Password: ");
+                for (int i = 0; i < password.length(); i++) {
+                    System.out.print("*");
+                }
+                System.out.println();
 
                 // Add the username to the set of registered usernames
                 registeredUsernames.add(username);
@@ -184,7 +195,6 @@ public class Registration {
         JButton btnNewButton1 = new JButton("RESET");
         btnNewButton1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Clear text fields
                 textField.setText("");
                 textField_2.setText("");
                 textField_3.setText("");
