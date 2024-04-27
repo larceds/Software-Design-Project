@@ -10,15 +10,25 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import java.awt.Font;
 import javax.swing.JCheckBox;
+import javax.swing.JSpinner;
+import javax.swing.JScrollBar;
+import javax.swing.JSeparator;
+import javax.swing.JScrollPane;
 
-public class pfp extends JFrame {
-
+public class pf extends JFrame {
+    static Connection c = null ;
+    static ResultSet rs=null;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtTyson;
@@ -31,29 +41,53 @@ public class pfp extends JFrame {
 	private JTextField txtRegularProfessor;
 	private JTextField textField;
 	private JTextField txtMiketysoncvteaceduph;
-	private JTextField txtTysonmikegmailcom;
 	private JTextField txtTeachingYears;
-
+	
 	/**
 	 * Launch the application.
+	 * @throws ClassNotFoundException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args){
+		
+		//==============================================================================================
+		try {
+			  c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/view1","root","kenn232004");
+			  Statement st=c.createStatement();
+			  rs=st.executeQuery("select * from profview");
+			System.out.println("not gwenchana");	
+			}catch (Exception e){
+			System.out.println("gwenchanay");
+			}
+		Statement st;
+		try {
+			st=c.createStatement();
+			rs=st.executeQuery("select * from profview");
+			String s ="insert into profview"+"(lastname,firstname,Middlename,email)"+"values ('asd','fgh','qwe','rty')";
+			//st.executeUpdate(s);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//=========================================================================================================
 		EventQueue.invokeLater(new Runnable() {
+			
 			public void run() {
 				try {
-					pfp frame = new pfp();
+					pf frame = new pf();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
-		});
+	
+	});
 	}
+
 
 	/**
 	 * Create the frame.
 	 */
-	public pfp() {
+	public pf() {
 		setAlwaysOnTop(true);
 		setBackground(new Color(255, 0, 0));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -90,18 +124,18 @@ public class pfp extends JFrame {
 		contentPane.add(btnNewButton_2);
 		
 		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\Student\\Downloads\\topback.jpg"));
+		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\kennr\\Downloads\\logo.jpg"));
 		lblNewLabel_1.setBounds(0, 0, 975, 68);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Student\\Downloads\\put pic.jpg"));
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\kennr\\Downloads\\put pic.jpg"));
 		lblNewLabel.setBounds(753, 136, 101, 102);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_2 = new JLabel("New label");
 		lblNewLabel_2.setBackground(new Color(255, 128, 128));
-		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\Student\\Downloads\\iconpic.jpg"));
+		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\kennr\\Downloads\\iconpic.jpg"));
 		lblNewLabel_2.setBounds(38, 150, 23, 23);
 		contentPane.add(lblNewLabel_2);
 		
@@ -117,7 +151,25 @@ public class pfp extends JFrame {
 		lblNewLabel_3.setBounds(61, 152, 172, 32);
 		contentPane.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("Welcome, Tyson , Mike kingkong (09223341515)");
+		JLabel lblNewLabel_4 = new JLabel();
+		try {
+			c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/view1","root","kenn232004");
+			  Statement st=c.createStatement();
+			  rs=st.executeQuery("select * from profview where id=9");
+			 String Lname =null;
+			 String fname =null;
+			 String mname =null;
+			  while(rs.next()) {
+				  mname=rs.getString(3);
+				  fname=rs.getString(2);
+				   Lname = rs.getString(1);
+			  }
+			  lblNewLabel_4.setText("Welcome, " + Lname + " " + fname +" " + mname);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			
+		}
+		
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_4.setBounds(38, 113, 389, 14);
 		contentPane.add(lblNewLabel_4);
@@ -125,7 +177,19 @@ public class pfp extends JFrame {
 		txtTyson = new JTextField();
 		txtTyson.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtTyson.setHorizontalAlignment(SwingConstants.CENTER);
-		txtTyson.setText("Tyson");
+		try {
+			c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/view1","root","kenn232004");
+			  Statement st=c.createStatement();
+			  rs=st.executeQuery("select lastname from profview where id=9");
+			 String Lname =null;
+			  while(rs.next()) {
+				   Lname = rs.getString(1);
+			  }
+			txtTyson.setText(Lname);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			
+		}
 		txtTyson.setEditable(false);
 		txtTyson.setBounds(38, 195, 167, 20);
 		contentPane.add(txtTyson);
@@ -134,7 +198,19 @@ public class pfp extends JFrame {
 		txtMike = new JTextField();
 		txtMike.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtMike.setHorizontalAlignment(SwingConstants.CENTER);
-		txtMike.setText("Mike");
+		try {
+			c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/view1","root","kenn232004");
+			  Statement st=c.createStatement();
+			  rs=st.executeQuery("select firstname from profview where id=9");
+			 String Lname =null;
+			  while(rs.next()) {
+				   Lname = rs.getString(1);
+			  }
+			txtMike.setText(Lname);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			
+		}
 		txtMike.setEditable(false);
 		txtMike.setBounds(208, 195, 172, 20);
 		contentPane.add(txtMike);
@@ -142,7 +218,19 @@ public class pfp extends JFrame {
 		
 		txtKingkong = new JTextField();
 		txtKingkong.setEditable(false);
-		txtKingkong.setText("KingKong");
+		try {
+			c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/view1","root","kenn232004");
+			  Statement st=c.createStatement();
+			  rs=st.executeQuery("select Middlename from profview where id=9");
+			 String Lname =null;
+			  while(rs.next()) {
+				   Lname = rs.getString(1);
+			  }
+			txtKingkong.setText(Lname);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			
+		}
 		txtKingkong.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtKingkong.setHorizontalAlignment(SwingConstants.CENTER);
 		txtKingkong.setBounds(383, 195, 167, 20);
@@ -187,12 +275,15 @@ public class pfp extends JFrame {
 		lblNewLabel_7.setBounds(28, 276, 101, 14);
 		contentPane.add(lblNewLabel_7);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(117, 273, 161, 20);
+		contentPane.add(scrollPane);
+		
 		txtComputerScience = new JTextField();
+		scrollPane.setViewportView(txtComputerScience);
 		txtComputerScience.setEditable(false);
 		txtComputerScience.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtComputerScience.setText("Computer Science ");
-		txtComputerScience.setBounds(117, 273, 161, 20);
-		contentPane.add(txtComputerScience);
 		txtComputerScience.setColumns(10);
 		
 		JLabel lblNewLabel_8 = new JLabel("Designation:");
@@ -200,12 +291,15 @@ public class pfp extends JFrame {
 		lblNewLabel_8.setBounds(283, 277, 78, 14);
 		contentPane.add(lblNewLabel_8);
 		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(348, 271, 240, 20);
+		contentPane.add(scrollPane_1);
+		
 		txtWebDeveloperAnd = new JTextField();
+		scrollPane_1.setViewportView(txtWebDeveloperAnd);
 		txtWebDeveloperAnd.setEditable(false);
 		txtWebDeveloperAnd.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtWebDeveloperAnd.setText("Web Developer And Software Developer");
-		txtWebDeveloperAnd.setBounds(355, 274, 240, 20);
-		contentPane.add(txtWebDeveloperAnd);
 		txtWebDeveloperAnd.setColumns(10);
 		
 		JLabel lblNewLabel_9 = new JLabel("Area Of Specialization:");
@@ -267,17 +361,22 @@ public class pfp extends JFrame {
 		
 		txtMiketysoncvteaceduph = new JTextField();
 		txtMiketysoncvteaceduph.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtMiketysoncvteaceduph.setText("Mike.tyson.cvt@eac.edu.ph");
+		try {
+			c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/view1","root","kenn232004");
+			  Statement st=c.createStatement();
+			  rs=st.executeQuery("select email from profview where id=9");
+			 String Lname =null;
+			  while(rs.next()) {
+				   Lname = rs.getString(1);
+			  }
+			txtMiketysoncvteaceduph.setText(Lname);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			
+		}
 		txtMiketysoncvteaceduph.setBounds(63, 406, 170, 20);
 		contentPane.add(txtMiketysoncvteaceduph);
 		txtMiketysoncvteaceduph.setColumns(10);
-		
-		txtTysonmikegmailcom = new JTextField();
-		txtTysonmikegmailcom.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtTysonmikegmailcom.setText("tysonmike@gmail.com");
-		txtTysonmikegmailcom.setBounds(63, 428, 170, 20);
-		contentPane.add(txtTysonmikegmailcom);
-		txtTysonmikegmailcom.setColumns(10);
 		
 		JLabel lblNewLabel_14 = new JLabel("No. of Years of Experience:");
 		lblNewLabel_14.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -293,18 +392,18 @@ public class pfp extends JFrame {
 		txtTeachingYears.setColumns(10);
 		
 		JLabel lblNewLabel_15 = new JLabel("New label");
-		lblNewLabel_15.setIcon(new ImageIcon("C:\\Users\\Student\\Downloads\\SecondTop.png"));
+		lblNewLabel_15.setIcon(new ImageIcon("C:\\Users\\kennr\\Downloads\\Secondtop.png"));
 		lblNewLabel_15.setBounds(0, 67, 975, 41);
 		contentPane.add(lblNewLabel_15);
 		
 		JLabel lblNewLabel_16 = new JLabel("New label");
-		lblNewLabel_16.setIcon(new ImageIcon("C:\\Users\\Student\\Downloads\\bottom.jpg"));
+		lblNewLabel_16.setIcon(new ImageIcon("C:\\Users\\kennr\\Downloads\\bottom.jpg"));
 		lblNewLabel_16.setBounds(-285, 515, 1274, 56);
 		contentPane.add(lblNewLabel_16);
 		
 		JLabel lblNewLabel_17 = new JLabel("New label");
-		lblNewLabel_17.setIcon(new ImageIcon("C:\\Users\\Student\\Downloads\\background.png"));
-		lblNewLabel_17.setBounds(0, 0, 975, 571);
+		lblNewLabel_17.setIcon(new ImageIcon("C:\\Users\\kennr\\Downloads\\bg.jpg"));
+		lblNewLabel_17.setBounds(-29, 12, 1038, 594);
 		contentPane.add(lblNewLabel_17);
 	}
 }
