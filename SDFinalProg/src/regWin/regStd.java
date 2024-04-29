@@ -68,7 +68,7 @@ public class regStd {
         JLabel lblNewLabel = new JLabel("");
         lblNewLabel.setBounds(0, -54, 1038, 172);
         panel.add(lblNewLabel);
-        lblNewLabel.setIcon(new ImageIcon("C:\\Users\\marco\\Downloads\\EAC.png"));
+        lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/EAC.png")));
 
         JPanel panel_1 = new JPanel();
         panel_1.setBackground(new Color(101, 81, 78));
@@ -81,7 +81,7 @@ public class regStd {
         panel_1.add(lblNewLabel_1);
 
         JLabel lblNewLabel_2 = new JLabel("New label");
-        lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\marco\\OneDrive\\Desktop\\LINE.png"));
+        lblNewLabel_2.setIcon(new ImageIcon(getClass().getResource("/LINE.png")));
         lblNewLabel_2.setBounds(34, 63, 553, 13);
         panel_1.add(lblNewLabel_2);
 
@@ -209,7 +209,7 @@ public class regStd {
 
         JLabel lblNewLabel_31 = new JLabel("New label");
         lblNewLabel_31.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel_31.setIcon(new ImageIcon("C:\\Users\\marco\\Downloads\\AIMS1.png"));
+        lblNewLabel_31.setIcon(new ImageIcon(getClass().getResource("/AIMS1.png")));
         lblNewLabel_31.setBounds(-91, 242, 1160, 514);
         panel.add(lblNewLabel_31);
 
@@ -222,6 +222,6 @@ public class regStd {
         lblNewLabel_311.setBounds(-347, -71, 1677, 680);
         panel.add(lblNewLabel_311);
         lblNewLabel_311.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel_311.setIcon(new ImageIcon("C:\\Users\\marco\\Downloads\\Gradient.png"));
+        lblNewLabel_311.setIcon(new ImageIcon(getClass().getResource("/Gradient.png")));
     }
 }

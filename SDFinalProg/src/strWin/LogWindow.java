@@ -100,7 +100,7 @@ public class LogWindow {
 		panel_1.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setIcon(new ImageIcon("C:\\Users\\didsd\\OneDrive\\Pictures\\Screenshots\\grid.png"));
+		lblNewLabel_3.setIcon(new ImageIcon("\\imgs\\grid.png"));
 		lblNewLabel_3.setBounds(41, 64, 548, 13);
 		panel_1.add(lblNewLabel_3);
 		

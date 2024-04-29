@@ -145,22 +145,22 @@ frame.getContentPane().setLayout(null);
 		panel.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setIcon(new ImageIcon("C:\\Users\\Windows 10\\Desktop\\438209119_1613889482762237_7642544475342964595_n.jpg"));
+		lblNewLabel_3.setIcon(new ImageIcon(getClass().getResource("/438209119_1613889482762237_7642544475342964595_n.jpg")));
 		lblNewLabel_3.setBounds(203, 104, 485, 316);
 		panel.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Windows 10\\Desktop\\436878544_422829097118730_4985006852360313674_n.png"));
+		lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/436878544_422829097118730_4985006852360313674_n.png")));
 		lblNewLabel.setBounds(0, 0, 916, 73);
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\Windows 10\\Desktop\\4.png"));
+		lblNewLabel_2.setIcon(new ImageIcon(getClass().getResource("/4.png")));
 		lblNewLabel_2.setBounds(-174, 284, 1238, 262);
 		panel.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\Windows 10\\Desktop\\2.png"));
+		lblNewLabel_1.setIcon(new ImageIcon(getClass().getResource("/2.png")));
 		lblNewLabel_1.setBounds(0, -174, 916, 502);
 		panel.add(lblNewLabel_1);
 		
