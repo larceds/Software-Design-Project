@@ -1,4 +1,4 @@
-package profWin;
+package admWin;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -292,11 +292,10 @@ public class pf extends JFrame {
 		contentPane.add(lblNewLabel_8);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(355, 270, 240, 20);
+		scrollPane_1.setBounds(348, 271, 240, 20);
 		contentPane.add(scrollPane_1);
 		
 		txtWebDeveloperAnd = new JTextField();
-		txtWebDeveloperAnd.setHorizontalAlignment(SwingConstants.TRAILING);
 		scrollPane_1.setViewportView(txtWebDeveloperAnd);
 		txtWebDeveloperAnd.setEditable(false);
 		txtWebDeveloperAnd.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -397,17 +396,14 @@ public class pf extends JFrame {
 		lblNewLabel_15.setBounds(0, 67, 975, 41);
 		contentPane.add(lblNewLabel_15);
 		
-		JLabel lblNewLabel_15_1 = new JLabel("New label");
-		lblNewLabel_15_1.setIcon(new ImageIcon("C:\\Users\\Santos\\Desktop\\repo\\Software-Design-Project\\SDFinalProg\\src\\imgs\\Secondtop.png"));
-		lblNewLabel_15_1.setBounds(0, 503, 975, 89);
-		contentPane.add(lblNewLabel_15_1);
+		JLabel lblNewLabel_16 = new JLabel("New label");
+		lblNewLabel_16.setIcon(new ImageIcon(getClass().getResource("/bottom.jpg")));
+		lblNewLabel_16.setBounds(-285, 515, 1274, 56);
+		contentPane.add(lblNewLabel_16);
 		
 		JLabel lblNewLabel_17 = new JLabel("New label");
-		lblNewLabel_17.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_17.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
 		lblNewLabel_17.setBounds(-29, 12, 1038, 594);
 		contentPane.add(lblNewLabel_17);
-		
-		
 	}
 }

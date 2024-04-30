@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class std {
 
@@ -53,18 +54,18 @@ public class std {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(255, 45, 45));
 		frame.getContentPane().setForeground(new Color(255, 0, 0));
-		frame.setBounds(100, 100, 744, 373);
+		frame.setBounds(100, 100, 991, 610);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblStd = new JLabel("STUDENTS");
 		lblStd.setFont(new Font("Times New Roman", Font.PLAIN, 23));
 		lblStd.setHorizontalAlignment(SwingConstants.CENTER);
-		lblStd.setBounds(391, 59, 147, 31);
+		lblStd.setBounds(613, 123, 147, 31);
 		frame.getContentPane().add(lblStd);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(235, 101, 452, 203);
+		scrollPane.setBounds(393, 155, 541, 387);
 		frame.getContentPane().add(scrollPane);
 		
 		table = new JTable();
@@ -80,11 +81,15 @@ public class std {
 		));
 		
 		JButton btnSrch = new JButton("New button");
-		btnSrch.setBounds(80, 162, 39, 23);
+		btnSrch.setBounds(149, 274, 39, 23);
 		frame.getContentPane().add(btnSrch);
 		
 		JButton btnReg = new JButton("Register Student");
-		btnReg.setBounds(37, 257, 137, 23);
+		btnReg.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnReg.setBounds(95, 448, 137, 23);
 		frame.getContentPane().add(btnReg);
 		
 		JButton btnChcStd = new JButton("Check Student");
@@ -92,43 +97,64 @@ public class std {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnChcStd.setBounds(37, 196, 137, 23);
+		btnChcStd.setBounds(95, 392, 137, 23);
 		frame.getContentPane().add(btnChcStd);
 		
 		txtStdNm = new JTextField();
-		txtStdNm.setBounds(27, 89, 147, 20);
+		txtStdNm.setBounds(95, 187, 147, 20);
 		frame.getContentPane().add(txtStdNm);
 		txtStdNm.setColumns(10);
 		
 		txtStdNum = new JTextField();
-		txtStdNum.setBounds(27, 131, 147, 23);
+		txtStdNum.setBounds(95, 240, 147, 23);
 		frame.getContentPane().add(txtStdNum);
 		txtStdNum.setColumns(10);
 		
 		JLabel lblStdNum = new JLabel("Student Number");
 		lblStdNum.setHorizontalAlignment(SwingConstants.CENTER);
-		lblStdNum.setBounds(27, 115, 147, 14);
+		lblStdNum.setBounds(95, 218, 147, 14);
 		frame.getContentPane().add(lblStdNum);
 		
 		JLabel lblStdNm_1 = new JLabel("Student Name");
 		lblStdNm_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblStdNm_1.setBounds(66, 71, 82, 14);
+		lblStdNm_1.setBounds(127, 162, 82, 14);
 		frame.getContentPane().add(lblStdNm_1);
 		
 		JButton btnNewButton = new JButton("Profile");
-		btnNewButton.setBounds(27, 37, 89, 23);
+		btnNewButton.setBounds(28, 83, 89, 23);
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Student List");
-		btnNewButton_1.setBounds(151, 37, 89, 23);
+		btnNewButton_1.setBounds(110, 83, 89, 23);
 		frame.getContentPane().add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Courses");
-		btnNewButton_2.setBounds(275, 37, 89, 23);
+		btnNewButton_2.setBounds(198, 83, 89, 23);
 		frame.getContentPane().add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Schedules");
-		btnNewButton_3.setBounds(393, 37, 89, 23);
+		btnNewButton_3.setBounds(287, 83, 89, 23);
 		frame.getContentPane().add(btnNewButton_3);
+		
+		JButton btnNewButton_4 = new JButton("Logout");
+		btnNewButton_4.setBounds(876, 83, 89, 23);
+		frame.getContentPane().add(btnNewButton_4);
+		
+		JLabel lblLogo = new JLabel("logo");
+		lblLogo.setIcon(new ImageIcon(getClass().getResource("/logo.jpg")));
+		lblLogo.setBounds(0, 0, 975, 75);
+		frame.getContentPane().add(lblLogo);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/Secondtop.png")));
+		lblNewLabel.setBounds(0, 68, 975, 44);
+		frame.getContentPane().add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1.setIcon(new ImageIcon(getClass().getResource("/background.png")));
+		lblNewLabel_1.setBounds(-14, 101, 999, 484);
+		frame.getContentPane().add(lblNewLabel_1);
+		
+		
 	}
 }
