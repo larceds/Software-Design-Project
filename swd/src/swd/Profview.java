@@ -1,4 +1,5 @@
-package profWin;
+package swd;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -10,7 +11,8 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JButton;
 
-public class ProfV {
+public class Profview {
+
 	private JFrame frame;
 
 	/**
@@ -20,7 +22,7 @@ public class ProfV {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ProfV window = new ProfV();
+					Profview window = new Profview();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -32,7 +34,7 @@ public class ProfV {
 	/**
 	 * Create the application.
 	 */
-	public ProfV() {
+	public Profview() {
 		initialize();
 	}
 
@@ -49,7 +51,7 @@ public class ProfV {
 		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setBounds(0, -11, 977, 98);
-		lblNewLabel.setIcon(new ImageIcon("d:\\Users\\Student\\Desktop\\Screenshot 2024-04-19 081803.png"));
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Acer\\Pictures\\Screenshots\\Screenshot 2024-04-16 221510.png"));
 		frame.getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Grades");
