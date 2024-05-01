@@ -1,19 +1,41 @@
-import java.awt.EventQueue;
+package slfinals;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.Struct;
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JButton;
 
+import javax.swing.AbstractButton;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+@SuppressWarnings("unused")
 public class LogWindow {
 
+;
 	private JFrame frame;
 	private JTextField textField;
-	private JTextField textField_1;
+	private AbstractButton userText;
+	protected JComponent messageLabel;
+
+
+	
+	
 
 	/**
 	 * Launch the application.
@@ -28,7 +50,9 @@ public class LogWindow {
 					e.printStackTrace();
 				}
 			}
+					
 		});
+	
 	}
 
 	/**
@@ -36,36 +60,37 @@ public class LogWindow {
 	 */
 	public LogWindow() {
 		initialize();
+		
+		
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
 		frame = new JFrame();
+		frame.setBackground(Color.LIGHT_GRAY);
+		frame.setAlwaysOnTop(true);
 		frame.setBounds(100, 100, 991, 610);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(253, 208, 214));
-		panel.setBounds(0, 0, 981, 571);
+		panel.setBounds(0, 0, 981, 590);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(0, 0, 981, 99);
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\lomat\\OneDrive\\Pictures\\Screenshots\\Screenshot (172).png"));
-		panel.add(lblNewLabel);
-		
 		JLabel lblNewLabel_1 = new JLabel("Students Access Module");
-		lblNewLabel_1.setBounds(373, 125, 261, 43);
+		lblNewLabel_1.setForeground(Color.WHITE);
+		lblNewLabel_1.setBounds(348, 82, 261, 43);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 21));
 		panel.add(lblNewLabel_1);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(102, 81, 81));
-		panel_1.setBounds(189, 164, 614, 371);
+		panel_1.setBounds(187, 123, 628, 360);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -76,42 +101,150 @@ public class LogWindow {
 		panel_1.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setIcon(new ImageIcon("C:\\Users\\lomat\\OneDrive\\Pictures\\Screenshots\\Screenshot (176).png"));
+		lblNewLabel_3.setIcon(new ImageIcon("C:\\Users\\didsd\\OneDrive\\Pictures\\Screenshots\\grid.png"));
 		lblNewLabel_3.setBounds(41, 64, 548, 13);
 		panel_1.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("Student ID No:");
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_4.setForeground(Color.WHITE);
-		lblNewLabel_4.setBounds(41, 87, 129, 30);
-		panel_1.add(lblNewLabel_4);
+		JLabel lblUsername = new JLabel("Student ID No:");
+		lblUsername.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblUsername.setForeground(Color.WHITE);
+		lblUsername.setBounds(41, 87, 129, 30);
+		panel_1.add(lblUsername);
 		
 		textField = new JTextField();
 		textField.setBounds(41, 127, 548, 30);
 		panel_1.add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblNewLabel_5 = new JLabel("Password:");
-		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_5.setForeground(Color.WHITE);
-		lblNewLabel_5.setBounds(41, 167, 129, 30);
-		panel_1.add(lblNewLabel_5);
+		JPasswordField password = new JPasswordField("");
+		password.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		password.setForeground(Color.BLACK);
+		password.setBounds(41, 199, 548, 30);
+		panel_1.add(password);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(41, 207, 548, 32);
-		panel_1.add(textField_1);
-		textField_1.setColumns(10);
+	
 		
-		JButton btnNewButton = new JButton("Register");
-		btnNewButton.setForeground(Color.WHITE);
-		btnNewButton.setBackground(new Color(194, 41, 14));
-		btnNewButton.setBounds(41, 269, 97, 32);
-		panel_1.add(btnNewButton);
+		JButton ForgotPass = new JButton("Forgot Password");
+		ForgotPass.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		ForgotPass.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		    	
+		        String newPassword = JOptionPane.showInputDialog(frame, "Enter new password:");
+		        if (newPassword != null && !newPassword.isEmpty()) {
+		            try {
+		                Class.forName("com.mysql.cj.jdbc.Driver");
+		                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentinfo", "root", "password");
+
+		                Statement stmt = con.createStatement();
+		                String updateQuery = "UPDATE studentsdata SET Password = '" + newPassword + "' WHERE UserName = '" + textField.getText() + "'";
+		                int rowsUpdated = stmt.executeUpdate(updateQuery);
+		                if (rowsUpdated > 0) {
+		                	Icon iconn = new javax.swing.ImageIcon(getClass().getResource("/image/icon.png"));
+		                    JOptionPane.showMessageDialog(frame, "Password updated successfully!","",JOptionPane.INFORMATION_MESSAGE,iconn);
+		                } else {
+		                	Icon iconn = new javax.swing.ImageIcon(getClass().getResource("/image/icon.png"));
+		                    JOptionPane.showMessageDialog(frame, "Failed to update password. User not found.", "",JOptionPane.INFORMATION_MESSAGE,iconn);
+		                }
+
+		                con.close();
+		            } catch (Exception ex) {
+		                ex.printStackTrace();
+		                Icon iconn = new javax.swing.ImageIcon(getClass().getResource("/image/icon.png"));
+		                JOptionPane.showMessageDialog(frame, "An error occurred while updating password.", "", JOptionPane.ERROR_MESSAGE,iconn);
+		            }
+		        }
+		    }
+		});
+		ForgotPass.setForeground(Color.WHITE);
+		ForgotPass.setBackground(new Color(194, 41, 14));
+		ForgotPass.setBounds(41, 311, 147, 21);
+		panel_1.add(ForgotPass);
+	
+
+		
+		JButton btnClearEntries = new JButton("Clear Entries");
+		btnClearEntries.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				textField.setText("");
+				password.setText("");
+			}
+		});
+		btnClearEntries.setForeground(Color.WHITE);
+		btnClearEntries.setBackground(new Color(194, 41, 14));
+		btnClearEntries.setBounds(41, 269, 147, 32);
+		panel_1.add(btnClearEntries);
+		
+		
+		
+	   
 		
 		JButton btnNewButton_1 = new JButton("Login");
 		btnNewButton_1.setForeground(Color.WHITE);
 		btnNewButton_1.setBackground(new Color(194, 41, 14));
 		btnNewButton_1.setBounds(485, 269, 104, 32);
 		panel_1.add(btnNewButton_1);
+		
+		
+		
+		JLabel lblNewLabel_4_1 = new JLabel("Password:");
+		lblNewLabel_4_1.setForeground(Color.WHITE);
+		lblNewLabel_4_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel_4_1.setBounds(41, 159, 129, 30);
+		panel_1.add(lblNewLabel_4_1);
+	
+		
+		JLabel logo = new JLabel("New label");
+		logo.setIcon(new ImageIcon("C:\\Users\\didsd\\OneDrive\\Pictures\\Screenshots\\Screenshot 2024-04-23 191201.png"));
+		logo.setBounds(0, -12, 981, 90);
+		panel.add(logo);
+		
+		JLabel cop = new JLabel("New label");
+		cop.setIcon(new ImageIcon("C:\\Users\\didsd\\OneDrive\\Pictures\\Screenshots\\cop.png"));
+		cop.setBounds(-446, 499, 1427, 72);
+		panel.add(cop);
+		
+		JLabel bg = new JLabel("New label");
+		bg.setIcon(new ImageIcon("C:\\Users\\didsd\\Downloads\\Add a heading.jpg"));
+		bg.setBounds(0, 65, 981, 434);
+		panel.add(bg);
+		
+		btnNewButton_1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				try {
+					 Class.forName("com.mysql.cj.jdbc.Driver");
+					 Connection con=DriverManager
+							 .getConnection("jdbc:mysql://localhost:3306/studentinfo","root","password");
+					 
+					  Statement stmt = con.createStatement();
+						
+					
+					 
+					 
+					
+					String localhost = "Select * from studentsdata where UserName='"+textField.getText()+"'and Password='"+String.valueOf(password.getPassword())+"'";
+					 ResultSet rs=stmt.executeQuery(localhost);
+					
+					  if(rs.next()) {
+						  Icon icon = new javax.swing.ImageIcon(getClass().getResource("/image/icon.png"));
+						  JOptionPane.showMessageDialog(frame,"You have been login successfully","",JOptionPane.INFORMATION_MESSAGE,icon);
+			           
+					  }	 else {
+						  Icon icon = new javax.swing.ImageIcon(getClass().getResource("/image/icon.png"));
+						  JOptionPane.showMessageDialog(frame,"Incorrect password and student id number","",JOptionPane.INFORMATION_MESSAGE,icon);
+					  }
+					  
+					 con.close();
+					 
+				   } catch(Exception err) {System.out.print(err);}
+			}});
+		
 	}
-}
+	}
+	
+
+
