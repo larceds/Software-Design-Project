@@ -124,18 +124,18 @@ public class pf extends JFrame {
 		contentPane.add(btnNewButton_2);
 		
 		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setIcon(new ImageIcon(getClass().getResource("/logo.jpg")));
+		lblNewLabel_1.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
 		lblNewLabel_1.setBounds(0, 0, 975, 68);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/put pic.jpg")));
+		lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/plhd.jpg")));
 		lblNewLabel.setBounds(753, 136, 101, 102);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_2 = new JLabel("New label");
 		lblNewLabel_2.setBackground(new Color(255, 128, 128));
-		lblNewLabel_2.setIcon(new ImageIcon(getClass().getResource("/iconpic.jpg")));
+		lblNewLabel_2.setIcon(new ImageIcon(getClass().getResource("/icon.jpg")));
 		lblNewLabel_2.setBounds(38, 150, 23, 23);
 		contentPane.add(lblNewLabel_2);
 		
@@ -393,12 +393,12 @@ public class pf extends JFrame {
 		txtTeachingYears.setColumns(10);
 		
 		JLabel lblNewLabel_15 = new JLabel("New label");
-		lblNewLabel_15.setIcon(new ImageIcon(getClass().getResource("/Secondtop.png")));
+		lblNewLabel_15.setIcon(new ImageIcon(getClass().getResource("/bg2.png")));
 		lblNewLabel_15.setBounds(0, 67, 975, 41);
 		contentPane.add(lblNewLabel_15);
 		
 		JLabel lblNewLabel_15_1 = new JLabel("New label");
-		lblNewLabel_15_1.setIcon(new ImageIcon("C:\\Users\\Santos\\Desktop\\repo\\Software-Design-Project\\SDFinalProg\\src\\imgs\\Secondtop.png"));
+		lblNewLabel_15_1.setIcon(new ImageIcon(getClass().getResource("/bg2.png")));
 		lblNewLabel_15_1.setBounds(0, 503, 975, 89);
 		contentPane.add(lblNewLabel_15_1);
 		

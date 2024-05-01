@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.JScrollBar;
 import java.awt.SystemColor;
 import javax.swing.ImageIcon;
+import javax.swing.DropMode;
 
 public class gr extends JFrame {
 
@@ -153,6 +154,7 @@ public class gr extends JFrame {
 		panel_1.setLayout(null);
 		
 		txtsubjectCodeDescriptions = new JTextField();
+		txtsubjectCodeDescriptions.setEditable(false);
 		txtsubjectCodeDescriptions.setForeground(Color.WHITE);
 		txtsubjectCodeDescriptions.setText("\r\n\t#Subject code\tDescriptions\tUnits\tSection\tPrelims\tMidterm\tFinals\tSemestral Grade\tRemarks\r\n");
 		txtsubjectCodeDescriptions.setBackground(new Color(128, 0, 0));
@@ -196,9 +198,16 @@ public class gr extends JFrame {
 		panel_1.add(textField_6);
 		textField_6.setColumns(10);
 		
+		JLabel lblNewLabel_5 = new JLabel("New label");
+		lblNewLabel_5.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
+		lblNewLabel_5.setBounds(0, 0, 907, 67);
+		contentPane.add(lblNewLabel_5);
+		
 		JLabel lblNewLabel_4 = new JLabel("New label");
-		lblNewLabel_4.setIcon(new ImageIcon(getClass().getResource("/435133161_895575675912113_4997662471419241260_n.png")));
-		lblNewLabel_4.setBounds(10, -13, 897, 573);
+		lblNewLabel_4.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
+		lblNewLabel_4.setBounds(-12, -13, 919, 573);
 		contentPane.add(lblNewLabel_4);
+		
+		
 	}
 }

@@ -55,7 +55,7 @@ public class regProf {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 930, 550);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-frame.getContentPane().setLayout(null);
+		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 916, 515);
@@ -145,27 +145,24 @@ frame.getContentPane().setLayout(null);
 		panel.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setIcon(new ImageIcon(getClass().getResource("/438209119_1613889482762237_7642544475342964595_n.jpg")));
+		lblNewLabel_3.setIcon(new ImageIcon(getClass().getResource("/bg3.jpg")));
 		lblNewLabel_3.setBounds(203, 104, 485, 316);
 		panel.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/436878544_422829097118730_4985006852360313674_n.png")));
+		lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
 		lblNewLabel.setBounds(0, 0, 916, 73);
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setIcon(new ImageIcon(getClass().getResource("/4.png")));
-		lblNewLabel_2.setBounds(-174, 284, 1238, 262);
+		lblNewLabel_2.setIcon(new ImageIcon(getClass().getResource("/bg2.png")));
+		lblNewLabel_2.setBounds(-174, 460, 1238, 86);
 		panel.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setIcon(new ImageIcon(getClass().getResource("/2.png")));
-		lblNewLabel_1.setBounds(0, -174, 916, 502);
+		lblNewLabel_1.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
+		lblNewLabel_1.setBounds(0, -92, 946, 607);
 		panel.add(lblNewLabel_1);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(698, 104, 157, 137);
-		panel.add(panel_1);
 	}
 }

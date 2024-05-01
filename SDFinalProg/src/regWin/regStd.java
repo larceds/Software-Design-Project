@@ -68,7 +68,7 @@ public class regStd {
         JLabel lblNewLabel = new JLabel("");
         lblNewLabel.setBounds(0, -54, 1038, 172);
         panel.add(lblNewLabel);
-        lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/EAC.png")));
+        lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
 
         JPanel panel_1 = new JPanel();
         panel_1.setBackground(new Color(101, 81, 78));
@@ -209,8 +209,8 @@ public class regStd {
 
         JLabel lblNewLabel_31 = new JLabel("New label");
         lblNewLabel_31.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel_31.setIcon(new ImageIcon(getClass().getResource("/AIMS1.png")));
-        lblNewLabel_31.setBounds(-91, 242, 1160, 514);
+        lblNewLabel_31.setIcon(new ImageIcon(getClass().getResource("/bg2.png")));
+        lblNewLabel_31.setBounds(-91, 596, 1160, 160);
         panel.add(lblNewLabel_31);
 
         JLabel lblNewLabel_6 = new JLabel("STUDENT Registration");
@@ -222,6 +222,6 @@ public class regStd {
         lblNewLabel_311.setBounds(-347, -71, 1677, 680);
         panel.add(lblNewLabel_311);
         lblNewLabel_311.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel_311.setIcon(new ImageIcon(getClass().getResource("/Gradient.png")));
+        lblNewLabel_311.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
     }
 }

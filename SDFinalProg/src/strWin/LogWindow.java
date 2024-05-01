@@ -143,17 +143,17 @@ public class LogWindow {
 	
 		
 		JLabel logo = new JLabel("New label");
-		logo.setIcon(new ImageIcon("C:\\Users\\didsd\\OneDrive\\Pictures\\Screenshots\\Screenshot 2024-04-23 191201.png"));
+		logo.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
 		logo.setBounds(0, -12, 981, 90);
 		panel.add(logo);
 		
 		JLabel cop = new JLabel("New label");
-		cop.setIcon(new ImageIcon("C:\\Users\\didsd\\OneDrive\\Pictures\\Screenshots\\cop.png"));
+		cop.setIcon(new ImageIcon(getClass().getResource("/bg2.png")));
 		cop.setBounds(-446, 499, 1427, 72);
 		panel.add(cop);
 		
 		JLabel bg = new JLabel("New label");
-		bg.setIcon(new ImageIcon("C:\\Users\\didsd\\Downloads\\Add a heading.jpg"));
+		bg.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
 		bg.setBounds(0, 65, 981, 434);
 		panel.add(bg);
 		
