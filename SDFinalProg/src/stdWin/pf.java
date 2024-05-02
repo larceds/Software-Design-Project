@@ -515,6 +515,14 @@ public class pf extends JFrame {
 		contentPane.add(txtTeachingYears);
 		txtTeachingYears.setColumns(10);
 		
+		JButton btnNewButton_2_1 = new JButton("Account");
+		btnNewButton_2_1.setForeground(Color.WHITE);
+		btnNewButton_2_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_2_1.setBackground(new Color(128, 0, 0));
+		btnNewButton_2_1.setBounds(286, 79, 89, 23);
+		contentPane.add(btnNewButton_2_1);
+		
+		
 		JLabel lblNewLabel_15 = new JLabel("New label");
 		lblNewLabel_15.setIcon(new ImageIcon(getClass().getResource("/bg2.png")));
 		lblNewLabel_15.setBounds(0, 67, 975, 41);
@@ -529,5 +537,7 @@ public class pf extends JFrame {
 		lblNewLabel_17.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
 		lblNewLabel_17.setBounds(-29, 12, 1038, 594);
 		contentPane.add(lblNewLabel_17);
+		
+		
 	}
 }

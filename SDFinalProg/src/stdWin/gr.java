@@ -77,7 +77,7 @@ public class gr extends JFrame {
 		});
 		btnNewButton_1.setBackground(new Color(128, 0, 0));
 		btnNewButton_1.setForeground(Color.WHITE);
-		btnNewButton_1.setBounds(128, 78, 95, 23);
+		btnNewButton_1.setBounds(110, 78, 95, 23);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Schedule");
@@ -87,7 +87,7 @@ public class gr extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_2.setBounds(244, 78, 101, 23);
+		btnNewButton_2.setBounds(203, 78, 89, 23);
 		contentPane.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Log out");
@@ -197,6 +197,17 @@ public class gr extends JFrame {
 		textField_6.setBounds(10, 165, 848, 20);
 		panel_1.add(textField_6);
 		textField_6.setColumns(10);
+		
+		JButton btnNewButton_2_1 = new JButton("Account");
+		btnNewButton_2_1.setForeground(Color.WHITE);
+		btnNewButton_2_1.setBackground(new Color(128, 0, 0));
+		btnNewButton_2_1.setBounds(292, 78, 89, 23);
+		contentPane.add(btnNewButton_2_1);
+		
+		JLabel lblNewLabel_6 = new JLabel("New label");
+		lblNewLabel_6.setIcon(new ImageIcon(getClass().getResource("/bg2.png")));
+		lblNewLabel_6.setBounds(0, 65, 907, 44);
+		contentPane.add(lblNewLabel_6);
 		
 		JLabel lblNewLabel_5 = new JLabel("New label");
 		lblNewLabel_5.setIcon(new ImageIcon(getClass().getResource("/logo.png")));

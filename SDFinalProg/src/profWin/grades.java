@@ -99,17 +99,17 @@ public class grades {
 		btnLogout.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		frame.getContentPane().add(btnLogout);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(-10, 78, 1262, 68);
-		panel.setBackground(new Color(149, 0, 0));
-		frame.getContentPane().add(panel);
-		
 		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setBounds(-389, 505, 1633, 68);
 		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\ACER\\OneDrive\\Pictures\\Screenshots\\Screenshot 2024-04-20 154402.png"));
 		frame.getContentPane().add(lblNewLabel_2);
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/EAC.png"));
 		lblNewLabel.setIcon(img);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(-10, 78, 1262, 68);
+		panel.setBackground(new Color(149, 0, 0));
+		frame.getContentPane().add(panel);
 
         // Other buttons and components omitted for brevity
     }
