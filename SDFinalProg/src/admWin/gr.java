@@ -4,11 +4,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JToolBar;
 
-public class crs {
+public class gr {
 
 	private JFrame frame;
 
@@ -19,7 +16,7 @@ public class crs {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					crs window = new crs();
+					gr window = new gr();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -31,7 +28,7 @@ public class crs {
 	/**
 	 * Create the application.
 	 */
-	public crs() {
+	public gr() {
 		initialize();
 	}
 
@@ -44,20 +41,13 @@ public class crs {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JButton btnNewButton = new JButton("Programs");
-		btnNewButton.setBounds(56, 104, 89, 23);
+		JButton btnNewButton = new JButton("Input Grade");
+		btnNewButton.setBounds(62, 142, 91, 23);
 		frame.getContentPane().add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Slot Monitoring");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton_1.setBounds(56, 149, 103, 23);
+		JButton btnNewButton_1 = new JButton("New button");
+		btnNewButton_1.setBounds(62, 176, 89, 23);
 		frame.getContentPane().add(btnNewButton_1);
-		
-		JButton btnNewButton_2 = new JButton("");
-		btnNewButton_2.setBounds(56, 181, 89, 23);
-		frame.getContentPane().add(btnNewButton_2);
 	}
+
 }

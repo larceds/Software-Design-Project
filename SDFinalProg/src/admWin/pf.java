@@ -124,18 +124,18 @@ public class pf extends JFrame {
 		contentPane.add(btnNewButton_2);
 		
 		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setIcon(new ImageIcon(getClass().getResource("/logo.jpg")));
+		lblNewLabel_1.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
 		lblNewLabel_1.setBounds(0, 0, 975, 68);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/put pic.jpg")));
+		lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/plhd.jpg")));
 		lblNewLabel.setBounds(753, 136, 101, 102);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_2 = new JLabel("New label");
 		lblNewLabel_2.setBackground(new Color(255, 128, 128));
-		lblNewLabel_2.setIcon(new ImageIcon(getClass().getResource("/iconpic.jpg")));
+		lblNewLabel_2.setIcon(new ImageIcon(getClass().getResource("/icon.jpg")));
 		lblNewLabel_2.setBounds(38, 150, 23, 23);
 		contentPane.add(lblNewLabel_2);
 		
@@ -292,7 +292,7 @@ public class pf extends JFrame {
 		contentPane.add(lblNewLabel_8);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(348, 271, 240, 20);
+		scrollPane_1.setBounds(355, 273, 240, 20);
 		contentPane.add(scrollPane_1);
 		
 		txtWebDeveloperAnd = new JTextField();
@@ -391,13 +391,29 @@ public class pf extends JFrame {
 		contentPane.add(txtTeachingYears);
 		txtTeachingYears.setColumns(10);
 		
+		JButton btnNewButton_4 = new JButton("Courses");
+		btnNewButton_4.setBounds(291, 79, 89, 23);
+		contentPane.add(btnNewButton_4);
+		
+		JButton btnNewButton_5 = new JButton("Account");
+		btnNewButton_5.setBounds(380, 79, 89, 23);
+		contentPane.add(btnNewButton_5);
+		
+		JButton btnNewButton_6 = new JButton("Student");
+		btnNewButton_6.setBounds(468, 79, 82, 23);
+		contentPane.add(btnNewButton_6);
+		
+		JButton btnNewButton_7 = new JButton("Change Password");
+		btnNewButton_7.setBounds(740, 470, 134, 23);
+		contentPane.add(btnNewButton_7);
+		
 		JLabel lblNewLabel_15 = new JLabel("New label");
-		lblNewLabel_15.setIcon(new ImageIcon(getClass().getResource("/Secondtop.png")));
+		lblNewLabel_15.setIcon(new ImageIcon(getClass().getResource("/bg2.png")));
 		lblNewLabel_15.setBounds(0, 67, 975, 41);
 		contentPane.add(lblNewLabel_15);
 		
 		JLabel lblNewLabel_16 = new JLabel("New label");
-		lblNewLabel_16.setIcon(new ImageIcon(getClass().getResource("/bottom.jpg")));
+		lblNewLabel_16.setIcon(new ImageIcon(getClass().getResource("/bg2.png")));
 		lblNewLabel_16.setBounds(-285, 515, 1274, 56);
 		contentPane.add(lblNewLabel_16);
 		
@@ -405,5 +421,9 @@ public class pf extends JFrame {
 		lblNewLabel_17.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
 		lblNewLabel_17.setBounds(-29, 12, 1038, 594);
 		contentPane.add(lblNewLabel_17);
+		
+		
+		
+		
 	}
 }

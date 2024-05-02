@@ -141,17 +141,17 @@ public class std {
 		frame.getContentPane().add(btnNewButton_4);
 		
 		JLabel lblLogo = new JLabel("logo");
-		lblLogo.setIcon(new ImageIcon(getClass().getResource("/logo.jpg")));
+		lblLogo.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
 		lblLogo.setBounds(0, 0, 975, 75);
 		frame.getContentPane().add(lblLogo);
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/Secondtop.png")));
+		lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/bg2.png")));
 		lblNewLabel.setBounds(0, 68, 975, 44);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setIcon(new ImageIcon(getClass().getResource("/background.png")));
+		lblNewLabel_1.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
 		lblNewLabel_1.setBounds(-14, 101, 999, 484);
 		frame.getContentPane().add(lblNewLabel_1);
 		
