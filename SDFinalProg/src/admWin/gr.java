@@ -125,22 +125,22 @@ public class gr {
 		frame.getContentPane().add(chckbxNewCheckBox);
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Santos\\Desktop\\repo\\Software-Design-Project\\SDFinalProg\\src\\imgs\\logo.png"));
+		lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
 		lblNewLabel.setBounds(0, 0, 975, 65);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\Santos\\Desktop\\repo\\Software-Design-Project\\SDFinalProg\\src\\imgs\\bg2.png"));
+		lblNewLabel_1.setIcon(new ImageIcon(getClass().getResource("/bg2.png")));
 		lblNewLabel_1.setBounds(0, 59, 975, 41);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("New label");
-		lblNewLabel_1_1.setIcon(new ImageIcon("C:\\Users\\Santos\\Desktop\\repo\\Software-Design-Project\\SDFinalProg\\src\\imgs\\bg2.png"));
+		lblNewLabel_1_1.setIcon(new ImageIcon(getClass().getResource("/bg2.png")));
 		lblNewLabel_1_1.setBounds(0, 530, 975, 41);
 		frame.getContentPane().add(lblNewLabel_1_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\Santos\\Desktop\\repo\\Software-Design-Project\\SDFinalProg\\src\\imgs\\bg.jpg"));
+		lblNewLabel_2.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
 		lblNewLabel_2.setBounds(0, 90, 975, 440);
 		frame.getContentPane().add(lblNewLabel_2);
 	}

@@ -19,7 +19,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.SwingConstants;
 
-public class grades {
+public class gr {
 
     private JFrame frame;
     private JTable table_1;
@@ -31,7 +31,7 @@ public class grades {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                	grades window = new grades();
+                	gr window = new gr();
                     window.frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -43,7 +43,7 @@ public class grades {
     /**
      * Create the application.
      */
-    public grades() {
+    public gr() {
         initialize();
     }
 
@@ -54,44 +54,14 @@ public class grades {
         frame = new JFrame();
         frame.getContentPane().setEnabled(false);
         frame.getContentPane().setBackground(Color.PINK);
-        frame.setBounds(100, 100, 1258, 610);
+        frame.setBounds(100, 100, 991, 610);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
 
         JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setBounds(0, -8, 1529, 94);
-        lblNewLabel.setIcon(new ImageIcon("C:\\Users\\ACER\\Downloads\\434637222_2369367910121302_5462547168545990256_n.jpg"));
+        lblNewLabel.setBounds(-10, -8, 1192, 84);
+        lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
         frame.getContentPane().add(lblNewLabel);
-
-        JButton btnNewButton = new JButton("Grades");
-        btnNewButton.setBounds(159, 97, 98, 24);
-        btnNewButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                openGradesWindow();
-            }
-        });
-        btnNewButton.setForeground(new Color(255, 255, 255));
-        btnNewButton.setBackground(new Color(204, 4, 34));
-        btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        frame.getContentPane().add(btnNewButton);
-        
-        JButton btnNewButton_1 = new JButton("Profile");
-        btnNewButton_1.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
-        });
-		btnNewButton_1.setBounds(33, 97, 98, 24);
-		btnNewButton_1.setForeground(new Color(255, 255, 255));
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNewButton_1.setBackground(new Color(204, 4, 34));
-		frame.getContentPane().add(btnNewButton_1);
-		
-		JButton btnSchedule = new JButton("Schedule");
-		btnSchedule.setBounds(283, 97, 98, 24);
-		btnSchedule.setForeground(new Color(255, 255, 255));
-		btnSchedule.setBackground(new Color(204, 4, 34));
-		btnSchedule.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		frame.getContentPane().add(btnSchedule);
 		
 		JButton btnLogout = new JButton("Log-out");
 		btnLogout.addActionListener(new ActionListener() {
@@ -105,25 +75,60 @@ public class grades {
 		frame.getContentPane().add(btnLogout);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setBounds(-389, 505, 1633, 68);
-		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\ACER\\OneDrive\\Pictures\\Screenshots\\Screenshot 2024-04-20 154402.png"));
+		lblNewLabel_2.setBounds(-389, 524, 1633, 49);
+		lblNewLabel_2.setIcon(new ImageIcon(getClass().getResource("/bg2.png")));
 		frame.getContentPane().add(lblNewLabel_2);
-		ImageIcon img = new ImageIcon(this.getClass().getResource("/EAC.png"));
+		ImageIcon img = new ImageIcon(this.getClass().getResource("/logo.png"));
 		lblNewLabel.setIcon(img);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(-10, 78, 1262, 68);
+		panel.setBounds(-10, 66, 1262, 66);
 		panel.setBackground(new Color(149, 0, 0));
 		frame.getContentPane().add(panel);
+		        panel.setLayout(null);
+		
+		        JButton btnNewButton = new JButton("Grades");
+		        btnNewButton.setBounds(140, 21, 75, 25);
+		        panel.add(btnNewButton);
+		        btnNewButton.addActionListener(new ActionListener() {
+		            public void actionPerformed(ActionEvent e) {
+		                openGradesWindow();
+		            }
+		        });
+		        btnNewButton.setForeground(new Color(255, 255, 255));
+		        btnNewButton.setBackground(new Color(204, 4, 34));
+		        btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		        
+		        JButton btnNewButton_1 = new JButton("Profile");
+		        btnNewButton_1.setBounds(44, 21, 98, 24);
+		        panel.add(btnNewButton_1);
+		        btnNewButton_1.addActionListener(new ActionListener() {
+		        	public void actionPerformed(ActionEvent e) {
+		        	}
+		        });
+		        btnNewButton_1.setForeground(new Color(255, 255, 255));
+		        btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		        btnNewButton_1.setBackground(new Color(204, 4, 34));
+		        
+		        JButton btnSchedule = new JButton("Schedule");
+		        btnSchedule.setBounds(214, 21, 98, 24);
+		        panel.add(btnSchedule);
+		        btnSchedule.setForeground(new Color(255, 255, 255));
+		        btnSchedule.setBackground(new Color(204, 4, 34));
+		        btnSchedule.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		        
+		        JButton btnNewButton_3 = new JButton("Logout");
+		        btnNewButton_3.setBounds(876, 24, 89, 23);
+		        panel.add(btnNewButton_3);
 		
 		JButton btnNewButton_2 = new JButton("Submit");
 		btnNewButton_2.setBackground(Color.GRAY);
 		btnNewButton_2.setForeground(Color.BLACK);
-		btnNewButton_2.setBounds(63, 524, 89, 23);
+		btnNewButton_2.setBounds(33, 490, 89, 23);
 		frame.getContentPane().add(btnNewButton_2);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(60, 200, 850, 315);
+		scrollPane.setBounds(80, 187, 782, 290);
 		frame.getContentPane().add(scrollPane);
 		
 		table_1 = new JTable();
@@ -149,11 +154,16 @@ public class grades {
 		
 		JMenu mnNewMenu = new JMenu("Subject");
 		mnNewMenu.setHorizontalAlignment(SwingConstants.CENTER);
-		mnNewMenu.setBounds(20, 163, 115, 26);
+		mnNewMenu.setBounds(10, 163, 115, 26);
 		frame.getContentPane().add(mnNewMenu);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Course");
 		mnNewMenu.add(mntmNewMenuItem);
+		
+		JMenu mnNewMenu_1 = new JMenu("Course/Section");
+		mnNewMenu_1.setHorizontalAlignment(SwingConstants.TRAILING);
+		mnNewMenu_1.setBounds(140, 163, 148, 26);
+		frame.getContentPane().add(mnNewMenu_1);
 
         // Other buttons and components omitted for brevity
     }

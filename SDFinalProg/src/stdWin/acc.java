@@ -89,12 +89,12 @@ public class acc {
 				{null, null, null, null, null, null, null, null},
 			},
 			new String[] {
-				"New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column"
+				"School Year", "New column", "New column", "New column", "New column", "New column", "New column", "New column"
 			}
 		));
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Santos\\Desktop\\repo\\Software-Design-Project\\SDFinalProg\\src\\imgs\\logo.png"));
+		lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
 		lblNewLabel.setBounds(0, 0, 907, 67);
 		frame.getContentPane().add(lblNewLabel);
 		
@@ -103,17 +103,17 @@ public class acc {
 		frame.getContentPane().add(btnNewButton_4);
 		
 		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\Santos\\Desktop\\repo\\Software-Design-Project\\SDFinalProg\\src\\imgs\\bg2.png"));
+		lblNewLabel_1.setIcon(new ImageIcon(getClass().getResource("/bg2.png")));
 		lblNewLabel_1.setBounds(0, 59, 907, 49);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\Santos\\Desktop\\repo\\Software-Design-Project\\SDFinalProg\\src\\imgs\\bg2.png"));
+		lblNewLabel_2.setIcon(new ImageIcon(getClass().getResource("/bg2.png")));
 		lblNewLabel_2.setBounds(-32, 521, 971, 50);
 		frame.getContentPane().add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setIcon(new ImageIcon("C:\\Users\\Santos\\Desktop\\repo\\Software-Design-Project\\SDFinalProg\\src\\imgs\\bg.jpg"));
+		lblNewLabel_3.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
 		lblNewLabel_3.setBounds(0, 97, 907, 425);
 		frame.getContentPane().add(lblNewLabel_3);
 	}

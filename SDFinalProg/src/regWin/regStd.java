@@ -81,8 +81,8 @@ public class regStd {
         panel_1.add(lblNewLabel_1);
 
         JLabel lblNewLabel_2 = new JLabel("New label");
-        lblNewLabel_2.setIcon(new ImageIcon(getClass().getResource("/LINE.png")));
-        lblNewLabel_2.setBounds(34, 63, 553, 13);
+        lblNewLabel_2.setIcon(new ImageIcon(getClass().getResource("/bg3.jpg")));
+        lblNewLabel_2.setBounds(34, 61, 553, 5);
         panel_1.add(lblNewLabel_2);
 
         JLabel lblNewLabel_3 = new JLabel("LRN");
