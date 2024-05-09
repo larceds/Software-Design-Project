@@ -17,18 +17,19 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ImageIcon;
+import java.awt.Font;
+import javax.swing.JList;
+import javax.swing.JComboBox;
+import javax.swing.JMenuBar;
 
 public class crs {
 
 	private JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
 	private JTextField textField_6;
-	private JTextField textField_2;
 	private JTable table;
+	private JTable table_1;
 
 	/**
 	 * Launch the application.
@@ -63,10 +64,18 @@ public class crs {
 		frame.getContentPane().setLayout(null);
 		
 		JButton btnNewButton_2 = new JButton("Profile");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnNewButton_2.setBounds(35, 70, 89, 23);
 		frame.getContentPane().add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Grade");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnNewButton_3.setBounds(120, 70, 89, 23);
 		frame.getContentPane().add(btnNewButton_3);
 		
@@ -132,78 +141,108 @@ public class crs {
 		tabbedPane.addTab("Edit Course", null, panel_1, null);
 		
 		JPanel panel_2 = new JPanel();
-		tabbedPane.addTab("Add Subject", null, panel_2, null);
+		tabbedPane.addTab("Edit Subject", null, panel_2, null);
 		panel_2.setLayout(null);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(89, 29, 86, 20);
-		panel_2.add(textField_3);
-		textField_3.setColumns(10);
+		JMenu mnNewMenu_1 = new JMenu("Course");
+		mnNewMenu_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		mnNewMenu_1.setFont(new Font("Segoe UI", Font.PLAIN, 10));
+		mnNewMenu_1.setBounds(0, 0, 117, 17);
+		panel_2.add(mnNewMenu_1);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(330, 29, 86, 20);
-		panel_2.add(textField_4);
-		textField_4.setColumns(10);
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(10, 40, 761, 313);
+		panel_2.add(scrollPane_1);
 		
-		textField_5 = new JTextField();
-		textField_5.setBounds(89, 118, 86, 20);
-		panel_2.add(textField_5);
-		textField_5.setColumns(10);
+		table_1 = new JTable();
+		table_1.setToolTipText("");
+		table_1.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+			},
+			new String[] {
+				"Subject Code", "Subject Name", "#Units"
+			}
+		));
+		scrollPane_1.setViewportView(table_1);
 		
-		JLabel lblNewLabel_3 = new JLabel("Subject Name");
-		lblNewLabel_3.setBounds(89, 60, 86, 14);
-		panel_2.add(lblNewLabel_3);
-		
-		JLabel label = new JLabel("No. of Units");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setBounds(330, 60, 86, 14);
-		panel_2.add(label);
-		
-		JLabel lblNewLabel_4 = new JLabel("Pre-requisites");
-		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4.setBounds(330, 151, 86, 14);
-		panel_2.add(lblNewLabel_4);
-		
-		JLabel lblNewLabel_2 = new JLabel("Subject Code");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setBounds(89, 151, 86, 14);
-		panel_2.add(lblNewLabel_2);
-		
-		textField_2 = new JTextField();
-		textField_2.setBounds(330, 118, 86, 20);
-		panel_2.add(textField_2);
-		textField_2.setColumns(10);
-		
-		JButton btnNewButton_7 = new JButton("Add Subject");
-		btnNewButton_7.setBounds(533, 311, 89, 23);
+		JButton btnNewButton_7 = new JButton("Delete subject");
+		btnNewButton_7.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		btnNewButton_7.setBounds(558, 352, 106, 23);
 		panel_2.add(btnNewButton_7);
 		
-		JPanel panel_3 = new JPanel();
-		tabbedPane.addTab("Edit Subject", null, panel_3, null);
+		JButton btnNewButton_8 = new JButton("Add Subject");
+		btnNewButton_8.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		btnNewButton_8.setBounds(663, 352, 89, 23);
+		panel_2.add(btnNewButton_8);
 		
 		JPanel panel_4 = new JPanel();
 		tabbedPane.addTab("See Courses ", null, panel_4, null);
 		panel_4.setLayout(null);
 		
 		JMenu mnNewMenu = new JMenu("Course");
-		mnNewMenu.setBounds(22, 24, 115, 26);
+		mnNewMenu.setFont(new Font("Segoe UI", Font.PLAIN, 10));
+		mnNewMenu.setBounds(0, 0, 117, 17);
 		panel_4.add(mnNewMenu);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(50, 76, 576, 262);
+		scrollPane.setToolTipText("");
+		scrollPane.setBounds(10, 37, 759, 313);
 		panel_4.add(scrollPane);
 		
 		table = new JTable();
+		table.setEnabled(false);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null},
 				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
 			},
 			new String[] {
-				"Subject Code", "Subject Name", "Units", "Pre-requisites"
+				"Subject Code", "Subject Name", "#Units", "Pre-requisites"
 			}
 		));
 		scrollPane.setViewportView(table);
+		
+		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane_1.setBounds(0, 0, 0, 0);
+		panel_4.add(tabbedPane_1);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(114, 4, 92, 22);
+		panel_4.add(comboBox);
 		
 		JButton btnNewButton = new JButton("Logout");
 		btnNewButton.setBounds(832, 70, 89, 23);
