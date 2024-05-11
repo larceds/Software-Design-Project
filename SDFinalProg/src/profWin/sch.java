@@ -16,10 +16,12 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class sch {
 
-	private JFrame frame;
+	JFrame frame;
 	private JTable table;
 	private JTable table_1;
 
@@ -58,6 +60,13 @@ public class sch {
 		frame.getContentPane().setLayout(null);
 		
 		JButton btnNewButton = new JButton("Grades");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gr win= new gr();
+				win.frame.setVisible(true);
+				frame.dispose();
+			}
+		});
 		btnNewButton.setBounds(132, 98, 74, 24);
 		btnNewButton.setForeground(new Color(0, 0, 0));
 		btnNewButton.setBackground(new Color(204, 4, 34));
@@ -65,6 +74,13 @@ public class sch {
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Profile");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			pf win = new pf();
+			win.setVisible(true);
+			frame.dispose();
+			}
+		});
 		btnNewButton_1.setBounds(33, 98, 74, 24);
 		btnNewButton_1.setForeground(new Color(0, 0, 0));
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -72,6 +88,12 @@ public class sch {
 		frame.getContentPane().add(btnNewButton_1);
 		
 		JButton btnSchedule = new JButton("Schedule");
+		btnSchedule.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				frame.setVisible(true);
+			}
+		});
 		btnSchedule.setBounds(232, 98, 77, 24);
 		btnSchedule.setForeground(new Color(0, 0, 0));
 		btnSchedule.setBackground(new Color(204, 4, 34));

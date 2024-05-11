@@ -21,7 +21,7 @@ import javax.swing.SwingConstants;
 
 public class gr {
 
-    private JFrame frame;
+    JFrame frame;
     private JTable table_1;
 
     /**
@@ -92,6 +92,7 @@ public class gr {
 		        panel.add(btnNewButton);
 		        btnNewButton.addActionListener(new ActionListener() {
 		            public void actionPerformed(ActionEvent e) {
+		            	frame.dispose();
 		                openGradesWindow();
 		            }
 		        });
@@ -104,6 +105,9 @@ public class gr {
 		        panel.add(btnNewButton_1);
 		        btnNewButton_1.addActionListener(new ActionListener() {
 		        	public void actionPerformed(ActionEvent e) {
+		        		frame.dispose();
+		        		pf win= new pf();
+		        		win.setVisible(true);
 		        	}
 		        });
 		        btnNewButton_1.setForeground(new Color(255, 255, 255));
@@ -111,6 +115,13 @@ public class gr {
 		        btnNewButton_1.setBackground(new Color(204, 4, 34));
 		        
 		        JButton btnSchedule = new JButton("Schedule");
+		        btnSchedule.addActionListener(new ActionListener() {
+		        	public void actionPerformed(ActionEvent e) {
+		        		frame.dispose();
+		        		sch win= new sch();
+		        		win.frame.setVisible(true);
+		        	}
+		        });
 		        btnSchedule.setBounds(214, 21, 98, 24);
 		        panel.add(btnSchedule);
 		        btnSchedule.setForeground(new Color(255, 255, 255));

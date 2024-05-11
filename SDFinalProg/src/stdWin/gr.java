@@ -64,6 +64,9 @@ public class gr extends JFrame {
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
+				pf win = new pf();
+				win.setVisible(true);
 			}
 		});
 		btnNewButton.setBackground(new Color(128, 0, 0));
@@ -73,6 +76,9 @@ public class gr extends JFrame {
 		JButton btnNewButton_1 = new JButton("Grade");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
+				gr win= new gr();
+				win.setVisible(true);
 			}
 		});
 		btnNewButton_1.setBackground(new Color(128, 0, 0));
@@ -85,6 +91,9 @@ public class gr extends JFrame {
 		btnNewButton_2.setBackground(new Color(128, 0, 0));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
+				sch win=new sch();
+				win.frame.setVisible(true);
 			}
 		});
 		btnNewButton_2.setBounds(203, 78, 89, 23);
@@ -199,6 +208,13 @@ public class gr extends JFrame {
 		textField_6.setColumns(10);
 		
 		JButton btnNewButton_2_1 = new JButton("Account");
+		btnNewButton_2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				acc win=new acc();
+				win.frame.setVisible(true);
+			}
+		});
 		btnNewButton_2_1.setForeground(Color.WHITE);
 		btnNewButton_2_1.setBackground(new Color(128, 0, 0));
 		btnNewButton_2_1.setBounds(292, 78, 89, 23);

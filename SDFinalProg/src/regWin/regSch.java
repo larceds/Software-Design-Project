@@ -67,12 +67,12 @@ public class regSch {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 1235, 812);
+		frame.setBounds(100, 100, 1197, 766);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(91, 143, 1017, 557);
+		tabbedPane.setBounds(78, 131, 1017, 557);
 		frame.getContentPane().add(tabbedPane);
 		
 		JPanel panel = new JPanel();
@@ -309,13 +309,13 @@ public class regSch {
 		panel_2.add(lblNewLabel_7_3);
 		
 		JLabel lblNewLabel = new JLabel("banner eac");
-		lblNewLabel.setBounds(0, 0, 1219, 79);
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\andri\\Pictures\\Screenshots\\Screenshot 2024-04-19 202523.png"));
+		lblNewLabel.setBounds(0, -14, 1181, 96);
+		lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
 		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("backround");
-		lblNewLabel_1.setBounds(0, 82, 1219, 691);
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\andri\\Pictures\\Screenshots\\gradient 2.png"));
+		lblNewLabel_1.setBounds(0, 66, 1181, 707);
+		lblNewLabel_1.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
 		frame.getContentPane().add(lblNewLabel_1);
 	}
 }

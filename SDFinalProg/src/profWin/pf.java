@@ -104,12 +104,22 @@ public class pf extends JFrame {
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
+				pf win=new pf();
+				win.setVisible(true);
 			}
 		});
 		btnNewButton.setBounds(28, 79, 89, 23);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Grade");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				gr win=new gr();
+				win.frame.setVisible(true);
+			}
+		});
 		btnNewButton_1.setBackground(new Color(128, 0, 0));
 		btnNewButton_1.setForeground(new Color(255, 255, 255));
 		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -117,6 +127,13 @@ public class pf extends JFrame {
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Schedule");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				sch win=new sch();
+				win.frame.setVisible(true);
+			}
+		});
 		btnNewButton_2.setBackground(new Color(128, 0, 0));
 		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_2.setForeground(new Color(255, 255, 255));

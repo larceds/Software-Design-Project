@@ -27,7 +27,7 @@ import java.awt.event.ActionEvent;
 
 public class sch {
 
-	private JFrame frame;
+	JFrame frame;
 	private JTable tblData;
 	private JTable table_1;
 
@@ -74,27 +74,6 @@ public class sch {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JButton btnNewButton = new JButton("Grades");
-		btnNewButton.setBounds(132, 98, 74, 24);
-		btnNewButton.setForeground(new Color(0, 0, 0));
-		btnNewButton.setBackground(new Color(204, 4, 34));
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		frame.getContentPane().add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("Profile");
-		btnNewButton_1.setBounds(33, 98, 74, 24);
-		btnNewButton_1.setForeground(new Color(0, 0, 0));
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNewButton_1.setBackground(new Color(204, 4, 34));
-		frame.getContentPane().add(btnNewButton_1);
-		
-		JButton btnSchedule = new JButton("Schedule");
-		btnSchedule.setBounds(232, 98, 77, 24);
-		btnSchedule.setForeground(new Color(0, 0, 0));
-		btnSchedule.setBackground(new Color(204, 4, 34));
-		btnSchedule.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		frame.getContentPane().add(btnSchedule);
-		
 		JButton btnLogout = new JButton("Log-out");
 		btnLogout.setBounds(954, 98, 122, 24);
 		btnLogout.setForeground(Color.BLACK);
@@ -103,9 +82,63 @@ public class sch {
 		frame.getContentPane().add(btnLogout);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(-10, 78, 1147, 59);
+		panel.setBounds(0, 67, 1147, 59);
 		panel.setBackground(new Color(149, 0, 0));
 		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JButton btnNewButton_1 = new JButton("Profile");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				pf win= new pf();
+				win.setVisible(true);
+			}
+		});
+		btnNewButton_1.setBounds(28, 11, 69, 25);
+		panel.add(btnNewButton_1);
+		btnNewButton_1.setForeground(new Color(0, 0, 0));
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnNewButton_1.setBackground(new Color(204, 4, 34));
+		
+		JButton btnNewButton = new JButton("Grades");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				gr win= new gr();
+				win.setVisible(true);
+			}
+		});
+		btnNewButton.setBounds(96, 12, 74, 24);
+		panel.add(btnNewButton);
+		btnNewButton.setForeground(new Color(0, 0, 0));
+		btnNewButton.setBackground(new Color(204, 4, 34));
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		
+		JButton btnSchedule = new JButton("Schedule");
+		btnSchedule.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				sch win= new sch();
+				win.frame.setVisible(true);
+			}
+		});
+		btnSchedule.setBounds(169, 13, 77, 24);
+		panel.add(btnSchedule);
+		btnSchedule.setForeground(new Color(0, 0, 0));
+		btnSchedule.setBackground(new Color(204, 4, 34));
+		btnSchedule.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		
+		JButton btnNewButton_2 = new JButton("Account");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				acc win= new acc();
+				win.frame.setVisible(true);
+			}
+		});
+		btnNewButton_2.setBounds(245, 14, 82, 23);
+		panel.add(btnNewButton_2);
 		
 		JLabel lblNewLabel_1 = new JLabel("Welcome, ");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -231,7 +264,7 @@ public class sch {
 		JLabel lblNewLabel_4 = new JLabel("New label");
 		lblNewLabel_4.setBackground(new Color(240, 240, 240));
 		lblNewLabel_4.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
-		lblNewLabel_4.setBounds(0, 136, 1147, 437);
+		lblNewLabel_4.setBounds(0, 119, 1147, 454);
 		frame.getContentPane().add(lblNewLabel_4);
 	}
 }
