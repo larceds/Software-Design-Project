@@ -29,6 +29,8 @@ public class crs {
 	private JTextField textField_6;
 	private JTextField textField_2;
 	private JTable table;
+	private JTable table_1;
+	private JTable table_2;
 
 	/**
 	 * Launch the application.
@@ -125,8 +127,32 @@ public class crs {
 		panel.add(lblNewLabel_5);
 		
 		JButton btnNewButton_1 = new JButton("Add Course");
-		btnNewButton_1.setBounds(418, 265, 89, 23);
+		btnNewButton_1.setBounds(451, 25, 89, 23);
 		panel.add(btnNewButton_1);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(79, 171, 514, 178);
+		panel.add(scrollPane_1);
+		
+		table_1 = new JTable();
+		table_1.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+			},
+			new String[] {
+				"New column", "New column", "New column", "New column"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				Boolean.class, Object.class, Object.class, Object.class
+			};
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
+		scrollPane_1.setViewportView(table_1);
 		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Edit Course", null, panel_1, null);
@@ -146,7 +172,7 @@ public class crs {
 		textField_4.setColumns(10);
 		
 		textField_5 = new JTextField();
-		textField_5.setBounds(89, 118, 86, 20);
+		textField_5.setBounds(518, 29, 86, 20);
 		panel_2.add(textField_5);
 		textField_5.setColumns(10);
 		
@@ -161,22 +187,26 @@ public class crs {
 		
 		JLabel lblNewLabel_4 = new JLabel("Pre-requisites");
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4.setBounds(330, 151, 86, 14);
+		lblNewLabel_4.setBounds(89, 169, 86, 14);
 		panel_2.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_2 = new JLabel("Subject Code");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setBounds(89, 151, 86, 14);
+		lblNewLabel_2.setBounds(518, 60, 86, 14);
 		panel_2.add(lblNewLabel_2);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(330, 118, 86, 20);
+		textField_2.setBounds(89, 148, 86, 20);
 		panel_2.add(textField_2);
 		textField_2.setColumns(10);
 		
 		JButton btnNewButton_7 = new JButton("Add Subject");
-		btnNewButton_7.setBounds(533, 311, 89, 23);
+		btnNewButton_7.setBounds(590, 341, 89, 23);
 		panel_2.add(btnNewButton_7);
+		
+		table_2 = new JTable();
+		table_2.setBounds(89, 194, 614, 129);
+		panel_2.add(table_2);
 		
 		JPanel panel_3 = new JPanel();
 		tabbedPane.addTab("Edit Subject", null, panel_3, null);
