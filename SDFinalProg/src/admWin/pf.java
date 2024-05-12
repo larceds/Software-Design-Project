@@ -392,6 +392,10 @@ public class pf extends JFrame {
 		txtTeachingYears.setColumns(10);
 		
 		JButton btnNewButton_4 = new JButton("Courses");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnNewButton_4.setBounds(291, 79, 89, 23);
 		contentPane.add(btnNewButton_4);
 		
