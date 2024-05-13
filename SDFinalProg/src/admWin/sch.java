@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.SwingConstants;
 
 public class sch {
 
@@ -23,6 +24,7 @@ public class sch {
 	private JTable table;
 	private JTable table_1;
 	private JTable table_2;
+	private JTextField txtSearchBar;
 
 	/**
 	 * Launch the application.
@@ -55,6 +57,13 @@ public class sch {
 		frame.getContentPane().setBackground(new Color(255, 53, 53));
 		frame.getContentPane().setLayout(null);
 		
+		txtSearchBar = new JTextField();
+		txtSearchBar.setHorizontalAlignment(SwingConstants.CENTER);
+		txtSearchBar.setText("SEARCH BAR");
+		txtSearchBar.setBounds(773, 113, 125, 23);
+		frame.getContentPane().add(txtSearchBar);
+		txtSearchBar.setColumns(10);
+		
 		JButton btnNewButton_4_2_1 = new JButton("Student");
 		btnNewButton_4_2_1.setBounds(488, 78, 89, 24);
 		frame.getContentPane().add(btnNewButton_4_2_1);
@@ -65,7 +74,7 @@ public class sch {
 		
 		JButton btnNewButton_4_1 = new JButton("LOG OUT");
 		btnNewButton_4_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton_4_1.setBounds(817, 78, 89, 24);
+		btnNewButton_4_1.setBounds(862, 78, 89, 24);
 		frame.getContentPane().add(btnNewButton_4_1);
 		
 		JButton btnNewButton_2 = new JButton("Profile");
@@ -101,6 +110,34 @@ public class sch {
 		tabbedPane.setBounds(70, 119, 836, 402);
 		frame.getContentPane().add(tabbedPane);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		tabbedPane.addTab("Set", null, scrollPane, null);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+			},
+			new String[] {
+				"Time", "Subject", "Course/Section", "Faculty Name", "Room"
+			}
+		));
+		scrollPane.setViewportView(table);
+		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		tabbedPane.addTab("Search", null, scrollPane_1, null);
 		
@@ -133,34 +170,6 @@ public class sch {
 			}
 		));
 		scrollPane_1.setViewportView(table_1);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		tabbedPane.addTab("Set", null, scrollPane, null);
-		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-			},
-			new String[] {
-				"Time", "Subject", "Course/Section", "Faculty Name", "Room"
-			}
-		));
-		scrollPane.setViewportView(table);
 		
 		JScrollPane scrollPane_2 = new JScrollPane();
 		tabbedPane.addTab("Faculty", null, scrollPane_2, null);
