@@ -3,31 +3,31 @@ package regWin;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
+import javax.swing.ButtonGroup;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.TitledBorder;
+
+import javax.swing.JFrame;
 
 public class regStd {
 
     private JFrame frame;
-    private final JPanel panel = new JPanel();
-    private final JLabel lblNewLabel_1 = new JLabel("Register:");
-    private JTextField textField;
-    private JTextField textField_2;
-    private JTextField textField_3;
-    private JPasswordField passwordField; // Changed to JPasswordField
-    private Set<String> registeredUsernames = new HashSet<>();
+    private JTextField lastNameField;
+    private JTextField firstNameField;
+    private JTextField middleNameField;
+    private JTextField birthDateField;
+    private JTextField ageField;
+    private JTextField birthPlaceField;
+    private JTextField lrnField;
+    private JTextField cellphoneField;
+    private JTextField emailField;
+    private JTextField residenceField;
 
     /**
      * Launch the application.
@@ -60,168 +60,188 @@ public class regStd {
         frame.setBounds(100, 100, 983, 712);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
+
+        JPanel panel = new JPanel();
         panel.setBackground(new Color(255, 206, 209));
         panel.setBounds(0, 0, 977, 680);
         frame.getContentPane().add(panel);
         panel.setLayout(null);
 
-        JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setBounds(0, -54, 1038, 172);
-        panel.add(lblNewLabel);
-        lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
-
         JPanel panel_1 = new JPanel();
-        panel_1.setBackground(new Color(101, 81, 78));
-        panel_1.setBounds(154, 164, 657, 402);
+        panel_1.setBorder(new TitledBorder(null, "Personal Information", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+        panel_1.setBackground(new Color(255, 206, 209));
+        panel_1.setBounds(20, 60, 940, 590);
         panel.add(panel_1);
         panel_1.setLayout(null);
-        lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 18));
-        lblNewLabel_1.setForeground(Color.WHITE);
-        lblNewLabel_1.setBounds(34, 26, 313, 36);
-        panel_1.add(lblNewLabel_1);
 
-        JLabel lblNewLabel_2 = new JLabel("New label");
-        lblNewLabel_2.setIcon(new ImageIcon(getClass().getResource("/bg3.jpg")));
-        lblNewLabel_2.setBounds(34, 61, 553, 5);
-        panel_1.add(lblNewLabel_2);
+        JLabel lblApplicationFor = new JLabel("Application For:");
+        lblApplicationFor.setBounds(20, 30, 150, 30);
+        panel_1.add(lblApplicationFor);
 
-        JLabel lblNewLabel_3 = new JLabel("LRN");
-        lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 15));
-        lblNewLabel_3.setForeground(Color.WHITE);
-        lblNewLabel_3.setBounds(34, 72, 89, 30);
-        panel_1.add(lblNewLabel_3);
+        JComboBox<String> comboBoxApplicationFor = new JComboBox<>(new String[] {"Bachelor's Degree"});
+        comboBoxApplicationFor.setBounds(180, 30, 200, 30);
+        panel_1.add(comboBoxApplicationFor);
 
-        textField = new JTextField();
-        textField.setBounds(34, 99, 553, 30);
-        panel_1.add(textField);
-        textField.setColumns(10);
+        JLabel lblClassification = new JLabel("Classification:");
+        lblClassification.setBounds(20, 70, 150, 30);
+        panel_1.add(lblClassification);
 
-        JLabel lblNewLabel_4 = new JLabel("FULLNAME(SURNAME, FIRST NAME, M.I)");
-        lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 15));
-        lblNewLabel_4.setForeground(Color.WHITE);
-        lblNewLabel_4.setBounds(34, 139, 398, 30);
-        panel_1.add(lblNewLabel_4);
+        JComboBox<String> comboBoxClassification = new JComboBox<>(new String[] {"New"});
+        comboBoxClassification.setBounds(180, 70, 200, 30);
+        panel_1.add(comboBoxClassification);
 
-        textField_3 = new JTextField(); // Renamed from textField_1
-        textField_3.setBounds(34, 168, 553, 29);
-        panel_1.add(textField_3);
-        textField_3.setColumns(10);
+        JLabel lblCourse = new JLabel("Course/Program:");
+        lblCourse.setBounds(20, 110, 150, 30);
+        panel_1.add(lblCourse);
 
-        JLabel lblNewLabel_5 = new JLabel("USERNAME");
-        lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 15));
-        lblNewLabel_5.setForeground(Color.WHITE);
-        lblNewLabel_5.setBounds(34, 207, 120, 30);
-        panel_1.add(lblNewLabel_5);
+        JComboBox<String> comboBoxCourse = new JComboBox<>(new String[] {"TCPE - BACHELOR OF SCIENCE IN COMPUTER ENGINEERING"});
+        comboBoxCourse.setBounds(180, 110, 400, 30);
+        panel_1.add(comboBoxCourse);
 
-        textField_2 = new JTextField();
-        textField_2.setBounds(34, 235, 553, 30);
-        panel_1.add(textField_2);
-        textField_2.setColumns(10);
+        JLabel lblLevel = new JLabel("Level:");
+        lblLevel.setBounds(20, 150, 150, 30);
+        panel_1.add(lblLevel);
 
-        JLabel lblNewLabel_51 = new JLabel("PASSWORD");
-        lblNewLabel_51.setFont(new Font("Tahoma", Font.BOLD, 15));
-        lblNewLabel_51.setForeground(Color.WHITE);
-        lblNewLabel_51.setBounds(34, 276, 120, 30);
-        panel_1.add(lblNewLabel_51);
+        JComboBox<String> comboBoxLevel = new JComboBox<>(new String[] {"Year of the Student"});
+        comboBoxLevel.setBounds(180, 150, 200, 30);
+        panel_1.add(comboBoxLevel);
 
-        passwordField = new JPasswordField(); // Changed to JPasswordField
-        passwordField.setBounds(34, 304, 553, 30);
-        panel_1.add(passwordField);
+        JLabel lblSchoolYear = new JLabel("School Year:");
+        lblSchoolYear.setBounds(20, 190, 150, 30);
+        panel_1.add(lblSchoolYear);
 
-        JLabel lblPasswordHint = new JLabel("Hint: Use upper and lower case letters, numbers, and symbols like !\"#$%^&*()");
-        lblPasswordHint.setFont(new Font("Tahoma", Font.PLAIN, 12));
-        lblPasswordHint.setForeground(Color.WHITE);
-        lblPasswordHint.setBounds(40, 335, 545, 20);
-        panel_1.add(lblPasswordHint);
+        JComboBox<String> comboBoxSchoolYear = new JComboBox<>(new String[] {"2024"});
+        comboBoxSchoolYear.setBounds(180, 190, 200, 30);
+        panel_1.add(comboBoxSchoolYear);
 
-        JButton btnNewButton = new JButton("REGISTER");
-        btnNewButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Get text from text fields
-                String lrn = textField.getText();
-                String fullname = textField_3.getText();
-                String username = textField_2.getText();
-                String password = new String(passwordField.getPassword()); // Retrieve password as String
+        JLabel lblTerm = new JLabel("Term:");
+        lblTerm.setBounds(20, 230, 150, 30);
+        panel_1.add(lblTerm);
 
-                // Check for empty fields
-                if (lrn.isEmpty() || fullname.isEmpty() || username.isEmpty() || password.isEmpty()) {
-                    JOptionPane.showMessageDialog(frame, "Please fill in all the fields.");
-                    return; // Stop registration process
-                }
+        JComboBox<String> comboBoxTerm = new JComboBox<>(new String[] {"First"});
+        comboBoxTerm.setBounds(180, 230, 200, 30);
+        panel_1.add(comboBoxTerm);
 
-                // Check if username is unique
-                if (registeredUsernames.contains(username)) {
-                    JOptionPane.showMessageDialog(frame, "Username already exists. Please choose another one.");
-                    return; // Stop registration process
-                }
+        JLabel lblName = new JLabel("Name:");
+        lblName.setBounds(20, 270, 150, 30);
+        panel_1.add(lblName);
 
-                // Check if the password contains at least one of the specified symbols
-                if (!password.matches(".*[!\"#$%^&*()].*")) {
-                    JOptionPane.showMessageDialog(frame, "Password must include at least one of the specified symbols.");
-                    return; // Stop registration process
-                }
+        JLabel lblLastName = new JLabel("Last Name");
+        lblLastName.setBounds(180, 250, 150, 30);
+        panel_1.add(lblLastName);
 
-                // Check if the password contains at least one number
-                if (!password.matches(".*\\d.*")) {
-                    JOptionPane.showMessageDialog(frame, "Password must contain at least one number.");
-                    return; // Stop registration process
-                }
+        JLabel lblFirstName = new JLabel("First Name");
+        lblFirstName.setBounds(380, 250, 150, 30);
+        panel_1.add(lblFirstName);
 
-                // Do something with the data, like saving to a database
-                // For now, just print them
-                System.out.println("LRN: " + lrn);
-                System.out.println("Fullname: " + fullname);
-                System.out.println("Username: " + username);
+        JLabel lblMiddleName = new JLabel("Middle Name");
+        lblMiddleName.setBounds(580, 250, 150, 30);
+        panel_1.add(lblMiddleName);
 
-                System.out.print("Password: ");
-                for (int i = 0; i < password.length(); i++) {
-                    System.out.print("*");
-                }
-                System.out.println();
+        lastNameField = new JTextField();
+        lastNameField.setBounds(180, 270, 150, 30);
+        panel_1.add(lastNameField);
 
-                // Add the username to the set of registered usernames
-                registeredUsernames.add(username);
+        firstNameField = new JTextField();
+        firstNameField.setBounds(380, 270, 150, 30);
+        panel_1.add(firstNameField);
 
-                // Display success message
-                JOptionPane.showMessageDialog(frame, "Your registration is successful!");
-            }
-        });
-        btnNewButton.setForeground(Color.WHITE);
-        btnNewButton.setBackground(new Color(217, 0, 0));
-        btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        btnNewButton.setBounds(350, 356, 133, 36);
-        panel_1.add(btnNewButton);
+        middleNameField = new JTextField();
+        middleNameField.setBounds(580, 270, 150, 30);
+        panel_1.add(middleNameField);
 
-        JButton btnNewButton1 = new JButton("RESET");
-        btnNewButton1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                textField.setText("");
-                textField_2.setText("");
-                textField_3.setText("");
-                passwordField.setText(""); // Clear password field
-            }
-        });
-        btnNewButton1.setForeground(Color.WHITE);
-        btnNewButton1.setBackground(new Color(217, 0, 0));
-        btnNewButton1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        btnNewButton1.setBounds(140, 356, 133, 36);
-        panel_1.add(btnNewButton1);
+        JLabel lblGender = new JLabel("Gender:");
+        lblGender.setBounds(20, 310, 150, 30);
+        panel_1.add(lblGender);
 
-        JLabel lblNewLabel_31 = new JLabel("New label");
-        lblNewLabel_31.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel_31.setIcon(new ImageIcon(getClass().getResource("/bg2.png")));
-        lblNewLabel_31.setBounds(-91, 596, 1160, 160);
-        panel.add(lblNewLabel_31);
+        JRadioButton rdbtnMale = new JRadioButton("Male");
+        rdbtnMale.setBounds(180, 310, 100, 30);
+        panel_1.add(rdbtnMale);
 
-        JLabel lblNewLabel_6 = new JLabel("STUDENT Registration");
-        lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 21));
-        lblNewLabel_6.setBounds(327, 115, 280, 39);
-        panel.add(lblNewLabel_6);
+        JRadioButton rdbtnFemale = new JRadioButton("Female");
+        rdbtnFemale.setBounds(280, 310, 100, 30);
+        panel_1.add(rdbtnFemale);
 
-        JLabel lblNewLabel_311 = new JLabel("New label");
-        lblNewLabel_311.setBounds(-347, -71, 1677, 680);
-        panel.add(lblNewLabel_311);
-        lblNewLabel_311.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel_311.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
+        ButtonGroup genderGroup = new ButtonGroup();
+        genderGroup.add(rdbtnMale);
+        genderGroup.add(rdbtnFemale);
+
+        JLabel lblBirthDate = new JLabel("Birth Date:");
+        lblBirthDate.setBounds(20, 350, 150, 30);
+        panel_1.add(lblBirthDate);
+
+        birthDateField = new JTextField();
+        birthDateField.setBounds(180, 350, 150, 30);
+        panel_1.add(birthDateField);
+
+        JLabel lblAge = new JLabel("Age:");
+        lblAge.setBounds(380, 350, 50, 30);
+        panel_1.add(lblAge);
+
+        ageField = new JTextField();
+        ageField.setBounds(420, 350, 50, 30);
+        panel_1.add(ageField);
+
+        JLabel lblBirthPlace = new JLabel("Birth Place:");
+        lblBirthPlace.setBounds(480, 350, 100, 30);
+        panel_1.add(lblBirthPlace);
+
+        birthPlaceField = new JTextField();
+        birthPlaceField.setBounds(580, 350, 150, 30);
+        panel_1.add(birthPlaceField);
+
+        JLabel lblReligion = new JLabel("Religion:");
+        lblReligion.setBounds(20, 390, 150, 30);
+        panel_1.add(lblReligion);
+
+        JComboBox<String> comboBoxReligion = new JComboBox<>(new String[] {"Catholic"});
+        comboBoxReligion.setBounds(180, 390, 200, 30);
+        panel_1.add(comboBoxReligion);
+
+        JLabel lblCivilStatus = new JLabel("Civil Status:");
+        lblCivilStatus.setBounds(20, 430, 150, 30);
+        panel_1.add(lblCivilStatus);
+
+        JComboBox<String> comboBoxCivilStatus = new JComboBox<>(new String[] {"Single"});
+        comboBoxCivilStatus.setBounds(180, 430, 200, 30);
+        panel_1.add(comboBoxCivilStatus);
+
+        JLabel lblCellphone = new JLabel("Cellphone Number:");
+        lblCellphone.setBounds(20, 470, 150, 30);
+        panel_1.add(lblCellphone);
+
+        cellphoneField = new JTextField();
+        cellphoneField.setBounds(180, 470, 200, 30);
+        panel_1.add(cellphoneField);
+
+        JLabel lblEmail = new JLabel("Email:");
+        lblEmail.setBounds(20, 510, 150, 30);
+        panel_1.add(lblEmail);
+
+        emailField = new JTextField();
+        emailField.setBounds(180, 510, 200, 30);
+        panel_1.add(emailField);
+
+        JLabel lblResidence = new JLabel("Residence Number:");
+        lblResidence.setBounds(400, 510, 150, 30);
+        panel_1.add(lblResidence);
+
+        residenceField = new JTextField();
+        residenceField.setBounds(580, 510, 150, 30);
+        panel_1.add(residenceField);
+
+        JLabel lblLrn = new JLabel("LRN:");
+        lblLrn.setBounds(400, 470, 150, 30);
+        panel_1.add(lblLrn);
+
+        lrnField = new JTextField();
+        lrnField.setBounds(580, 470, 150, 30);
+        panel_1.add(lrnField);
+
+        JLabel lblWelcome = new JLabel("Welcome, Student");
+        lblWelcome.setHorizontalAlignment(SwingConstants.CENTER);
+        lblWelcome.setFont(new Font("Tahoma", Font.BOLD, 20));
+        lblWelcome.setBounds(20, 10, 940, 30);
+        panel.add(lblWelcome);
     }
 }
