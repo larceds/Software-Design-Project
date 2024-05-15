@@ -230,6 +230,10 @@ public class crs {
 		scrollPane_1.setViewportView(table_1);
 		
 		JButton btnNewButton_7 = new JButton("Manage Subjects");
+		btnNewButton_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnNewButton_7.setBounds(654, 15, 116, 23);
 		panel_2.add(btnNewButton_7);
 		

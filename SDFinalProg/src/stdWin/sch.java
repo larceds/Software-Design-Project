@@ -74,13 +74,6 @@ public class sch {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JButton btnLogout = new JButton("Log-out");
-		btnLogout.setBounds(954, 98, 122, 24);
-		btnLogout.setForeground(Color.BLACK);
-		btnLogout.setBackground(new Color(204, 4, 34));
-		btnLogout.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		frame.getContentPane().add(btnLogout);
-		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 67, 1147, 59);
 		panel.setBackground(new Color(149, 0, 0));
@@ -139,6 +132,13 @@ public class sch {
 		});
 		btnNewButton_2.setBounds(245, 14, 82, 23);
 		panel.add(btnNewButton_2);
+		
+		JButton btnLogout = new JButton("Log-out");
+		btnLogout.setBounds(955, 14, 122, 24);
+		panel.add(btnLogout);
+		btnLogout.setForeground(Color.BLACK);
+		btnLogout.setBackground(new Color(204, 4, 34));
+		btnLogout.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		JLabel lblNewLabel_1 = new JLabel("Welcome, ");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
