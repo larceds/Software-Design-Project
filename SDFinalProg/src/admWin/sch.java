@@ -17,10 +17,12 @@ import java.awt.Font;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
+import strWin.LogWindow;
+import regWin.regSch;
 
 public class sch {
 
-	private JFrame frame;
+	JFrame frame;
 	private JTable table;
 	private JTable table_1;
 	private JTable table_2;
@@ -65,31 +67,80 @@ public class sch {
 		txtSearchBar.setColumns(10);
 		
 		JButton btnNewButton_4_2_1 = new JButton("Student");
+		btnNewButton_4_2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				std win = new std();
+				win.frame.setVisible(true);
+			}
+		});
 		btnNewButton_4_2_1.setBounds(488, 78, 89, 24);
 		frame.getContentPane().add(btnNewButton_4_2_1);
 		
 		JButton btnNewButton_4_2 = new JButton("Account");
+		btnNewButton_4_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				acc win = new acc();
+				win.frame.setVisible(true);
+			}
+		});
 		btnNewButton_4_2.setBounds(395, 78, 89, 24);
 		frame.getContentPane().add(btnNewButton_4_2);
 		
 		JButton btnNewButton_4_1 = new JButton("LOG OUT");
+		btnNewButton_4_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				strWin.LogWindow win = new strWin.LogWindow();
+				win.frame.setVisible(true);
+			}
+		});
 		btnNewButton_4_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_4_1.setBounds(862, 78, 89, 24);
 		frame.getContentPane().add(btnNewButton_4_1);
 		
 		JButton btnNewButton_2 = new JButton("Profile");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				pf win = new pf();
+				win.setVisible(true);
+			}
+		});
 		btnNewButton_2.setBounds(23, 78, 89, 24);
 		frame.getContentPane().add(btnNewButton_2);
 		
 		JButton btnNewButton_2_1 = new JButton("Grade");
+		btnNewButton_2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				gr win = new gr();
+				win.frame.setVisible(true);
+			}
+		});
 		btnNewButton_2_1.setBounds(116, 78, 89, 24);
 		frame.getContentPane().add(btnNewButton_2_1);
 		
 		JButton btnNewButton_3 = new JButton("Schedule");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				sch win = new sch();
+				win.frame.setVisible(true);
+			}
+		});
 		btnNewButton_3.setBounds(209, 78, 89, 24);
 		frame.getContentPane().add(btnNewButton_3);
 		
 		JButton btnNewButton_4 = new JButton("Course");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				crs win = new crs();
+				win.frame.setVisible(true);
+			}
+		});
 		btnNewButton_4.setBounds(302, 78, 89, 24);
 		frame.getContentPane().add(btnNewButton_4);
 		
@@ -98,16 +149,19 @@ public class sch {
 		lblNewLabel_3.setBounds(0, 72, 975, 36);
 		frame.getContentPane().add(lblNewLabel_3);
 		
-		JButton btnNewButton_1 = new JButton("Add");
-		btnNewButton_1.setBounds(717, 532, 89, 23);
+		JButton btnNewButton_1 = new JButton("Manage Schedule");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				regWin.regSch win = new regWin.regSch();
+				win.frame.setVisible(true);
+			}
+		});
+		btnNewButton_1.setBounds(23, 119, 132, 23);
 		frame.getContentPane().add(btnNewButton_1);
 		
-		JButton btnNewButton = new JButton("Remove");
-		btnNewButton.setBounds(817, 532, 89, 23);
-		frame.getContentPane().add(btnNewButton);
-		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(70, 119, 836, 402);
+		tabbedPane.setBounds(62, 158, 836, 402);
 		frame.getContentPane().add(tabbedPane);
 		
 		JScrollPane scrollPane = new JScrollPane();

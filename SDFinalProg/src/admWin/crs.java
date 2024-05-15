@@ -24,7 +24,7 @@ import javax.swing.JMenuBar;
 
 public class crs {
 
-	private JFrame frame;
+	JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_6;
@@ -66,6 +66,9 @@ public class crs {
 		JButton btnNewButton_2 = new JButton("Profile");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				pf win= new pf();
+				win.setVisible(true);
 			}
 		});
 		btnNewButton_2.setBounds(35, 70, 89, 23);
@@ -74,20 +77,48 @@ public class crs {
 		JButton btnNewButton_3 = new JButton("Grade");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				gr win= new gr();
+				win.frame.setVisible(true);
+				
 			}
 		});
 		btnNewButton_3.setBounds(120, 70, 89, 23);
 		frame.getContentPane().add(btnNewButton_3);
 		
 		JButton btnNewButton_4 = new JButton("Schedule");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				sch win= new sch();
+				win.frame.setVisible(true);
+				
+			}
+		});
 		btnNewButton_4.setBounds(205, 70, 89, 23);
 		frame.getContentPane().add(btnNewButton_4);
 		
 		JButton btnNewButton_5 = new JButton("Courses");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				crs win= new crs();
+				win.frame.setVisible(true);
+				
+			}
+		});
 		btnNewButton_5.setBounds(291, 70, 89, 23);
 		frame.getContentPane().add(btnNewButton_5);
 		
 		JButton btnNewButton_6 = new JButton("Account");
+		btnNewButton_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				acc win= new acc();
+				win.frame.setVisible(true);
+				
+			}
+		});
 		btnNewButton_6.setBounds(378, 70, 89, 23);
 		frame.getContentPane().add(btnNewButton_6);
 		
@@ -189,6 +220,10 @@ public class crs {
 		panel_2.add(btnNewButton_7);
 		
 		JButton btnNewButton_8 = new JButton("Add Subject");
+		btnNewButton_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnNewButton_8.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		btnNewButton_8.setBounds(663, 352, 89, 23);
 		panel_2.add(btnNewButton_8);
@@ -245,6 +280,14 @@ public class crs {
 		panel_4.add(comboBox);
 		
 		JButton btnNewButton = new JButton("Logout");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				strWin.LogWindow win= new strWin.LogWindow();
+				win.frame.setVisible(true);
+				
+			}
+		});
 		btnNewButton.setBounds(832, 70, 89, 23);
 		frame.getContentPane().add(btnNewButton);
 		

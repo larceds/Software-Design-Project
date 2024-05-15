@@ -25,6 +25,7 @@ import javax.swing.JSpinner;
 import javax.swing.JScrollBar;
 import javax.swing.JSeparator;
 import javax.swing.JScrollPane;
+import strWin.LogWindow;
 
 public class pf extends JFrame {
     static Connection c = null ;
@@ -104,12 +105,22 @@ public class pf extends JFrame {
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
+				pf win= new pf();
+				win.setVisible(true);
 			}
 		});
 		btnNewButton.setBounds(28, 79, 89, 23);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Grade");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				gr win= new gr();
+				win.frame.setVisible(true);
+			}
+		});
 		btnNewButton_1.setBackground(new Color(128, 0, 0));
 		btnNewButton_1.setForeground(new Color(255, 255, 255));
 		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -117,6 +128,13 @@ public class pf extends JFrame {
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Schedule");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				sch win= new sch();
+				win.frame.setVisible(true);
+			}
+		});
 		btnNewButton_2.setBackground(new Color(128, 0, 0));
 		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
@@ -140,6 +158,13 @@ public class pf extends JFrame {
 		contentPane.add(lblNewLabel_2);
 		
 		JButton btnNewButton_3 = new JButton("LOG OUT");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				strWin.LogWindow win = new strWin.LogWindow();
+				win.frame.setVisible(true);
+			}
+		});
 		btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_3.setForeground(new Color(255, 255, 255));
 		btnNewButton_3.setBackground(new Color(128, 0, 0));
@@ -394,16 +419,34 @@ public class pf extends JFrame {
 		JButton btnNewButton_4 = new JButton("Courses");
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
+				crs win = new crs();
+				win.frame.setVisible(true);
 			}
 		});
 		btnNewButton_4.setBounds(291, 79, 89, 23);
 		contentPane.add(btnNewButton_4);
 		
 		JButton btnNewButton_5 = new JButton("Account");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				acc win= new acc();
+				win.frame.setVisible(true);
+			}
+		});
 		btnNewButton_5.setBounds(380, 79, 89, 23);
 		contentPane.add(btnNewButton_5);
 		
 		JButton btnNewButton_6 = new JButton("Student");
+		btnNewButton_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				std win=new std();
+				win.frame.setVisible(true);
+				
+			}
+		});
 		btnNewButton_6.setBounds(468, 79, 82, 23);
 		contentPane.add(btnNewButton_6);
 		

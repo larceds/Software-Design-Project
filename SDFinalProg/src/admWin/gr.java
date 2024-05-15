@@ -18,10 +18,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import strWin.LogWindow;
 
 public class gr {
 
-	private JFrame frame;
+	JFrame frame;
 	private JTable table;
 
 	/**
@@ -57,40 +62,83 @@ public class gr {
 		frame.getContentPane().setLayout(null);
 		
 		JButton btnNewButton_1 = new JButton("Profile");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				pf win= new pf();
+				win.setVisible(true);
+			}
+		});
 		btnNewButton_1.setBounds(35, 69, 89, 23);
 		frame.getContentPane().add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Grade");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				gr win= new gr();
+				win.frame.setVisible(true);
+			}
+		});
 		btnNewButton_2.setBounds(121, 69, 89, 23);
 		frame.getContentPane().add(btnNewButton_2);
 		
 		JButton btnSchedule = new JButton("Schedule");
+		btnSchedule.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				sch win= new sch();
+				win.frame.setVisible(true);
+				
+			}
+		});
 		btnSchedule.setBounds(207, 69, 89, 23);
 		frame.getContentPane().add(btnSchedule);
 		
 		JButton btnNewButton_3 = new JButton("Courses");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				crs win= new crs();
+				win.frame.setVisible(true);
+			}
+		});
 		btnNewButton_3.setBounds(292, 69, 89, 23);
 		frame.getContentPane().add(btnNewButton_3);
 		
 		JButton btnNewButton_4 = new JButton("Account");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				acc win = new acc();
+				win.frame.setVisible(true);
+			}
+		});
 		btnNewButton_4.setBounds(379, 69, 89, 23);
 		frame.getContentPane().add(btnNewButton_4);
 		
 		JButton btnNewButton_5 = new JButton("Student");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				std win = new std();
+				win.frame.setVisible(true);
+			}
+		});
 		btnNewButton_5.setBounds(464, 69, 89, 23);
 		frame.getContentPane().add(btnNewButton_5);
 		
 		JButton btnNewButton_6 = new JButton("Logout");
+		btnNewButton_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				strWin.LogWindow win = new strWin.LogWindow();
+				win.frame.setVisible(true);
+				
+			}
+		});
 		btnNewButton_6.setBounds(861, 69, 89, 23);
 		frame.getContentPane().add(btnNewButton_6);
-		
-		JMenu mnNewMenu = new JMenu("Subject\r\n");
-		mnNewMenu.setBounds(35, 123, 115, 26);
-		frame.getContentPane().add(mnNewMenu);
-		
-		JMenu mnNewMenu_1 = new JMenu("Section");
-		mnNewMenu_1.setBounds(167, 123, 115, 26);
-		frame.getContentPane().add(mnNewMenu_1);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(66, 193, 859, 273);
@@ -124,6 +172,16 @@ public class gr {
 		chckbxNewCheckBox.setBounds(69, 167, 97, 23);
 		frame.getContentPane().add(chckbxNewCheckBox);
 		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Section"}));
+		comboBox.setBounds(182, 126, 81, 22);
+		frame.getContentPane().add(comboBox);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Subject"}));
+		comboBox_1.setBounds(69, 126, 81, 22);
+		frame.getContentPane().add(comboBox_1);
+		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
 		lblNewLabel.setBounds(0, 0, 975, 65);
@@ -143,5 +201,9 @@ public class gr {
 		lblNewLabel_2.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
 		lblNewLabel_2.setBounds(0, 90, 975, 440);
 		frame.getContentPane().add(lblNewLabel_2);
+		
+		
+		
+		
 	}
 }

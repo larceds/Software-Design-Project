@@ -17,7 +17,7 @@ import javax.swing.JFrame;
 
 public class regStd {
 
-    private JFrame frame;
+    public JFrame frame;
     private JTextField lastNameField;
     private JTextField firstNameField;
     private JTextField middleNameField;

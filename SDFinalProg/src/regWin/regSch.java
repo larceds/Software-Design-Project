@@ -26,7 +26,7 @@ import javax.swing.border.MatteBorder;
 
 public class regSch {
 
-	private JFrame frame;
+	public JFrame frame;
 	private JTable table;
 	private JTextField textField;
 	private JTextField textField_1;

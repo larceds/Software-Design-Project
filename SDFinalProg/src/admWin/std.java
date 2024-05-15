@@ -19,7 +19,7 @@ import javax.swing.ImageIcon;
 
 public class std {
 
-	private JFrame frame;
+	JFrame frame;
 	private JTable table;
 	private JTextField txtStdNm;
 	private JTextField txtStdNum;
@@ -87,6 +87,9 @@ public class std {
 		JButton btnReg = new JButton("Register Student");
 		btnReg.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				regWin.regStd win= new regWin.regStd();
+				win.frame.setVisible(true);
 			}
 		});
 		btnReg.setBounds(95, 448, 137, 23);
@@ -121,24 +124,81 @@ public class std {
 		frame.getContentPane().add(lblStdNm_1);
 		
 		JButton btnNewButton = new JButton("Profile");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				pf win= new pf();
+				win.setVisible(true);
+			}
+		});
 		btnNewButton.setBounds(28, 83, 89, 23);
 		frame.getContentPane().add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Student List");
-		btnNewButton_1.setBounds(110, 83, 89, 23);
+		JButton btnNewButton_1 = new JButton("Student");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				std win= new std();
+				win.frame.setVisible(true);
+			}
+		});
+		btnNewButton_1.setBounds(463, 83, 89, 23);
 		frame.getContentPane().add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Courses");
-		btnNewButton_2.setBounds(198, 83, 89, 23);
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				crs win= new crs();
+				win.frame.setVisible(true);
+			}
+		});
+		btnNewButton_2.setBounds(290, 83, 89, 23);
 		frame.getContentPane().add(btnNewButton_2);
 		
-		JButton btnNewButton_3 = new JButton("Schedules");
-		btnNewButton_3.setBounds(287, 83, 89, 23);
+		JButton btnNewButton_3 = new JButton("Schedule");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				sch win= new sch();
+				win.frame.setVisible(true);
+			}
+		});
+		btnNewButton_3.setBounds(203, 83, 89, 23);
 		frame.getContentPane().add(btnNewButton_3);
 		
 		JButton btnNewButton_4 = new JButton("Logout");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				strWin.LogWindow win= new strWin.LogWindow();
+				win.frame.setVisible(true);
+			}
+		});
 		btnNewButton_4.setBounds(876, 83, 89, 23);
 		frame.getContentPane().add(btnNewButton_4);
+		
+		JButton btnNewButton_5 = new JButton("Grade");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				gr win= new gr();
+				win.frame.setVisible(true);
+			}
+		});
+		btnNewButton_5.setBounds(116, 83, 89, 23);
+		frame.getContentPane().add(btnNewButton_5);
+		
+		JButton btnNewButton_6 = new JButton("Account");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				acc win= new acc();
+				win.frame.setVisible(true);
+			}
+		});
+		btnNewButton_6.setBounds(374, 83, 89, 23);
+		frame.getContentPane().add(btnNewButton_6);
 		
 		JLabel lblLogo = new JLabel("logo");
 		lblLogo.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
@@ -154,6 +214,9 @@ public class std {
 		lblNewLabel_1.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
 		lblNewLabel_1.setBounds(-14, 101, 999, 484);
 		frame.getContentPane().add(lblNewLabel_1);
+		
+		
+		
 		
 		
 	}
