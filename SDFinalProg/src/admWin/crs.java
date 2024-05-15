@@ -25,9 +25,6 @@ import javax.swing.JMenuBar;
 public class crs {
 
 	JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_6;
 	private JTable table;
 	private JTable table_1;
 
@@ -122,114 +119,16 @@ public class crs {
 		btnNewButton_6.setBounds(378, 70, 89, 23);
 		frame.getContentPane().add(btnNewButton_6);
 		
-		JButton button = new JButton("Student");
-		button.setBounds(465, 70, 89, 23);
-		frame.getContentPane().add(button);
+		JButton btnStudents = new JButton("Students");
+		btnStudents.setBounds(465, 70, 89, 23);
+		frame.getContentPane().add(btnStudents);
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.LEFT);
-		tabbedPane.setBounds(39, 124, 882, 380);
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBounds(35, 124, 886, 402);
 		frame.getContentPane().add(tabbedPane);
 		
-		JPanel panel = new JPanel();
-		tabbedPane.addTab("Add Course", null, panel, null);
-		panel.setLayout(null);
-		
-		textField = new JTextField();
-		textField.setBounds(66, 26, 126, 20);
-		panel.add(textField);
-		textField.setColumns(10);
-		
-		JLabel lblNewLabel = new JLabel("Course Name");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(66, 57, 126, 14);
-		panel.add(lblNewLabel);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(256, 26, 86, 20);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
-		
-		JLabel lblNewLabel_1 = new JLabel("Total Units");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(256, 57, 86, 14);
-		panel.add(lblNewLabel_1);
-		
-		textField_6 = new JTextField();
-		textField_6.setBounds(92, 115, 86, 20);
-		panel.add(textField_6);
-		textField_6.setColumns(10);
-		
-		JLabel lblNewLabel_5 = new JLabel("Subjects");
-		lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_5.setBounds(92, 146, 86, 14);
-		panel.add(lblNewLabel_5);
-		
-		JButton btnNewButton_1 = new JButton("Add Course");
-		btnNewButton_1.setBounds(418, 265, 89, 23);
-		panel.add(btnNewButton_1);
-		
-		JPanel panel_1 = new JPanel();
-		tabbedPane.addTab("Edit Course", null, panel_1, null);
-		
-		JPanel panel_2 = new JPanel();
-		tabbedPane.addTab("Edit Subject", null, panel_2, null);
-		panel_2.setLayout(null);
-		
-		JMenu mnNewMenu_1 = new JMenu("Course");
-		mnNewMenu_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		mnNewMenu_1.setFont(new Font("Segoe UI", Font.PLAIN, 10));
-		mnNewMenu_1.setBounds(0, 0, 117, 17);
-		panel_2.add(mnNewMenu_1);
-		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(10, 40, 761, 313);
-		panel_2.add(scrollPane_1);
-		
-		table_1 = new JTable();
-		table_1.setToolTipText("");
-		table_1.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-			},
-			new String[] {
-				"Subject Code", "Subject Name", "#Units"
-			}
-		));
-		scrollPane_1.setViewportView(table_1);
-		
-		JButton btnNewButton_7 = new JButton("Delete subject");
-		btnNewButton_7.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		btnNewButton_7.setBounds(558, 352, 106, 23);
-		panel_2.add(btnNewButton_7);
-		
-		JButton btnNewButton_8 = new JButton("Add Subject");
-		btnNewButton_8.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton_8.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		btnNewButton_8.setBounds(663, 352, 89, 23);
-		panel_2.add(btnNewButton_8);
-		
 		JPanel panel_4 = new JPanel();
-		tabbedPane.addTab("See Courses ", null, panel_4, null);
+		tabbedPane.addTab("View Courses", null, panel_4, null);
 		panel_4.setLayout(null);
 		
 		JMenu mnNewMenu = new JMenu("Course");
@@ -239,7 +138,7 @@ public class crs {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setToolTipText("");
-		scrollPane.setBounds(10, 37, 759, 313);
+		scrollPane.setBounds(10, 50, 807, 300);
 		panel_4.add(scrollPane);
 		
 		table = new JTable();
@@ -279,6 +178,61 @@ public class crs {
 		comboBox.setBounds(114, 4, 92, 22);
 		panel_4.add(comboBox);
 		
+		JButton btnNewButton_1 = new JButton("Manage Courses");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_1.setBounds(639, 17, 125, 22);
+		panel_4.add(btnNewButton_1);
+		
+		JPanel panel_2 = new JPanel();
+		tabbedPane.addTab("View Subjects", null, panel_2, null);
+		panel_2.setLayout(null);
+		
+		JMenu mnNewMenu_1 = new JMenu("Course");
+		mnNewMenu_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		mnNewMenu_1.setFont(new Font("Segoe UI", Font.PLAIN, 10));
+		mnNewMenu_1.setBounds(10, 12, 117, 17);
+		panel_2.add(mnNewMenu_1);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(34, 49, 769, 304);
+		panel_2.add(scrollPane_1);
+		
+		table_1 = new JTable();
+		table_1.setToolTipText("");
+		table_1.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+			},
+			new String[] {
+				"Subject Code", "Subject Name", "#Units"
+			}
+		));
+		scrollPane_1.setViewportView(table_1);
+		
+		JButton btnNewButton_7 = new JButton("Manage Subjects");
+		btnNewButton_7.setBounds(654, 15, 116, 23);
+		panel_2.add(btnNewButton_7);
+		
 		JButton btnNewButton = new JButton("Logout");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -290,6 +244,17 @@ public class crs {
 		});
 		btnNewButton.setBounds(832, 70, 89, 23);
 		frame.getContentPane().add(btnNewButton);
+		
+		JButton btnNewButton_8 = new JButton("Professors");
+		btnNewButton_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				prof win = new prof();
+				win.frame.setVisible(true);
+			}
+		});
+		btnNewButton_8.setBounds(554, 70, 89, 23);
+		frame.getContentPane().add(btnNewButton_8);
 		
 		JLabel lblNewLabel_6 = new JLabel("New label");
 		lblNewLabel_6.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
@@ -310,5 +275,7 @@ public class crs {
 		lblNewLabel_9.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
 		lblNewLabel_9.setBounds(-15, 87, 1000, 447);
 		frame.getContentPane().add(lblNewLabel_9);
+		
+		
 	}
 }

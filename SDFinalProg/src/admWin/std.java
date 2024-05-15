@@ -134,7 +134,7 @@ public class std {
 		btnNewButton.setBounds(28, 83, 89, 23);
 		frame.getContentPane().add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Student");
+		JButton btnNewButton_1 = new JButton("Students");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -200,6 +200,17 @@ public class std {
 		btnNewButton_6.setBounds(374, 83, 89, 23);
 		frame.getContentPane().add(btnNewButton_6);
 		
+		JButton btnNewButton_7 = new JButton("Professors");
+		btnNewButton_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				prof win= new prof();
+				win.frame.setVisible(true);
+			}
+		});
+		btnNewButton_7.setBounds(550, 83, 89, 23);
+		frame.getContentPane().add(btnNewButton_7);
+		
 		JLabel lblLogo = new JLabel("logo");
 		lblLogo.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
 		lblLogo.setBounds(0, 0, 975, 75);
@@ -214,9 +225,6 @@ public class std {
 		lblNewLabel_1.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
 		lblNewLabel_1.setBounds(-14, 101, 999, 484);
 		frame.getContentPane().add(lblNewLabel_1);
-		
-		
-		
 		
 		
 	}

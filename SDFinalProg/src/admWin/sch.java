@@ -66,7 +66,7 @@ public class sch {
 		frame.getContentPane().add(txtSearchBar);
 		txtSearchBar.setColumns(10);
 		
-		JButton btnNewButton_4_2_1 = new JButton("Student");
+		JButton btnNewButton_4_2_1 = new JButton("Students");
 		btnNewButton_4_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -144,6 +144,19 @@ public class sch {
 		btnNewButton_4.setBounds(302, 78, 89, 24);
 		frame.getContentPane().add(btnNewButton_4);
 		
+		JButton btnNewButton = new JButton("Professors");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				prof win= new prof();
+				win.frame.setVisible(true);
+			}
+		});
+		btnNewButton.setBounds(580, 79, 89, 23);
+		frame.getContentPane().add(btnNewButton);
+		frame.setBounds(100, 100, 991, 610);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		JLabel lblNewLabel_3 = new JLabel("BUTTON BG");
 		lblNewLabel_3.setIcon(new ImageIcon(getClass().getResource("/bg2.png")));
 		lblNewLabel_3.setBounds(0, 72, 975, 36);
@@ -159,6 +172,7 @@ public class sch {
 		});
 		btnNewButton_1.setBounds(23, 119, 132, 23);
 		frame.getContentPane().add(btnNewButton_1);
+		
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(62, 158, 836, 402);
@@ -265,7 +279,7 @@ public class sch {
 		lblNewLabel_1.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
 		lblNewLabel_1.setBounds(0, 72, 975, 499);
 		frame.getContentPane().add(lblNewLabel_1);
-		frame.setBounds(100, 100, 991, 610);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
 	}
 }

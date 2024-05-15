@@ -122,7 +122,7 @@ public class acc {
 		btnNewButton_4.setBounds(375, 83, 89, 23);
 		frame.getContentPane().add(btnNewButton_4);
 		
-		JButton btnNewButton_5 = new JButton("Student");
+		JButton btnNewButton_5 = new JButton("Students");
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -143,6 +143,17 @@ public class acc {
 		});
 		btnNewButton_6.setBounds(878, 83, 89, 23);
 		frame.getContentPane().add(btnNewButton_6);
+		
+		JButton btnNewButton_9 = new JButton("Professors");
+		btnNewButton_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				prof win= new prof();
+				win.frame.setVisible(true);
+			}
+		});
+		btnNewButton_9.setBounds(552, 83, 89, 23);
+		frame.getContentPane().add(btnNewButton_9);
 		
 		JLabel lblNewLabel_1 = new JLabel("New label");
 		lblNewLabel_1.setBounds(0, 73, 977, 43);
@@ -202,9 +213,13 @@ public class acc {
 		btnNewButton_8.setBounds(102, 428, 89, 23);
 		frame.getContentPane().add(btnNewButton_8);
 		
+		
+		
 		JLabel lblNewLabel_4 = new JLabel("New label");
 		lblNewLabel_4.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
 		lblNewLabel_4.setBounds(0, 102, 977, 480);
 		frame.getContentPane().add(lblNewLabel_4);
+		
+		
 	}
 }

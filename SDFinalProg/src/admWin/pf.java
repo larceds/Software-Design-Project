@@ -438,7 +438,7 @@ public class pf extends JFrame {
 		btnNewButton_5.setBounds(380, 79, 89, 23);
 		contentPane.add(btnNewButton_5);
 		
-		JButton btnNewButton_6 = new JButton("Student");
+		JButton btnNewButton_6 = new JButton("Students");
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -454,6 +454,17 @@ public class pf extends JFrame {
 		btnNewButton_7.setBounds(740, 470, 134, 23);
 		contentPane.add(btnNewButton_7);
 		
+		JButton btnNewButton_8 = new JButton("Professors");
+		btnNewButton_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				prof win = new prof();
+				win.frame.setVisible(true);
+			}
+		});
+		btnNewButton_8.setBounds(547, 79, 89, 23);
+		contentPane.add(btnNewButton_8);
+		
 		JLabel lblNewLabel_15 = new JLabel("New label");
 		lblNewLabel_15.setIcon(new ImageIcon(getClass().getResource("/bg2.png")));
 		lblNewLabel_15.setBounds(0, 67, 975, 41);
@@ -468,6 +479,8 @@ public class pf extends JFrame {
 		lblNewLabel_17.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
 		lblNewLabel_17.setBounds(-29, 12, 1038, 594);
 		contentPane.add(lblNewLabel_17);
+		
+		
 		
 		
 		

@@ -17,7 +17,7 @@ import javax.swing.JComboBox;
 
 public class regProf {
 
-	private JFrame frame;
+	public JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;

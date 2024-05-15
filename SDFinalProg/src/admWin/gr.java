@@ -117,7 +117,7 @@ public class gr {
 		btnNewButton_4.setBounds(379, 69, 89, 23);
 		frame.getContentPane().add(btnNewButton_4);
 		
-		JButton btnNewButton_5 = new JButton("Student");
+		JButton btnNewButton_5 = new JButton("Students");
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -127,6 +127,17 @@ public class gr {
 		});
 		btnNewButton_5.setBounds(464, 69, 89, 23);
 		frame.getContentPane().add(btnNewButton_5);
+		
+		JButton btnNewButton_7 = new JButton("Professors");
+		btnNewButton_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				prof win= new prof();
+				win.frame.setVisible(true);
+			}
+		});
+		btnNewButton_7.setBounds(551, 69, 89, 23);
+		frame.getContentPane().add(btnNewButton_7);
 		
 		JButton btnNewButton_6 = new JButton("Logout");
 		btnNewButton_6.addActionListener(new ActionListener() {
@@ -201,6 +212,7 @@ public class gr {
 		lblNewLabel_2.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
 		lblNewLabel_2.setBounds(0, 90, 975, 440);
 		frame.getContentPane().add(lblNewLabel_2);
+		
 		
 		
 		
