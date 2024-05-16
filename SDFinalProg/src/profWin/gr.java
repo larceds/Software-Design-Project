@@ -18,11 +18,13 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.SwingConstants;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class gr {
 
     JFrame frame;
-    private JTable table_1;
+    private JTable tblGr;
 
     /**
      * Launch the application.
@@ -81,15 +83,57 @@ public class gr {
 		ImageIcon img = new ImageIcon(this.getClass().getResource("/logo.png"));
 		lblNewLabel.setIcon(img);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(-10, 66, 1262, 66);
-		panel.setBackground(new Color(149, 0, 0));
-		frame.getContentPane().add(panel);
-		        panel.setLayout(null);
+		JButton btnNewButton_2 = new JButton("Submit");
+		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_2.setBackground(new Color(131, 7, 11));
+		btnNewButton_2.setForeground(new Color(255, 255, 255));
+		btnNewButton_2.setBounds(33, 490, 109, 23);
+		frame.getContentPane().add(btnNewButton_2);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(43, 164, 876, 313);
+		frame.getContentPane().add(scrollPane);
+		
+		tblGr = new JTable();
+		tblGr.setRowSelectionAllowed(false);
+		tblGr.setCellSelectionEnabled(true);
+		tblGr.setFillsViewportHeight(true);
+		tblGr.getTableHeader().setReorderingAllowed(false);
+		scrollPane.setViewportView(tblGr);
+		tblGr.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+			},
+			new String[] {
+				"Student ID", "Prelims", "Midterms", "Finals", "Overall"
+			}
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, true, true, true, true
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		tblGr.getColumnModel().getColumn(0).setResizable(false);
+		tblGr.getColumnModel().getColumn(1).setResizable(false);
+		tblGr.getColumnModel().getColumn(2).setResizable(false);
+		tblGr.getColumnModel().getColumn(3).setResizable(false);
+		tblGr.getColumnModel().getColumn(4).setResizable(false);
 		
 		        JButton btnNewButton = new JButton("Grades");
-		        btnNewButton.setBounds(140, 21, 75, 25);
-		        panel.add(btnNewButton);
+		        btnNewButton.setBounds(213, 78, 75, 24);
+		        frame.getContentPane().add(btnNewButton);
 		        btnNewButton.addActionListener(new ActionListener() {
 		            public void actionPerformed(ActionEvent e) {
 		            	frame.dispose();
@@ -97,12 +141,12 @@ public class gr {
 		            }
 		        });
 		        btnNewButton.setForeground(new Color(255, 255, 255));
-		        btnNewButton.setBackground(new Color(204, 4, 34));
-		        btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		        btnNewButton.setBackground(new Color(131, 7, 11));
+		        btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		        
 		        JButton btnNewButton_1 = new JButton("Profile");
-		        btnNewButton_1.setBounds(44, 21, 98, 24);
-		        panel.add(btnNewButton_1);
+		        btnNewButton_1.setBounds(33, 78, 89, 24);
+		        frame.getContentPane().add(btnNewButton_1);
 		        btnNewButton_1.addActionListener(new ActionListener() {
 		        	public void actionPerformed(ActionEvent e) {
 		        		frame.dispose();
@@ -111,10 +155,12 @@ public class gr {
 		        	}
 		        });
 		        btnNewButton_1.setForeground(new Color(255, 255, 255));
-		        btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		        btnNewButton_1.setBackground(new Color(204, 4, 34));
+		        btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		        btnNewButton_1.setBackground(new Color(131, 7, 11));
 		        
 		        JButton btnSchedule = new JButton("Schedule");
+		        btnSchedule.setBounds(119, 78, 98, 24);
+		        frame.getContentPane().add(btnSchedule);
 		        btnSchedule.addActionListener(new ActionListener() {
 		        	public void actionPerformed(ActionEvent e) {
 		        		frame.dispose();
@@ -122,59 +168,48 @@ public class gr {
 		        		win.frame.setVisible(true);
 		        	}
 		        });
-		        btnSchedule.setBounds(214, 21, 98, 24);
-		        panel.add(btnSchedule);
 		        btnSchedule.setForeground(new Color(255, 255, 255));
-		        btnSchedule.setBackground(new Color(204, 4, 34));
-		        btnSchedule.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		        btnSchedule.setBackground(new Color(131, 7, 11));
+		        btnSchedule.setFont(new Font("Tahoma", Font.BOLD, 11));
 		        
 		        JButton btnNewButton_3 = new JButton("Logout");
-		        btnNewButton_3.setBounds(876, 24, 89, 23);
-		        panel.add(btnNewButton_3);
-		
-		JButton btnNewButton_2 = new JButton("Submit");
-		btnNewButton_2.setBackground(Color.GRAY);
-		btnNewButton_2.setForeground(Color.BLACK);
-		btnNewButton_2.setBounds(33, 490, 89, 23);
-		frame.getContentPane().add(btnNewButton_2);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(80, 187, 782, 290);
-		frame.getContentPane().add(scrollPane);
-		
-		table_1 = new JTable();
-		scrollPane.setViewportView(table_1);
-		table_1.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-			},
-			new String[] {
-				"New column", "New column", "New column", "New column"
-			}
-		));
-		
-		JMenu mnNewMenu = new JMenu("Subject");
-		mnNewMenu.setHorizontalAlignment(SwingConstants.CENTER);
-		mnNewMenu.setBounds(10, 163, 115, 26);
-		frame.getContentPane().add(mnNewMenu);
-		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Course");
-		mnNewMenu.add(mntmNewMenuItem);
-		
-		JMenu mnNewMenu_1 = new JMenu("Course/Section");
-		mnNewMenu_1.setHorizontalAlignment(SwingConstants.TRAILING);
-		mnNewMenu_1.setBounds(140, 163, 148, 26);
-		frame.getContentPane().add(mnNewMenu_1);
+		        btnNewButton_3.setBackground(new Color(131, 7, 11));
+		        btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 11));
+		        btnNewButton_3.setForeground(new Color(255, 255, 255));
+		        btnNewButton_3.setBounds(865, 79, 89, 23);
+		        frame.getContentPane().add(btnNewButton_3);
+		        
+		        JLabel lblNewLabel_1 = new JLabel("New label");
+		        lblNewLabel_1.setIcon(new ImageIcon(getClass().getResource("/bg2.png")));
+		        lblNewLabel_1.setBounds(0, 70, 975, 41);
+		        frame.getContentPane().add(lblNewLabel_1);
+		        
+		        JComboBox comboBox = new JComboBox();
+		        comboBox.setForeground(new Color(255, 255, 255));
+		        comboBox.setBackground(new Color(131, 7, 11));
+		        comboBox.setModel(new DefaultComboBoxModel(new String[] {"Subject"}));
+		        comboBox.setBounds(33, 131, 89, 22);
+		        frame.getContentPane().add(comboBox);
+		        
+		        JComboBox comboBox_1 = new JComboBox();
+		        comboBox_1.setForeground(new Color(255, 255, 255));
+		        comboBox_1.setBackground(new Color(131, 7, 11));
+		        comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Course/Section"}));
+		        comboBox_1.setBounds(128, 131, 126, 22);
+		        frame.getContentPane().add(comboBox_1);
+		        
+		        JLabel lblNewLabel_4 = new JLabel();
+		        lblNewLabel_4.setText("Welcome, null null null");
+		        lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
+		        lblNewLabel_4.setBounds(30, 113, 389, 14);
+		        frame.getContentPane().add(lblNewLabel_4);
+		        
+		        JLabel lblNewLabel_3 = new JLabel("New label");
+		        lblNewLabel_3.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
+		        lblNewLabel_3.setBounds(-10, 104, 985, 424);
+		        frame.getContentPane().add(lblNewLabel_3);
+		        
+		        
 
         // Other buttons and components omitted for brevity
     }

@@ -174,6 +174,7 @@ public class prof {
 		frame.getContentPane().add(scrollPane);
 		
 		table = new JTable();
+		table.getTableHeader().setReorderingAllowed(false);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null},
@@ -190,10 +191,16 @@ public class prof {
 		textField.setColumns(10);
 		
 		JButton btnNewButton = new JButton("View");
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setBackground(new Color(131, 7, 11));
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton.setBounds(197, 148, 89, 23);
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Register ");
+		btnNewButton_1.setBackground(new Color(131, 7, 11));
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_1.setForeground(new Color(255, 255, 255));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -203,6 +210,12 @@ public class prof {
 		});
 		btnNewButton_1.setBounds(768, 140, 89, 23);
 		frame.getContentPane().add(btnNewButton_1);
+		
+		JLabel lblNewLabel_4 = new JLabel();
+		lblNewLabel_4.setText("Welcome, null null null");
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_4.setBounds(34, 126, 389, 14);
+		frame.getContentPane().add(lblNewLabel_4);
 		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
@@ -223,6 +236,8 @@ public class prof {
 		lblNewLabel_3.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
 		lblNewLabel_3.setBounds(0, 116, 975, 422);
 		frame.getContentPane().add(lblNewLabel_3);
+		
+		
 		
 		
 	}

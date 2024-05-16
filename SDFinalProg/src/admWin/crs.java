@@ -146,7 +146,7 @@ public class crs {
 		frame.getContentPane().add(btnStudents);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(50, 120, 886, 402);
+		tabbedPane.setBounds(50, 128, 886, 394);
 		frame.getContentPane().add(tabbedPane);
 		
 		JPanel panel_4 = new JPanel();
@@ -160,6 +160,8 @@ public class crs {
 		panel_4.add(scrollPane);
 		
 		table = new JTable();
+		table.setRowSelectionAllowed(false);
+		table.getTableHeader().setReorderingAllowed(false);
 		table.setEnabled(false);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -185,7 +187,17 @@ public class crs {
 			new String[] {
 				"Course Name", "Units", "Subjects"
 			}
-		));
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		table.getColumnModel().getColumn(0).setResizable(false);
+		table.getColumnModel().getColumn(1).setResizable(false);
+		table.getColumnModel().getColumn(2).setResizable(false);
 		scrollPane.setViewportView(table);
 		
 		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
@@ -193,11 +205,14 @@ public class crs {
 		panel_4.add(tabbedPane_1);
 		
 		JButton btnNewButton_1 = new JButton("Manage Courses");
+		btnNewButton_1.setBackground(new Color(131, 7, 11));
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_1.setForeground(new Color(255, 255, 255));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_1.setBounds(639, 17, 125, 22);
+		btnNewButton_1.setBounds(639, 17, 141, 22);
 		panel_4.add(btnNewButton_1);
 		
 		txtSearchBar = new JTextField();
@@ -217,6 +232,7 @@ public class crs {
 		
 		table_1 = new JTable();
 		table_1.setToolTipText("");
+		table_1.getTableHeader().setReorderingAllowed(false);
 		table_1.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null},
@@ -245,11 +261,14 @@ public class crs {
 		scrollPane_1.setViewportView(table_1);
 		
 		JButton btnNewButton_7 = new JButton("Manage Subjects");
+		btnNewButton_7.setForeground(new Color(255, 255, 255));
+		btnNewButton_7.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_7.setBackground(new Color(131, 7, 11));
 		btnNewButton_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_7.setBounds(654, 15, 116, 23);
+		btnNewButton_7.setBounds(654, 15, 132, 23);
 		panel_2.add(btnNewButton_7);
 		
 		txtSearchBar_1 = new JTextField();
@@ -292,6 +311,12 @@ public class crs {
 		btnNewButton_8.setBounds(552, 70, 99, 23);
 		frame.getContentPane().add(btnNewButton_8);
 		
+		JLabel lblNewLabel_4 = new JLabel();
+		lblNewLabel_4.setText("Welcome, null null null");
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_4.setBounds(32, 104, 389, 14);
+		frame.getContentPane().add(lblNewLabel_4);
+		
 		JLabel lblNewLabel_6 = new JLabel("New label");
 		lblNewLabel_6.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
 		lblNewLabel_6.setBounds(0, 0, 975, 66);
@@ -311,6 +336,8 @@ public class crs {
 		lblNewLabel_9.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
 		lblNewLabel_9.setBounds(-15, 87, 1000, 447);
 		frame.getContentPane().add(lblNewLabel_9);
+		
+		
 		
 		
 	}

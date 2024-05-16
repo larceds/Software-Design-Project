@@ -61,6 +61,7 @@ public class gr extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnNewButton = new JButton("Profile");
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -74,6 +75,7 @@ public class gr extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Grade");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -87,6 +89,7 @@ public class gr extends JFrame {
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Schedule");
+		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_2.setForeground(Color.WHITE);
 		btnNewButton_2.setBackground(new Color(128, 0, 0));
 		btnNewButton_2.addActionListener(new ActionListener() {
@@ -100,6 +103,9 @@ public class gr extends JFrame {
 		contentPane.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Log out");
+		btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_3.setForeground(new Color(255, 255, 255));
+		btnNewButton_3.setBackground(new Color(131, 7, 11));
 		btnNewButton_3.setBounds(810, 78, 89, 23);
 		contentPane.add(btnNewButton_3);
 		
@@ -208,6 +214,7 @@ public class gr extends JFrame {
 		textField_6.setColumns(10);
 		
 		JButton btnNewButton_2_1 = new JButton("Account");
+		btnNewButton_2_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();

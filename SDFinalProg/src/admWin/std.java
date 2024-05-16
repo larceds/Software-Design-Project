@@ -70,6 +70,7 @@ public class std {
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
+		table.getTableHeader().setReorderingAllowed(false);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null},
@@ -80,11 +81,10 @@ public class std {
 			}
 		));
 		
-		JButton btnSrch = new JButton("New button");
-		btnSrch.setBounds(149, 274, 39, 23);
-		frame.getContentPane().add(btnSrch);
-		
 		JButton btnReg = new JButton("Register Student");
+		btnReg.setForeground(new Color(255, 255, 255));
+		btnReg.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnReg.setBackground(new Color(131, 7, 11));
 		btnReg.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
@@ -96,11 +96,14 @@ public class std {
 		frame.getContentPane().add(btnReg);
 		
 		JButton btnChcStd = new JButton("Check Student");
+		btnChcStd.setBackground(new Color(131, 7, 11));
+		btnChcStd.setForeground(new Color(255, 255, 255));
+		btnChcStd.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnChcStd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnChcStd.setBounds(95, 392, 137, 23);
+		btnChcStd.setBounds(105, 274, 127, 23);
 		frame.getContentPane().add(btnChcStd);
 		
 		txtStdNm = new JTextField();
@@ -124,6 +127,9 @@ public class std {
 		frame.getContentPane().add(lblStdNm_1);
 		
 		JButton btnNewButton = new JButton("Profile");
+		btnNewButton.setBackground(new Color(131, 7, 11));
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -135,6 +141,9 @@ public class std {
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Students");
+		btnNewButton_1.setBackground(new Color(131, 7, 11));
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_1.setForeground(new Color(255, 255, 255));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -146,6 +155,9 @@ public class std {
 		frame.getContentPane().add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Courses");
+		btnNewButton_2.setBackground(new Color(131, 7, 11));
+		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -157,6 +169,9 @@ public class std {
 		frame.getContentPane().add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Schedule");
+		btnNewButton_3.setForeground(new Color(255, 255, 255));
+		btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_3.setBackground(new Color(131, 7, 11));
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -168,6 +183,9 @@ public class std {
 		frame.getContentPane().add(btnNewButton_3);
 		
 		JButton btnNewButton_4 = new JButton("Logout");
+		btnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_4.setForeground(new Color(255, 255, 255));
+		btnNewButton_4.setBackground(new Color(131, 7, 11));
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -179,6 +197,9 @@ public class std {
 		frame.getContentPane().add(btnNewButton_4);
 		
 		JButton btnNewButton_5 = new JButton("Grade");
+		btnNewButton_5.setForeground(new Color(255, 255, 255));
+		btnNewButton_5.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_5.setBackground(new Color(131, 7, 11));
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -190,6 +211,9 @@ public class std {
 		frame.getContentPane().add(btnNewButton_5);
 		
 		JButton btnNewButton_6 = new JButton("Account");
+		btnNewButton_6.setForeground(new Color(255, 255, 255));
+		btnNewButton_6.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_6.setBackground(new Color(131, 7, 11));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -201,6 +225,9 @@ public class std {
 		frame.getContentPane().add(btnNewButton_6);
 		
 		JButton btnNewButton_7 = new JButton("Professors");
+		btnNewButton_7.setForeground(new Color(255, 255, 255));
+		btnNewButton_7.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_7.setBackground(new Color(131, 7, 11));
 		btnNewButton_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -210,6 +237,12 @@ public class std {
 		});
 		btnNewButton_7.setBounds(550, 83, 89, 23);
 		frame.getContentPane().add(btnNewButton_7);
+		
+		JLabel lblNewLabel_4 = new JLabel();
+		lblNewLabel_4.setText("Welcome, null null null");
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_4.setBounds(28, 117, 389, 14);
+		frame.getContentPane().add(lblNewLabel_4);
 		
 		JLabel lblLogo = new JLabel("logo");
 		lblLogo.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
@@ -225,6 +258,8 @@ public class std {
 		lblNewLabel_1.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
 		lblNewLabel_1.setBounds(-14, 101, 999, 484);
 		frame.getContentPane().add(lblNewLabel_1);
+		
+		
 		
 		
 	}

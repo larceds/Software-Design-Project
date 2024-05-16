@@ -74,75 +74,9 @@ public class sch {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(0, 67, 1147, 59);
-		panel.setBackground(new Color(149, 0, 0));
-		frame.getContentPane().add(panel);
-		panel.setLayout(null);
-		
-		JButton btnNewButton_1 = new JButton("Profile");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				pf win= new pf();
-				win.setVisible(true);
-			}
-		});
-		btnNewButton_1.setBounds(28, 11, 69, 25);
-		panel.add(btnNewButton_1);
-		btnNewButton_1.setForeground(new Color(0, 0, 0));
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNewButton_1.setBackground(new Color(204, 4, 34));
-		
-		JButton btnNewButton = new JButton("Grades");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				gr win= new gr();
-				win.setVisible(true);
-			}
-		});
-		btnNewButton.setBounds(96, 12, 74, 24);
-		panel.add(btnNewButton);
-		btnNewButton.setForeground(new Color(0, 0, 0));
-		btnNewButton.setBackground(new Color(204, 4, 34));
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		
-		JButton btnSchedule = new JButton("Schedule");
-		btnSchedule.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				sch win= new sch();
-				win.frame.setVisible(true);
-			}
-		});
-		btnSchedule.setBounds(169, 13, 77, 24);
-		panel.add(btnSchedule);
-		btnSchedule.setForeground(new Color(0, 0, 0));
-		btnSchedule.setBackground(new Color(204, 4, 34));
-		btnSchedule.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		
-		JButton btnNewButton_2 = new JButton("Account");
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				acc win= new acc();
-				win.frame.setVisible(true);
-			}
-		});
-		btnNewButton_2.setBounds(245, 14, 82, 23);
-		panel.add(btnNewButton_2);
-		
-		JButton btnLogout = new JButton("Log-out");
-		btnLogout.setBounds(955, 14, 122, 24);
-		panel.add(btnLogout);
-		btnLogout.setForeground(Color.BLACK);
-		btnLogout.setBackground(new Color(204, 4, 34));
-		btnLogout.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		
 		JLabel lblNewLabel_1 = new JLabel("Welcome, ");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel_1.setBounds(33, 147, 74, 24);
+		lblNewLabel_1.setBounds(43, 110, 74, 24);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JList list = new JList();
@@ -152,16 +86,16 @@ public class sch {
 		
 		JLabel lblNewLabel_2 = new JLabel("Sem:");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel_2.setBounds(232, 181, 45, 13);
+		lblNewLabel_2.setBounds(240, 137, 45, 13);
 		frame.getContentPane().add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("School Year:");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel_3.setBounds(33, 181, 88, 13);
+		lblNewLabel_3.setBounds(43, 137, 88, 13);
 		frame.getContentPane().add(lblNewLabel_3);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(15, 209, 1061, 202);
+		scrollPane.setBounds(28, 161, 1048, 160);
 		frame.getContentPane().add(scrollPane);
 
 		try {
@@ -192,9 +126,32 @@ public class sch {
 		            return false; 
 		        }
 		    };
+		    tblData.setRowSelectionAllowed(false);
+		    tblData.getTableHeader().setReorderingAllowed(false);
 		    tblData.setFillsViewportHeight(true);
 		    tblData.setFont(new Font("Arial", Font.PLAIN, 9));
-		    tblData.setModel(model); // Set model to the table
+		    tblData.setModel(new DefaultTableModel(
+		    	new Object[][] {
+		    		{null, null, null, null, null, null, null},
+		    	},
+		    	new String[] {
+		    		"#", "Subject Code", "Description", "Lec", "Lab", "Units", "Schedule"
+		    	}
+		    ) {
+		    	boolean[] columnEditables = new boolean[] {
+		    		false, false, false, false, false, false, false
+		    	};
+		    	public boolean isCellEditable(int row, int column) {
+		    		return columnEditables[column];
+		    	}
+		    });
+		    tblData.getColumnModel().getColumn(0).setResizable(false);
+		    tblData.getColumnModel().getColumn(1).setResizable(false);
+		    tblData.getColumnModel().getColumn(2).setResizable(false);
+		    tblData.getColumnModel().getColumn(3).setResizable(false);
+		    tblData.getColumnModel().getColumn(4).setResizable(false);
+		    tblData.getColumnModel().getColumn(5).setResizable(false);
+		    tblData.getColumnModel().getColumn(6).setResizable(false);
 
 		    scrollPane.setViewportView(tblData);
 
@@ -213,7 +170,7 @@ public class sch {
 		});
 		comboBox.setFont(new Font("Tahoma", Font.BOLD, 10));
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"2022 - 2023", "2023 - 2024", "2024 - 2025"}));
-		comboBox.setBounds(112, 178, 110, 21);
+		comboBox.setBounds(120, 134, 110, 21);
 		frame.getContentPane().add(comboBox);
 		
 		JComboBox comboBox_1 = new JComboBox();
@@ -224,7 +181,7 @@ public class sch {
 		});
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"First", "Second", "Summer"}));
 		comboBox_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		comboBox_1.setBounds(267, 178, 88, 21);
+		comboBox_1.setBounds(279, 134, 88, 21);
 		frame.getContentPane().add(comboBox_1);
 		
 		JLabel lblNewLabel = new JLabel("New label");
@@ -233,10 +190,11 @@ public class sch {
 		frame.getContentPane().add(lblNewLabel);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(15, 421, 1061, 142);
+		scrollPane_1.setBounds(28, 339, 1048, 171);
 		frame.getContentPane().add(scrollPane_1);
 		
 		table_1 = new JTable();
+		table_1.getTableHeader().setReorderingAllowed(false);
 		scrollPane_1.setViewportView(table_1);
 		table_1.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -259,12 +217,103 @@ public class sch {
 			new String[] {
 				"", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
 			}
-		));
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false, false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		table_1.getColumnModel().getColumn(0).setResizable(false);
+		table_1.getColumnModel().getColumn(1).setResizable(false);
+		table_1.getColumnModel().getColumn(2).setResizable(false);
+		table_1.getColumnModel().getColumn(3).setResizable(false);
+		table_1.getColumnModel().getColumn(4).setResizable(false);
+		table_1.getColumnModel().getColumn(5).setResizable(false);
+		table_1.getColumnModel().getColumn(6).setResizable(false);
+		table_1.getColumnModel().getColumn(7).setResizable(false);
+		
+		
+		
+		JButton btnNewButton_2 = new JButton("Account");
+		btnNewButton_2.setBackground(new Color(131, 7, 11));
+		btnNewButton_2.setForeground(new Color(255, 255, 255));
+		btnNewButton_2.setBounds(240, 75, 82, 24);
+		frame.getContentPane().add(btnNewButton_2);
+		
+		JButton btnSchedule = new JButton("Schedule");
+		btnSchedule.setBounds(165, 75, 77, 24);
+		frame.getContentPane().add(btnSchedule);
+		btnSchedule.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				sch win= new sch();
+				win.frame.setVisible(true);
+			}
+		});
+		btnSchedule.setForeground(new Color(255, 255, 255));
+		btnSchedule.setBackground(new Color(131, 7, 11));
+		btnSchedule.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		
+		JButton btnNewButton = new JButton("Grades");
+		btnNewButton.setBounds(101, 75, 74, 24);
+		frame.getContentPane().add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				gr win= new gr();
+				win.setVisible(true);
+			}
+		});
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setBackground(new Color(131, 7, 11));
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		
+		JButton btnNewButton_1 = new JButton("Profile");
+		btnNewButton_1.setBounds(33, 75, 69, 24);
+		frame.getContentPane().add(btnNewButton_1);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				pf win= new pf();
+				win.setVisible(true);
+			}
+		});
+		btnNewButton_1.setForeground(new Color(255, 255, 255));
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_1.setBackground(new Color(131, 7, 11));
+		
+		JButton btnLogout = new JButton("Log-out");
+		btnLogout.setBounds(976, 75, 100, 24);
+		frame.getContentPane().add(btnLogout);
+		btnLogout.setForeground(new Color(255, 255, 255));
+		btnLogout.setBackground(new Color(131, 7, 11));
+		btnLogout.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				acc win= new acc();
+				win.frame.setVisible(true);
+			}
+		});
 		
 		JLabel lblNewLabel_4 = new JLabel("New label");
 		lblNewLabel_4.setBackground(new Color(240, 240, 240));
 		lblNewLabel_4.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
-		lblNewLabel_4.setBounds(0, 119, 1147, 454);
+		lblNewLabel_4.setBounds(0, 108, 1147, 424);
 		frame.getContentPane().add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_5 = new JLabel("New label");
+		lblNewLabel_5.setForeground(new Color(255, 255, 255));
+		lblNewLabel_5.setIcon(new ImageIcon(getClass().getResource("/bg2.png")));
+		lblNewLabel_5.setBackground(new Color(131, 7, 11));
+		lblNewLabel_5.setBounds(0, 66, 1137, 42);
+		frame.getContentPane().add(lblNewLabel_5);
+		
+		JLabel lblNewLabel_6 = new JLabel("New label");
+		lblNewLabel_6.setIcon(new ImageIcon(getClass().getResource("/bg2.png")));
+		lblNewLabel_6.setBounds(0, 521, 1137, 50);
+		frame.getContentPane().add(lblNewLabel_6);
 	}
 }
