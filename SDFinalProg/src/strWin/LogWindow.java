@@ -28,7 +28,7 @@ public class LogWindow {
 
 ;
 	public JFrame frame;
-	private JTextField textField;
+	private JTextField txtStd;
 	private AbstractButton userText;
 	protected JComponent messageLabel;
 
@@ -110,18 +110,25 @@ public class LogWindow {
 		lblNewLabel_4.setBounds(41, 87, 129, 30);
 		panel_1.add(lblNewLabel_4);
 		
-		textField = new JTextField();
-		textField.setBounds(41, 127, 548, 30);
-		panel_1.add(textField);
-		textField.setColumns(10);
+		txtStd = new JTextField();
+		txtStd.setBounds(41, 127, 530, 30);
+		panel_1.add(txtStd);
+		txtStd.setColumns(10);
 		
 		JPasswordField password = new JPasswordField("");
 		password.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		password.setForeground(Color.BLACK);
-		password.setBounds(41, 199, 548, 30);
+		password.setBounds(41, 199, 530, 30);
 		panel_1.add(password);
 		
 		JButton btnNewButton = new JButton("Clear Entries");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtStd.setText("");
+				password.setText("");
+			}
+		});
+		
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBackground(new Color(194, 41, 14));
 		btnNewButton.setBounds(41, 269, 147, 32);
@@ -133,6 +140,51 @@ public class LogWindow {
 		btnNewButton_1.setBounds(485, 269, 104, 32);
 		panel_1.add(btnNewButton_1);
 		
+		JButton ShowPassButton = new JButton("");
+		ShowPassButton.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        if (password.getEchoChar() == '\u2022') { //Password is hidden
+		            password.setEchoChar((char) 0); // will show the password
+		        } else {
+		            password.setEchoChar('\u2022'); // will hide the password
+		        }
+		    }
+		});
+		ShowPassButton.setForeground(Color.WHITE);
+		ShowPassButton.setBackground(new Color(194, 41, 14));
+		ShowPassButton.setBounds(581, 199, 37, 30);
+		panel_1.add(ShowPassButton);
+		
+		JButton ForgotPass = new JButton("Forgot Password");
+		ForgotPass.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        String newPassword = JOptionPane.showInputDialog(frame, "Enter new password:");
+		        if (newPassword != null && !newPassword.isEmpty()) {
+		            try {
+		                Class.forName("com.mysql.cj.jdbc.Driver");
+		                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentinfo", "root", "password");
+
+		                Statement stmt = con.createStatement();
+		                String updateQuery = "UPDATE studentsdata SET Password = '" + newPassword + "' WHERE UserName = '" + txtStd.getText() + "'";
+		                int rowsUpdated = stmt.executeUpdate(updateQuery);
+		                if (rowsUpdated > 0) {
+		                    JOptionPane.showMessageDialog(frame, "Password updated successfully!");
+		                } else {
+		                    JOptionPane.showMessageDialog(frame, "Failed to update password. User not found.", "Error", JOptionPane.ERROR_MESSAGE);
+		                }
+
+		                con.close();
+		            } catch (Exception ex) {
+		                ex.printStackTrace();
+		                JOptionPane.showMessageDialog(frame, "An error occurred while updating password.", "Error", JOptionPane.ERROR_MESSAGE);
+		            }
+		        }
+		    }
+		});
+		ForgotPass.setForeground(Color.WHITE);
+		ForgotPass.setBackground(new Color(194, 41, 14));
+		ForgotPass.setBounds(262, 269, 141, 32);
+		panel_1.add(ForgotPass);
 		
 		
 		JLabel lblNewLabel_4_1 = new JLabel("Password:");
@@ -173,7 +225,7 @@ public class LogWindow {
 					 
 					 
 					
-					String localhost = "Select * from studentsdata where UserName='"+textField.getText()+"'and Password='"+String.valueOf(password.getPassword())+"'";
+					String localhost = "Select * from studentsdata where UserName='"+txtStd.getText()+"'and Password='"+String.valueOf(password.getPassword())+"'";
 					 ResultSet rs=stmt.executeQuery(localhost);
 					
 					  if(rs.next()) {

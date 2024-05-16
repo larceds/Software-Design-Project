@@ -68,7 +68,7 @@ public class regSub {
 		textField_1.setColumns(10);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(33, 177, 86, 20);
+		textField_2.setBounds(33, 176, 86, 20);
 		frame.getContentPane().add(textField_2);
 		textField_2.setColumns(10);
 		
