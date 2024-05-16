@@ -23,6 +23,8 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import strWin.LogWindow;
+import java.awt.Color;
+import java.awt.Font;
 
 public class gr {
 
@@ -62,6 +64,9 @@ public class gr {
 		frame.getContentPane().setLayout(null);
 		
 		JButton btnNewButton_1 = new JButton("Profile");
+		btnNewButton_1.setBackground(new Color(131, 7, 11));
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_1.setForeground(new Color(255, 255, 255));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -73,6 +78,9 @@ public class gr {
 		frame.getContentPane().add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Grade");
+		btnNewButton_2.setForeground(new Color(255, 255, 255));
+		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_2.setBackground(new Color(131, 7, 11));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -84,6 +92,8 @@ public class gr {
 		frame.getContentPane().add(btnNewButton_2);
 		
 		JButton btnSchedule = new JButton("Schedule");
+		btnSchedule.setBackground(new Color(131, 7, 11));
+		btnSchedule.setForeground(new Color(255, 255, 255));
 		btnSchedule.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -96,6 +106,9 @@ public class gr {
 		frame.getContentPane().add(btnSchedule);
 		
 		JButton btnNewButton_3 = new JButton("Courses");
+		btnNewButton_3.setForeground(new Color(255, 255, 255));
+		btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_3.setBackground(new Color(131, 7, 11));
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -107,6 +120,9 @@ public class gr {
 		frame.getContentPane().add(btnNewButton_3);
 		
 		JButton btnNewButton_4 = new JButton("Account");
+		btnNewButton_4.setForeground(new Color(255, 255, 255));
+		btnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_4.setBackground(new Color(131, 7, 11));
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -118,6 +134,9 @@ public class gr {
 		frame.getContentPane().add(btnNewButton_4);
 		
 		JButton btnNewButton_5 = new JButton("Students");
+		btnNewButton_5.setForeground(new Color(255, 255, 255));
+		btnNewButton_5.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_5.setBackground(new Color(131, 7, 11));
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -129,6 +148,9 @@ public class gr {
 		frame.getContentPane().add(btnNewButton_5);
 		
 		JButton btnNewButton_7 = new JButton("Professors");
+		btnNewButton_7.setForeground(new Color(255, 255, 255));
+		btnNewButton_7.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_7.setBackground(new Color(131, 7, 11));
 		btnNewButton_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -136,10 +158,13 @@ public class gr {
 				win.frame.setVisible(true);
 			}
 		});
-		btnNewButton_7.setBounds(551, 69, 89, 23);
+		btnNewButton_7.setBounds(551, 69, 102, 23);
 		frame.getContentPane().add(btnNewButton_7);
 		
 		JButton btnNewButton_6 = new JButton("Logout");
+		btnNewButton_6.setForeground(new Color(255, 255, 255));
+		btnNewButton_6.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_6.setBackground(new Color(131, 7, 11));
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -159,38 +184,52 @@ public class gr {
 		scrollPane.setViewportView(table);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null, null},
+				{Boolean.TRUE, null, null, null, null},
 				{null, null, null, null, null},
 				{null, null, null, null, null},
 			},
 			new String[] {
-				"New column", "New column", "New column", "New column", "New column"
+				"", "Student ID", "Prelim", "Midterm", "Finals"
 			}
 		) {
 			Class[] columnTypes = new Class[] {
-				Boolean.class, Object.class, Object.class, Object.class, Object.class
+				Boolean.class, Object.class, Double.class, Double.class, Double.class
 			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
+			boolean[] columnEditables = new boolean[] {
+				true, true, false, true, true
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
 		});
 		
 		JButton btnNewButton = new JButton("Approve");
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton.setBackground(new Color(131, 7, 11));
+		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBounds(10, 477, 89, 23);
 		frame.getContentPane().add(btnNewButton);
 		
 		JCheckBox chckbxNewCheckBox = new JCheckBox("Select All ");
+		chckbxNewCheckBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		chckbxNewCheckBox.setBounds(69, 167, 97, 23);
 		frame.getContentPane().add(chckbxNewCheckBox);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Section"}));
-		comboBox.setBounds(182, 126, 81, 22);
+		comboBox.setBounds(182, 126, 97, 23);
 		frame.getContentPane().add(comboBox);
 		
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Subject"}));
-		comboBox_1.setBounds(69, 126, 81, 22);
+		comboBox_1.setBounds(69, 126, 97, 23);
 		frame.getContentPane().add(comboBox_1);
 		
 		JLabel lblNewLabel = new JLabel("New label");
@@ -210,7 +249,7 @@ public class gr {
 		
 		JLabel lblNewLabel_2 = new JLabel("New label");
 		lblNewLabel_2.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
-		lblNewLabel_2.setBounds(0, 90, 975, 440);
+		lblNewLabel_2.setBounds(-22, 92, 1007, 440);
 		frame.getContentPane().add(lblNewLabel_2);
 		
 		

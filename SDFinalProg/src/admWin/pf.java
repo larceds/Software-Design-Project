@@ -42,7 +42,6 @@ public class pf extends JFrame {
 	private JTextField txtRegularProfessor;
 	private JTextField textField;
 	private JTextField txtMiketysoncvteaceduph;
-	private JTextField txtTeachingYears;
 	
 	/**
 	 * Launch the application.
@@ -145,11 +144,6 @@ public class pf extends JFrame {
 		lblNewLabel_1.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
 		lblNewLabel_1.setBounds(0, 0, 975, 68);
 		contentPane.add(lblNewLabel_1);
-		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/plhd.jpg")));
-		lblNewLabel.setBounds(753, 136, 101, 102);
-		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_2 = new JLabel("New label");
 		lblNewLabel_2.setBackground(new Color(255, 128, 128));
@@ -281,6 +275,7 @@ public class pf extends JFrame {
 		contentPane.add(lblNewLabel_5_2);
 		
 		JCheckBox chckbxNewCheckBox = new JCheckBox("Male");
+		chckbxNewCheckBox.setEnabled(false);
 		chckbxNewCheckBox.setSelected(true);
 		chckbxNewCheckBox.setBounds(753, 292, 97, 23);
 		contentPane.add(chckbxNewCheckBox);
@@ -317,10 +312,11 @@ public class pf extends JFrame {
 		contentPane.add(lblNewLabel_8);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(355, 273, 240, 20);
+		scrollPane_1.setBounds(355, 273, 268, 20);
 		contentPane.add(scrollPane_1);
 		
 		txtWebDeveloperAnd = new JTextField();
+		txtWebDeveloperAnd.setEnabled(false);
 		scrollPane_1.setViewportView(txtWebDeveloperAnd);
 		txtWebDeveloperAnd.setEditable(false);
 		txtWebDeveloperAnd.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -333,6 +329,7 @@ public class pf extends JFrame {
 		contentPane.add(lblNewLabel_9);
 		
 		txtDataProcessingInformation = new JTextField();
+		txtDataProcessingInformation.setEnabled(false);
 		txtDataProcessingInformation.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtDataProcessingInformation.setForeground(new Color(0, 0, 0));
 		txtDataProcessingInformation.setEditable(false);
@@ -347,6 +344,7 @@ public class pf extends JFrame {
 		contentPane.add(lblNewLabel_10);
 		
 		txtMarch = new JTextField();
+		txtMarch.setEnabled(false);
 		txtMarch.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtMarch.setEditable(false);
 		txtMarch.setText("March 29 , 2018");
@@ -360,6 +358,8 @@ public class pf extends JFrame {
 		contentPane.add(lblNewLabel_11);
 		
 		txtRegularProfessor = new JTextField();
+		txtRegularProfessor.setEnabled(false);
+		txtRegularProfessor.setEditable(false);
 		txtRegularProfessor.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtRegularProfessor.setText("Regular Professor");
 		txtRegularProfessor.setBounds(405, 340, 190, 20);
@@ -372,6 +372,7 @@ public class pf extends JFrame {
 		contentPane.add(lblNewLabel_12);
 		
 		textField = new JTextField();
+		textField.setEnabled(false);
 		textField.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField.setEditable(false);
 		textField.setText("09223341515");
@@ -385,6 +386,8 @@ public class pf extends JFrame {
 		contentPane.add(lblNewLabel_13);
 		
 		txtMiketysoncvteaceduph = new JTextField();
+		txtMiketysoncvteaceduph.setEnabled(false);
+		txtMiketysoncvteaceduph.setEditable(false);
 		txtMiketysoncvteaceduph.setFont(new Font("Tahoma", Font.BOLD, 11));
 		try {
 			c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/view1","root","kenn232004");
@@ -403,20 +406,10 @@ public class pf extends JFrame {
 		contentPane.add(txtMiketysoncvteaceduph);
 		txtMiketysoncvteaceduph.setColumns(10);
 		
-		JLabel lblNewLabel_14 = new JLabel("No. of Years of Experience:");
-		lblNewLabel_14.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_14.setBounds(246, 379, 160, 14);
-		contentPane.add(lblNewLabel_14);
-		
-		txtTeachingYears = new JTextField();
-		txtTeachingYears.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtTeachingYears.setEditable(false);
-		txtTeachingYears.setText("Teaching: 8 Years");
-		txtTeachingYears.setBounds(405, 376, 190, 20);
-		contentPane.add(txtTeachingYears);
-		txtTeachingYears.setColumns(10);
-		
 		JButton btnNewButton_4 = new JButton("Courses");
+		btnNewButton_4.setForeground(new Color(255, 255, 255));
+		btnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_4.setBackground(new Color(131, 7, 11));
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -428,6 +421,9 @@ public class pf extends JFrame {
 		contentPane.add(btnNewButton_4);
 		
 		JButton btnNewButton_5 = new JButton("Account");
+		btnNewButton_5.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_5.setBackground(new Color(131, 7, 11));
+		btnNewButton_5.setForeground(new Color(255, 255, 255));
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -439,6 +435,9 @@ public class pf extends JFrame {
 		contentPane.add(btnNewButton_5);
 		
 		JButton btnNewButton_6 = new JButton("Students");
+		btnNewButton_6.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_6.setForeground(new Color(255, 255, 255));
+		btnNewButton_6.setBackground(new Color(131, 7, 11));
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -447,14 +446,20 @@ public class pf extends JFrame {
 				
 			}
 		});
-		btnNewButton_6.setBounds(468, 79, 82, 23);
+		btnNewButton_6.setBounds(468, 79, 97, 23);
 		contentPane.add(btnNewButton_6);
 		
 		JButton btnNewButton_7 = new JButton("Change Password");
+		btnNewButton_7.setBackground(new Color(131, 7, 11));
+		btnNewButton_7.setForeground(new Color(255, 255, 255));
+		btnNewButton_7.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_7.setBounds(740, 470, 134, 23);
 		contentPane.add(btnNewButton_7);
 		
 		JButton btnNewButton_8 = new JButton("Professors");
+		btnNewButton_8.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_8.setBackground(new Color(131, 7, 11));
+		btnNewButton_8.setForeground(new Color(255, 255, 255));
 		btnNewButton_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -462,7 +467,7 @@ public class pf extends JFrame {
 				win.frame.setVisible(true);
 			}
 		});
-		btnNewButton_8.setBounds(547, 79, 89, 23);
+		btnNewButton_8.setBounds(560, 79, 101, 23);
 		contentPane.add(btnNewButton_8);
 		
 		JLabel lblNewLabel_15 = new JLabel("New label");

@@ -21,12 +21,16 @@ import java.awt.Font;
 import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.JMenuBar;
+import java.awt.Color;
+import javax.swing.DefaultComboBoxModel;
 
 public class crs {
 
 	JFrame frame;
 	private JTable table;
 	private JTable table_1;
+	private JTextField txtSearchBar;
+	private JTextField txtSearchBar_1;
 
 	/**
 	 * Launch the application.
@@ -61,6 +65,9 @@ public class crs {
 		frame.getContentPane().setLayout(null);
 		
 		JButton btnNewButton_2 = new JButton("Profile");
+		btnNewButton_2.setBackground(new Color(131, 7, 11));
+		btnNewButton_2.setForeground(new Color(255, 255, 255));
+		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -72,6 +79,9 @@ public class crs {
 		frame.getContentPane().add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Grade");
+		btnNewButton_3.setBackground(new Color(131, 7, 11));
+		btnNewButton_3.setForeground(new Color(255, 255, 255));
+		btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -84,6 +94,9 @@ public class crs {
 		frame.getContentPane().add(btnNewButton_3);
 		
 		JButton btnNewButton_4 = new JButton("Schedule");
+		btnNewButton_4.setForeground(new Color(255, 255, 255));
+		btnNewButton_4.setBackground(new Color(131, 7, 11));
+		btnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -96,6 +109,9 @@ public class crs {
 		frame.getContentPane().add(btnNewButton_4);
 		
 		JButton btnNewButton_5 = new JButton("Courses");
+		btnNewButton_5.setBackground(new Color(131, 7, 11));
+		btnNewButton_5.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_5.setForeground(new Color(255, 255, 255));
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -108,6 +124,9 @@ public class crs {
 		frame.getContentPane().add(btnNewButton_5);
 		
 		JButton btnNewButton_6 = new JButton("Account");
+		btnNewButton_6.setForeground(new Color(255, 255, 255));
+		btnNewButton_6.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_6.setBackground(new Color(131, 7, 11));
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -120,21 +139,20 @@ public class crs {
 		frame.getContentPane().add(btnNewButton_6);
 		
 		JButton btnStudents = new JButton("Students");
+		btnStudents.setBackground(new Color(131, 7, 11));
+		btnStudents.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnStudents.setForeground(new Color(255, 255, 255));
 		btnStudents.setBounds(465, 70, 89, 23);
 		frame.getContentPane().add(btnStudents);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(35, 124, 886, 402);
+		tabbedPane.setBounds(50, 120, 886, 402);
 		frame.getContentPane().add(tabbedPane);
 		
 		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(new Color(249, 172, 174));
 		tabbedPane.addTab("View Courses", null, panel_4, null);
 		panel_4.setLayout(null);
-		
-		JMenu mnNewMenu = new JMenu("Course");
-		mnNewMenu.setFont(new Font("Segoe UI", Font.PLAIN, 10));
-		mnNewMenu.setBounds(0, 0, 117, 17);
-		panel_4.add(mnNewMenu);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setToolTipText("");
@@ -145,27 +163,27 @@ public class crs {
 		table.setEnabled(false);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
 			},
 			new String[] {
-				"Subject Code", "Subject Name", "#Units", "Pre-requisites"
+				"Course Name", "Units", "Subjects"
 			}
 		));
 		scrollPane.setViewportView(table);
@@ -173,10 +191,6 @@ public class crs {
 		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane_1.setBounds(0, 0, 0, 0);
 		panel_4.add(tabbedPane_1);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(114, 4, 92, 22);
-		panel_4.add(comboBox);
 		
 		JButton btnNewButton_1 = new JButton("Manage Courses");
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -186,15 +200,16 @@ public class crs {
 		btnNewButton_1.setBounds(639, 17, 125, 22);
 		panel_4.add(btnNewButton_1);
 		
+		txtSearchBar = new JTextField();
+		txtSearchBar.setText(" Search Bar...");
+		txtSearchBar.setBounds(27, 11, 135, 27);
+		panel_4.add(txtSearchBar);
+		txtSearchBar.setColumns(10);
+		
 		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(249, 172, 174));
 		tabbedPane.addTab("View Subjects", null, panel_2, null);
 		panel_2.setLayout(null);
-		
-		JMenu mnNewMenu_1 = new JMenu("Course");
-		mnNewMenu_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		mnNewMenu_1.setFont(new Font("Segoe UI", Font.PLAIN, 10));
-		mnNewMenu_1.setBounds(10, 12, 117, 17);
-		panel_2.add(mnNewMenu_1);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(34, 49, 769, 304);
@@ -204,27 +219,27 @@ public class crs {
 		table_1.setToolTipText("");
 		table_1.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
 			},
 			new String[] {
-				"Subject Code", "Subject Name", "#Units"
+				"Subject Name", "Subject Code", "#Units", "Pre-Requisites"
 			}
 		));
 		scrollPane_1.setViewportView(table_1);
@@ -237,7 +252,21 @@ public class crs {
 		btnNewButton_7.setBounds(654, 15, 116, 23);
 		panel_2.add(btnNewButton_7);
 		
+		txtSearchBar_1 = new JTextField();
+		txtSearchBar_1.setText("Search Bar... ");
+		txtSearchBar_1.setBounds(34, 11, 129, 27);
+		panel_2.add(txtSearchBar_1);
+		txtSearchBar_1.setColumns(10);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Computer Engineering"}));
+		comboBox.setBounds(173, 15, 132, 22);
+		panel_2.add(comboBox);
+		
 		JButton btnNewButton = new JButton("Logout");
+		btnNewButton.setBackground(new Color(131, 7, 11));
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -250,6 +279,9 @@ public class crs {
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_8 = new JButton("Professors");
+		btnNewButton_8.setForeground(new Color(255, 255, 255));
+		btnNewButton_8.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_8.setBackground(new Color(131, 7, 11));
 		btnNewButton_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -257,7 +289,7 @@ public class crs {
 				win.frame.setVisible(true);
 			}
 		});
-		btnNewButton_8.setBounds(554, 70, 89, 23);
+		btnNewButton_8.setBounds(552, 70, 99, 23);
 		frame.getContentPane().add(btnNewButton_8);
 		
 		JLabel lblNewLabel_6 = new JLabel("New label");
