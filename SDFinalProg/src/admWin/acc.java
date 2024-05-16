@@ -196,11 +196,26 @@ public class acc {
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
+				{null, null, null, null, null, null, null},
 			},
 			new String[] {
 				"New column", "New column", "New column", "New column", "New column", "New column", "New column"
 			}
-		));
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		table.getColumnModel().getColumn(0).setResizable(false);
+		table.getColumnModel().getColumn(1).setResizable(false);
+		table.getColumnModel().getColumn(2).setResizable(false);
+		table.getColumnModel().getColumn(3).setResizable(false);
+		table.getColumnModel().getColumn(4).setResizable(false);
+		table.getColumnModel().getColumn(5).setResizable(false);
+		table.getColumnModel().getColumn(6).setResizable(false);
 		scrollPane.setViewportView(table);
 		table.setFillsViewportHeight(true);
 		
@@ -242,12 +257,18 @@ public class acc {
 		btnNewButton_8.setBounds(102, 428, 89, 23);
 		frame.getContentPane().add(btnNewButton_8);
 		
-		
+		JLabel lblNewLabel_4_1 = new JLabel();
+		lblNewLabel_4_1.setText("Welcome, null null null");
+		lblNewLabel_4_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_4_1.setBounds(31, 117, 389, 14);
+		frame.getContentPane().add(lblNewLabel_4_1);
 		
 		JLabel lblNewLabel_4 = new JLabel("New label");
 		lblNewLabel_4.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
 		lblNewLabel_4.setBounds(0, 102, 977, 480);
 		frame.getContentPane().add(lblNewLabel_4);
+		
+		
 		
 		
 	}

@@ -118,6 +118,7 @@ public class pf extends JFrame {
 		});
 		
 		textField_4 = new JTextField();
+		textField_4.setEnabled(false);
 		textField_4.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_4.setEditable(false);
 		textField_4.setColumns(10);
@@ -125,6 +126,7 @@ public class pf extends JFrame {
 		contentPane.add(textField_4);
 		
 		textField_3 = new JTextField();
+		textField_3.setEnabled(false);
 		textField_3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_3.setEditable(false);
 		textField_3.setColumns(10);
@@ -146,6 +148,7 @@ public class pf extends JFrame {
 		contentPane.add(scrollPane_2_1_1_1_1);
 		
 		txtSingle = new JTextField();
+		txtSingle.setEnabled(false);
 		txtSingle.setText("Single");
 		txtSingle.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtSingle.setEditable(false);
@@ -162,6 +165,7 @@ public class pf extends JFrame {
 		contentPane.add(scrollPane_2_1_1_2);
 		
 		txtCatholic = new JTextField();
+		txtCatholic.setEnabled(false);
 		txtCatholic.setText("Catholic");
 		txtCatholic.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtCatholic.setEditable(false);
@@ -174,6 +178,8 @@ public class pf extends JFrame {
 		contentPane.add(lblNewLabel_10_2);
 		
 		textField_2 = new JTextField();
+		textField_2.setEditable(false);
+		textField_2.setEnabled(false);
 		textField_2.setText((String) null);
 		textField_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_2.setColumns(10);
@@ -195,6 +201,7 @@ public class pf extends JFrame {
 		contentPane.add(scrollPane_2_1_1_1);
 		
 		txtFirst = new JTextField();
+		txtFirst.setEnabled(false);
 		txtFirst.setText("First");
 		txtFirst.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtFirst.setEditable(false);
@@ -211,6 +218,7 @@ public class pf extends JFrame {
 		contentPane.add(scrollPane_2_1_1);
 		
 		textField_1 = new JTextField();
+		textField_1.setEnabled(false);
 		textField_1.setText("2024");
 		textField_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_1.setEditable(false);
@@ -218,11 +226,13 @@ public class pf extends JFrame {
 		scrollPane_2_1_1.setViewportView(textField_1);
 		
 		JCheckBox chckbxNewCheckBox_1_1 = new JCheckBox("Foreign");
+		chckbxNewCheckBox_1_1.setEnabled(false);
 		chckbxNewCheckBox_1_1.setForeground(new Color(0, 0, 0));
 		chckbxNewCheckBox_1_1.setBounds(133, 176, 97, 23);
 		contentPane.add(chckbxNewCheckBox_1_1);
 		
 		JCheckBox chckbxFilipino = new JCheckBox("Filipino");
+		chckbxFilipino.setEnabled(false);
 		chckbxFilipino.setForeground(new Color(0, 0, 0));
 		chckbxFilipino.setSelected(true);
 		chckbxFilipino.setBounds(28, 176, 97, 23);
@@ -233,6 +243,7 @@ public class pf extends JFrame {
 		contentPane.add(scrollPane_2_1);
 		
 		txtYearOfThe = new JTextField();
+		txtYearOfThe.setEnabled(false);
 		txtYearOfThe.setText("Year of the Student");
 		txtYearOfThe.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtYearOfThe.setEditable(false);
@@ -249,6 +260,7 @@ public class pf extends JFrame {
 		contentPane.add(scrollPane_2);
 		
 		txtTcpeBachelors = new JTextField();
+		txtTcpeBachelors.setEnabled(false);
 		txtTcpeBachelors.setText("TCPE - BACHELOR OF SCIENCE IN COMPUTER ENGINEERING");
 		txtTcpeBachelors.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtTcpeBachelors.setEditable(false);
@@ -337,6 +349,7 @@ public class pf extends JFrame {
 		contentPane.add(lblNewLabel_4);
 		
 		txtTyson = new JTextField();
+		txtTyson.setEnabled(false);
 		txtTyson.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtTyson.setHorizontalAlignment(SwingConstants.CENTER);
 		try {
@@ -358,6 +371,7 @@ public class pf extends JFrame {
 		txtTyson.setColumns(10);
 		
 		txtMike = new JTextField();
+		txtMike.setEnabled(false);
 		txtMike.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtMike.setHorizontalAlignment(SwingConstants.CENTER);
 		try {
@@ -379,6 +393,7 @@ public class pf extends JFrame {
 		txtMike.setColumns(10);
 		
 		txtKingkong = new JTextField();
+		txtKingkong.setEnabled(false);
 		txtKingkong.setEditable(false);
 		try {
 			c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/view1","root","kenn232004");
@@ -418,11 +433,13 @@ public class pf extends JFrame {
 		contentPane.add(lblNewLabel_5_2);
 		
 		JCheckBox chckbxNewCheckBox = new JCheckBox("Male");
+		chckbxNewCheckBox.setEnabled(false);
 		chckbxNewCheckBox.setSelected(true);
 		chckbxNewCheckBox.setBounds(780, 279, 97, 23);
 		contentPane.add(chckbxNewCheckBox);
 		
 		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("Female");
+		chckbxNewCheckBox_1.setEnabled(false);
 		chckbxNewCheckBox_1.setBounds(780, 306, 97, 23);
 		contentPane.add(chckbxNewCheckBox_1);
 		
@@ -441,6 +458,7 @@ public class pf extends JFrame {
 		contentPane.add(scrollPane);
 		
 		txtComputerScience = new JTextField();
+		txtComputerScience.setEnabled(false);
 		scrollPane.setViewportView(txtComputerScience);
 		txtComputerScience.setEditable(false);
 		txtComputerScience.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -457,6 +475,7 @@ public class pf extends JFrame {
 		contentPane.add(scrollPane_1);
 		
 		txtWebDeveloperAnd = new JTextField();
+		txtWebDeveloperAnd.setEnabled(false);
 		scrollPane_1.setViewportView(txtWebDeveloperAnd);
 		txtWebDeveloperAnd.setEditable(false);
 		txtWebDeveloperAnd.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -479,6 +498,8 @@ public class pf extends JFrame {
 		contentPane.add(lblNewLabel_11);
 		
 		txtRegularProfessor = new JTextField();
+		txtRegularProfessor.setEditable(false);
+		txtRegularProfessor.setEnabled(false);
 		txtRegularProfessor.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtRegularProfessor.setBounds(687, 335, 190, 20);
 		contentPane.add(txtRegularProfessor);
@@ -490,6 +511,7 @@ public class pf extends JFrame {
 		contentPane.add(lblNewLabel_12);
 		
 		textField = new JTextField();
+		textField.setEnabled(false);
 		textField.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField.setEditable(false);
 		textField.setBounds(133, 376, 143, 20);
@@ -502,6 +524,8 @@ public class pf extends JFrame {
 		contentPane.add(lblNewLabel_13);
 		
 		txtMiketysoncvteaceduph = new JTextField();
+		txtMiketysoncvteaceduph.setEditable(false);
+		txtMiketysoncvteaceduph.setEnabled(false);
 		txtMiketysoncvteaceduph.setFont(new Font("Tahoma", Font.BOLD, 11));
 		try {
 			c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/view1","root","kenn232004");
@@ -526,6 +550,7 @@ public class pf extends JFrame {
 		contentPane.add(lblNewLabel_14);
 		
 		txtTeachingYears = new JTextField();
+		txtTeachingYears.setEnabled(false);
 		txtTeachingYears.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtTeachingYears.setEditable(false);
 		txtTeachingYears.setBounds(357, 424, 143, 20);
@@ -546,6 +571,12 @@ public class pf extends JFrame {
 		btnNewButton_2_1.setBounds(286, 79, 89, 23);
 		contentPane.add(btnNewButton_2_1);
 		
+		JButton btnNewButton_3_1 = new JButton("Change Password");
+		btnNewButton_3_1.setForeground(Color.WHITE);
+		btnNewButton_3_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_3_1.setBackground(new Color(128, 0, 0));
+		btnNewButton_3_1.setBounds(734, 447, 143, 23);
+		contentPane.add(btnNewButton_3_1);
 		
 		JLabel lblNewLabel_15 = new JLabel("New label");
 		lblNewLabel_15.setIcon(new ImageIcon(getClass().getResource("/bg2.png")));
@@ -559,8 +590,10 @@ public class pf extends JFrame {
 		
 		JLabel lblNewLabel_17 = new JLabel("");
 		lblNewLabel_17.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
-		lblNewLabel_17.setBounds(-29, 12, 1038, 594);
+		lblNewLabel_17.setBounds(-19, 11, 1038, 594);
 		contentPane.add(lblNewLabel_17);
+		
+		
 		
 		
 	}

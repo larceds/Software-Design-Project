@@ -182,9 +182,10 @@ public class gr {
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
+		table.getTableHeader().setReorderingAllowed(false);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{Boolean.TRUE, null, null, null, null},
+				{Boolean.FALSE, null, null, null, null},
 				{null, null, null, null, null},
 				{null, null, null, null, null},
 			},
@@ -199,12 +200,16 @@ public class gr {
 				return columnTypes[columnIndex];
 			}
 			boolean[] columnEditables = new boolean[] {
-				true, true, false, true, true
+				true, false, false, false, false
 			};
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
 		});
+		table.getColumnModel().getColumn(1).setResizable(false);
+		table.getColumnModel().getColumn(2).setResizable(false);
+		table.getColumnModel().getColumn(3).setResizable(false);
+		table.getColumnModel().getColumn(4).setResizable(false);
 		
 		JButton btnNewButton = new JButton("Approve");
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -232,6 +237,12 @@ public class gr {
 		comboBox_1.setBounds(69, 126, 97, 23);
 		frame.getContentPane().add(comboBox_1);
 		
+		JLabel lblNewLabel_4 = new JLabel();
+		lblNewLabel_4.setText("Welcome, null null null");
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_4.setBounds(45, 101, 389, 14);
+		
+		frame.getContentPane().add(lblNewLabel_4);
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
 		lblNewLabel.setBounds(0, 0, 975, 65);
@@ -251,6 +262,8 @@ public class gr {
 		lblNewLabel_2.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
 		lblNewLabel_2.setBounds(-22, 92, 1007, 440);
 		frame.getContentPane().add(lblNewLabel_2);
+		
+		
 		
 		
 		

@@ -300,6 +300,7 @@ public class pf extends JFrame {
 		contentPane.add(scrollPane);
 		
 		txtComputerScience = new JTextField();
+		txtComputerScience.setEnabled(false);
 		scrollPane.setViewportView(txtComputerScience);
 		txtComputerScience.setEditable(false);
 		txtComputerScience.setFont(new Font("Tahoma", Font.BOLD, 11));
