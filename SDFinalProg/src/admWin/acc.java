@@ -15,6 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class acc {
 
@@ -67,6 +68,8 @@ public class acc {
 		frame.getContentPane().add(lblNewLabel_2);
 		
 		JButton btnNewButton = new JButton("Profile");
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton.setBackground(new Color(131, 7, 11));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -75,10 +78,13 @@ public class acc {
 			}
 		});
 		btnNewButton.setBounds(31, 83, 89, 23);
-		btnNewButton.setForeground(new Color(64, 0, 0));
+		btnNewButton.setForeground(new Color(255, 255, 255));
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Grade");
+		btnNewButton_1.setBackground(new Color(131, 7, 11));
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_1.setForeground(new Color(255, 255, 255));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -90,6 +96,9 @@ public class acc {
 		frame.getContentPane().add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Schedule");
+		btnNewButton_2.setForeground(new Color(255, 255, 255));
+		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_2.setBackground(new Color(131, 7, 11));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -101,6 +110,9 @@ public class acc {
 		frame.getContentPane().add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Courses");
+		btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_3.setForeground(new Color(255, 255, 255));
+		btnNewButton_3.setBackground(new Color(131, 7, 11));
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -112,6 +124,9 @@ public class acc {
 		frame.getContentPane().add(btnNewButton_3);
 		
 		JButton btnNewButton_4 = new JButton("Account");
+		btnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_4.setBackground(new Color(131, 7, 11));
+		btnNewButton_4.setForeground(new Color(255, 255, 255));
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -123,6 +138,9 @@ public class acc {
 		frame.getContentPane().add(btnNewButton_4);
 		
 		JButton btnNewButton_5 = new JButton("Students");
+		btnNewButton_5.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_5.setBackground(new Color(131, 7, 11));
+		btnNewButton_5.setForeground(new Color(255, 255, 255));
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -134,6 +152,9 @@ public class acc {
 		frame.getContentPane().add(btnNewButton_5);
 		
 		JButton btnNewButton_6 = new JButton("Logout");
+		btnNewButton_6.setBackground(new Color(131, 7, 11));
+		btnNewButton_6.setForeground(new Color(255, 255, 255));
+		btnNewButton_6.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -145,6 +166,9 @@ public class acc {
 		frame.getContentPane().add(btnNewButton_6);
 		
 		JButton btnNewButton_9 = new JButton("Professors");
+		btnNewButton_9.setForeground(new Color(255, 255, 255));
+		btnNewButton_9.setBackground(new Color(131, 7, 11));
+		btnNewButton_9.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -152,7 +176,7 @@ public class acc {
 				win.frame.setVisible(true);
 			}
 		});
-		btnNewButton_9.setBounds(552, 83, 89, 23);
+		btnNewButton_9.setBounds(549, 83, 99, 23);
 		frame.getContentPane().add(btnNewButton_9);
 		
 		JLabel lblNewLabel_1 = new JLabel("New label");
@@ -196,6 +220,9 @@ public class acc {
 		frame.getContentPane().add(lblNewLabel_3_1);
 		
 		JButton btnNewButton_7 = new JButton("Select");
+		btnNewButton_7.setBackground(new Color(131, 7, 11));
+		btnNewButton_7.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_7.setForeground(new Color(255, 255, 255));
 		btnNewButton_7.setBounds(102, 298, 89, 23);
 		frame.getContentPane().add(btnNewButton_7);
 		
@@ -210,6 +237,8 @@ public class acc {
 		frame.getContentPane().add(lblNewLabel_3_1_1);
 		
 		JButton btnNewButton_8 = new JButton("Enter");
+		btnNewButton_8.setForeground(new Color(255, 255, 255));
+		btnNewButton_8.setBackground(new Color(131, 7, 11));
 		btnNewButton_8.setBounds(102, 428, 89, 23);
 		frame.getContentPane().add(btnNewButton_8);
 		

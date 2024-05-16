@@ -16,6 +16,8 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.Font;
 
 public class prof {
 
@@ -56,6 +58,9 @@ public class prof {
 		frame.getContentPane().setLayout(null);
 		
 		JButton btnPf = new JButton("Profile");
+		btnPf.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnPf.setBackground(new Color(131, 7, 11));
+		btnPf.setForeground(new Color(255, 255, 255));
 		btnPf.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -67,6 +72,9 @@ public class prof {
 		frame.getContentPane().add(btnPf);
 		
 		JButton btnGr = new JButton("Grades");
+		btnGr.setBackground(new Color(131, 7, 11));
+		btnGr.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnGr.setForeground(new Color(255, 255, 255));
 		btnGr.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -78,6 +86,9 @@ public class prof {
 		frame.getContentPane().add(btnGr);
 		
 		JButton btnSch = new JButton("Schedule");
+		btnSch.setForeground(new Color(255, 255, 255));
+		btnSch.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnSch.setBackground(new Color(131, 7, 11));
 		btnSch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -89,6 +100,9 @@ public class prof {
 		frame.getContentPane().add(btnSch);
 		
 		JButton btnCrs = new JButton("Courses");
+		btnCrs.setForeground(new Color(255, 255, 255));
+		btnCrs.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnCrs.setBackground(new Color(131, 7, 11));
 		btnCrs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -100,6 +114,9 @@ public class prof {
 		frame.getContentPane().add(btnCrs);
 		
 		JButton btnAcc = new JButton("Account");
+		btnAcc.setBackground(new Color(131, 7, 11));
+		btnAcc.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnAcc.setForeground(new Color(255, 255, 255));
 		btnAcc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -111,6 +128,9 @@ public class prof {
 		frame.getContentPane().add(btnAcc);
 		
 		JButton btnStd = new JButton("Students");
+		btnStd.setForeground(new Color(255, 255, 255));
+		btnStd.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnStd.setBackground(new Color(131, 7, 11));
 		btnStd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -122,6 +142,9 @@ public class prof {
 		frame.getContentPane().add(btnStd);
 		
 		JButton btnprof = new JButton("Professors");
+		btnprof.setBackground(new Color(131, 7, 11));
+		btnprof.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnprof.setForeground(new Color(255, 255, 255));
 		btnprof.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -129,10 +152,13 @@ public class prof {
 				win.frame.setVisible(true);
 			}
 		});
-		btnprof.setBounds(539, 82, 89, 23);
+		btnprof.setBounds(539, 82, 99, 23);
 		frame.getContentPane().add(btnprof);
 		
 		JButton btnlog = new JButton("Logout");
+		btnlog.setForeground(new Color(255, 255, 255));
+		btnlog.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnlog.setBackground(new Color(131, 7, 11));
 		btnlog.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -144,26 +170,27 @@ public class prof {
 		frame.getContentPane().add(btnlog);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(240, 147, 677, 371);
+		scrollPane.setBounds(55, 182, 862, 336);
 		frame.getContentPane().add(scrollPane);
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
+				{null, null, null},
 			},
 			new String[] {
-				"New column", "New column", "New column", "New column"
+				"Professor Name", "Course Specialization", "Schedule"
 			}
 		));
 		scrollPane.setViewportView(table);
 		
 		textField = new JTextField();
-		textField.setBounds(55, 174, 114, 20);
+		textField.setBounds(47, 151, 140, 20);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		JButton btnNewButton = new JButton("View");
-		btnNewButton.setBounds(69, 212, 89, 23);
+		btnNewButton.setBounds(197, 148, 89, 23);
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Register ");
@@ -174,7 +201,7 @@ public class prof {
 				win.frame.setVisible(true);
 			}
 		});
-		btnNewButton_1.setBounds(69, 401, 89, 23);
+		btnNewButton_1.setBounds(768, 140, 89, 23);
 		frame.getContentPane().add(btnNewButton_1);
 		
 		JLabel lblNewLabel = new JLabel("New label");
@@ -191,11 +218,6 @@ public class prof {
 		lblNewLabel_2.setIcon(new ImageIcon(getClass().getResource("/bg2.png")));
 		lblNewLabel_2.setBounds(0, 536, 975, 35);
 		frame.getContentPane().add(lblNewLabel_2);
-		
-		JLabel lblNewLabel_4 = new JLabel("Professor Name");
-		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4.setBounds(55, 154, 114, 14);
-		frame.getContentPane().add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_3 = new JLabel("New label");
 		lblNewLabel_3.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
