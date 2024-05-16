@@ -8,6 +8,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -27,6 +28,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.TextField;
 
@@ -34,6 +36,9 @@ public class regStd {
 	Connection c = null;
 	Statement st = null;
 	ResultSet rs = null;
+	ArrayList<String> namef = new ArrayList();
+	ArrayList<String> namem = new ArrayList();
+	ArrayList<String> namel = new ArrayList();
 	
 	String sex;
 
@@ -301,6 +306,7 @@ public class regStd {
         enrollbut.addActionListener(new ActionListener() {
         	int number;
         	public void actionPerformed(ActionEvent e) {
+        		
         		num.setEnabled(true);
         		
         		ResultSetMetaData rsmd;
@@ -310,8 +316,13 @@ public class regStd {
 					st = c.createStatement();
 					rs = st.executeQuery("select * from users");
 					while(rs.next()) {
+						namel.add(rs.getString("lname"));
+						namef.add(rs.getString("fname"));
+						namem.add(rs.getString("mname"));
 						cc++;
 					}
+					
+					
 					if(sy.getSelectedIndex()== 1) {
 	        			if(lvl.getSelectedIndex()== 1) {
 	        				 number = 24100000 + cc;
@@ -336,8 +347,8 @@ public class regStd {
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
-    			
-				num.setText("Your id number is : "+number);
+				
+				//num.setText("Your id number is : "+number);
         		
         		String ln = lname.getText();
         		String fn = fname.getText();
@@ -358,26 +369,33 @@ public class regStd {
         		String t = (String)term.getSelectedItem().toString();
         		String bd = bday.getText();
 
-        		String reg = "insert into users "
-						+"(lname,fname,mname,gender,age,bp,religion,cs,email,lrn,res_num,app,class,course,st_level,sy,term,user_type,cp,bday,id_num)"
-						+" values ('"+ln+"','"+fn+"','"+mn+"','"+sex+"',"+age1+",'"+bp+"','"+r
-						+"','"+civil+"','"+em+"',"+lr+","+rsa+",'"+ap
-						+"','"+cl+"','"+cr+"','"+lv+"','"+s+"','"+ t
-						+"','student',"+num+",'"+bd+"',"+number+")";
-        		try {
-        			c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
-        			 st = c.createStatement();
-        			System.out.println("ok");
-        			rs = st.executeQuery("select * from users");
-        			
-        			st.executeUpdate(reg);
-        			
-        		
-        			
-        		}catch (Exception e1) {
-        			System.out.println("1");
+        		if(namel.contains(ln) && namef.contains(fn) && namem.contains(mn)) {
+        			JOptionPane.showMessageDialog(null, "Account has already been registered");
+        		}else {
+        			String reg = "insert into users "
+    						+"(lname,fname,mname,gender,age,bp,religion,cs,email,lrn,res_num,app,class,course,st_level,sy,term,user_type,cp,bday,id_num,pw)"
+    						+" values ('"+ln+"','"+fn+"','"+mn+"','"+sex+"',"+age1+",'"+bp+"','"+r
+    						+"','"+civil+"','"+em+"',"+lr+","+rsa+",'"+ap
+    						+"','"+cl+"','"+cr+"','"+lv+"','"+s+"','"+ t
+    						+"','student',"+num+",'"+bd+"',"+number+",'"+lname+"')";
+            		try {
+            			c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
+            			 st = c.createStatement();
+            			System.out.println("ok");
+            			rs = st.executeQuery("select * from users");
+            			
+            			st.executeUpdate(reg);
+            			
+            		
+            			
+            		}catch (Exception e1) {
+            			System.out.println("1");
 
+            		}
+            		JOptionPane.showMessageDialog(null, "Account has been successfully registered\n This is your id number : "+number+"\n This is your password : "+lname);
         		}
+        		
+        		
         	}
         });
         enrollbut.setBounds(780, 550, 150, 30);

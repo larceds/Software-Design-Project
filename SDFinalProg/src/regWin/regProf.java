@@ -18,12 +18,12 @@ import javax.swing.JComboBox;
 public class regProf {
 
 	public JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_5;
-	private JTextField textField_6;
+	private JTextField name;
+	private JTextField deg;
+	private JTextField no;
+	private JTextField no_yrs;
+	private JTextField des;
+	private JTextField email;
 
 	/**
 	 * Launch the application.
@@ -70,10 +70,10 @@ public class regProf {
 			}
 		});
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(220, 347, 444, 20);
-		panel.add(textField_6);
+		email = new JTextField();
+		email.setColumns(10);
+		email.setBounds(220, 347, 444, 20);
+		panel.add(email);
 		
 		JLabel lblNewLabel_4_1_3 = new JLabel("Email Address:");
 		lblNewLabel_4_1_3.setForeground(Color.WHITE);
@@ -87,10 +87,10 @@ public class regProf {
 		lblNewLabel_4_1_2.setBounds(210, 217, 195, 30);
 		panel.add(lblNewLabel_4_1_2);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(220, 246, 444, 20);
-		panel.add(textField_5);
+		des = new JTextField();
+		des.setColumns(10);
+		des.setBounds(220, 246, 444, 20);
+		panel.add(des);
 		btnNewButton.setBounds(390, 378, 89, 23);
 		panel.add(btnNewButton);
 		
@@ -106,15 +106,15 @@ public class regProf {
 		lblNewLabel_4_1_1_1.setBounds(450, 266, 195, 30);
 		panel.add(lblNewLabel_4_1_1_1);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(460, 295, 204, 20);
-		panel.add(textField_3);
+		no_yrs = new JTextField();
+		no_yrs.setColumns(10);
+		no_yrs.setBounds(460, 295, 204, 20);
+		panel.add(no_yrs);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(220, 295, 204, 20);
-		panel.add(textField_2);
+		no = new JTextField();
+		no.setColumns(10);
+		no.setBounds(220, 295, 204, 20);
+		panel.add(no);
 		
 		JLabel lblNewLabel_4_1_1 = new JLabel("Contact NO:");
 		lblNewLabel_4_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -122,10 +122,10 @@ public class regProf {
 		lblNewLabel_4_1_1.setBounds(210, 266, 96, 30);
 		panel.add(lblNewLabel_4_1_1);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(220, 197, 444, 20);
-		panel.add(textField_1);
+		deg = new JTextField();
+		deg.setColumns(10);
+		deg.setBounds(220, 197, 444, 20);
+		panel.add(deg);
 		
 		JLabel lblNewLabel_4_1 = new JLabel("Degree:");
 		lblNewLabel_4_1.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -133,10 +133,10 @@ public class regProf {
 		lblNewLabel_4_1.setBounds(210, 168, 195, 30);
 		panel.add(lblNewLabel_4_1);
 		
-		textField = new JTextField();
-		textField.setBounds(220, 147, 444, 20);
-		panel.add(textField);
-		textField.setColumns(10);
+		name = new JTextField();
+		name.setBounds(220, 147, 444, 20);
+		panel.add(name);
+		name.setColumns(10);
 		
 		JLabel lblNewLabel_4 = new JLabel("Full Name:");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
