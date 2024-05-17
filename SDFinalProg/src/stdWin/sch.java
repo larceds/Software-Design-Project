@@ -84,7 +84,7 @@ public class sch {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				pf win= new pf();
+				stdWinMain win= new stdWinMain();
 				win.setVisible(true);
 			}
 		});

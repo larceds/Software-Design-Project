@@ -1,10 +1,12 @@
 package strWin;
 
 import java.sql.Connection;
+import stdWin.stdWinMain;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Struct;
+import java.util.ArrayList;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -22,13 +24,22 @@ import javax.swing.JTextField;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import profWin.profWinMain;
+import admWin.adminWinMain;
 
 @SuppressWarnings("unused")
 public class LogWindow {
+	Connection c = null;
+	Statement st = null;
+	ResultSet rs = null;
+	
+	ArrayList<Integer> num = new ArrayList();
+	ArrayList<String> pw = new ArrayList();
+	ArrayList<String> user_type = new ArrayList();
 
 ;
 	public JFrame frame;
-	private JTextField textField;
+	private JTextField id;
 	private AbstractButton userText;
 	protected JComponent messageLabel;
 
@@ -104,16 +115,16 @@ public class LogWindow {
 		lblNewLabel_3.setBounds(41, 64, 548, 13);
 		panel_1.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("Student ID No:");
+		JLabel lblNewLabel_4 = new JLabel("ID Number:");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_4.setForeground(Color.WHITE);
 		lblNewLabel_4.setBounds(41, 87, 129, 30);
 		panel_1.add(lblNewLabel_4);
 		
-		textField = new JTextField();
-		textField.setBounds(41, 127, 548, 30);
-		panel_1.add(textField);
-		textField.setColumns(10);
+		id = new JTextField();
+		id.setBounds(41, 127, 548, 30);
+		panel_1.add(id);
+		id.setColumns(10);
 		
 		JPasswordField password = new JPasswordField("");
 		password.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -122,6 +133,12 @@ public class LogWindow {
 		panel_1.add(password);
 		
 		JButton btnNewButton = new JButton("Clear Entries");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				id.setText("");
+				password.setText("");
+			}
+		});
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBackground(new Color(194, 41, 14));
 		btnNewButton.setBounds(41, 269, 147, 32);
@@ -161,30 +178,46 @@ public class LogWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				
 				try {
-					 Class.forName("com.mysql.cj.jdbc.Driver");
-					 Connection con=DriverManager
-							 .getConnection("jdbc:mysql://localhost:3306/studentinfo","root","password");
-					 
-					  Statement stmt = con.createStatement();
-						
+					c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
+					st = c.createStatement();
+       			 	System.out.println("ok");
+					rs = st.executeQuery("select * from users");
+					
+					while(rs.next()) {
+						num.add(rs.getInt("id_num"));
+						pw.add(rs.getString("lname"));
+						user_type.add(rs.getString("user_type"));
+					}
+					
 					 System.out.println("Connection established");
+					 int counter = 0;
+					 while(num.get(counter).equals(Integer.parseInt(id.getText()))!=true) {
+						 counter++;
+					 }
+					 System.out.println(counter);
 					 
-					 
+					 if(pw.get(counter).equalsIgnoreCase(String.valueOf(password.getPassword()))) {
+						 JOptionPane.showMessageDialog(null, "Successfully Logged in \n Welcome!");
+						 if(user_type.get(counter).equals("student")) {
+								frame.dispose();
+								stdWinMain student = new stdWinMain();
+								student.setVisible(true);
+							}else if(user_type.get(counter).equals("professor")){
+								frame.dispose();
+								profWinMain prof = new profWinMain();
+								prof.setVisible(true);
+								
+							}else {
+								frame.dispose();
+								adminWinMain admin = new adminWinMain();
+								admin.setVisible(true);
+							}
+					 }else {
+						 JOptionPane.showMessageDialog(null, "Incorrect credentials \n INITIATING SELF DESTRUCT");
+					 }
 					
-					String localhost = "Select * from studentsdata where UserName='"+textField.getText()+"'and Password='"+String.valueOf(password.getPassword())+"'";
-					 ResultSet rs=stmt.executeQuery(localhost);
-					
-					  if(rs.next()) {
-						  System.out.println("login successful");
-			           
-					  }	 else {
-				          System.out.println("Incorrect username and password");
-					  }
-					  
-					 con.close();
-					 
 				   } catch(Exception err) {System.out.print(err);}
 			}});
 		

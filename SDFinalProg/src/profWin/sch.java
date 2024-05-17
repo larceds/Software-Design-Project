@@ -76,7 +76,7 @@ public class sch {
 		JButton btnNewButton_1 = new JButton("Profile");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			pf win = new pf();
+			profWinMain win = new profWinMain();
 			win.setVisible(true);
 			frame.dispose();
 			}

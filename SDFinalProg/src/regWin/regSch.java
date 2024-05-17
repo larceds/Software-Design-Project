@@ -8,36 +8,54 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
+import javax.swing.SwingUtilities;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.JTabbedPane;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 import java.awt.Font;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.MatteBorder;
+import javax.swing.JComboBox;
 
 public class regSch {
+	Connection c = null;
+	Statement st = null;
+	ResultSet rs = null;
+	
+	ArrayList<String> subj = new ArrayList();
+	ArrayList<String> proff = new ArrayList();
+	ArrayList<Integer> in = new ArrayList();
+	ArrayList<Integer> out = new ArrayList();
+	ArrayList<String> sbj = new ArrayList();
+	ArrayList<String> prf = new ArrayList();
 
 	public JFrame frame;
-	private JTable table;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	//private JTable sch;
+	private JTextField tin;
+	private JTextField tout;
 	private JTable table_1;
 	private JTable table_2;
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextField textField_7;
+	private JTable schd;
 
 	/**
 	 * Launch the application.
@@ -80,72 +98,31 @@ public class regSch {
 		tabbedPane.addTab("Add schedule", null, panel, null);
 		panel.setLayout(null);
 		
-		table = new JTable();
-		table.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-			},
-			new String[] {
-				"New column", "New column", "New column"
-			}
-		));
-		table.getColumnModel().getColumn(0).setMinWidth(27);
-		table.setBounds(67, 134, 877, 299);
-		panel.add(table);
-		
-		JButton btnNewButton = new JButton("Save");
-		btnNewButton.setBounds(486, 473, 115, 30);
-		panel.add(btnNewButton);
-		
-		JButton btnClearEntry = new JButton("Clear entry\r\n");
-		btnClearEntry.setBounds(647, 473, 115, 30);
-		panel.add(btnClearEntry);
-		
-		JButton btnDone = new JButton("Done");
-		btnDone.addActionListener(new ActionListener() {
+		JButton done = new JButton("Done");
+		done.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnDone.setBounds(799, 473, 115, 30);
-		panel.add(btnDone);
+		done.setBounds(799, 473, 115, 30);
+		panel.add(done);
 		
-		textField = new JTextField();
-		textField.setBounds(111, 74, 70, 20);
-		panel.add(textField);
-		textField.setColumns(10);
+		tin = new JTextField();
+		tin.setBounds(111, 74, 70, 20);
+		panel.add(tin);
+		tin.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Time in");
 		lblNewLabel_2.setBounds(111, 55, 70, 14);
 		panel.add(lblNewLabel_2);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(410, 74, 169, 20);
-		panel.add(textField_1);
-		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(713, 74, 169, 20);
-		panel.add(textField_2);
-		
 		JLabel lblNewJgoodiesLabel = DefaultComponentFactory.getInstance().createLabel("Subject");
 		lblNewJgoodiesLabel.setBounds(410, 55, 92, 14);
 		panel.add(lblNewJgoodiesLabel);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(201, 74, 70, 20);
-		panel.add(textField_3);
+		tout = new JTextField();
+		tout.setColumns(10);
+		tout.setBounds(201, 74, 70, 20);
+		panel.add(tout);
 		
 		JLabel lblNewLabel_2_1 = new JLabel("Time out");
 		lblNewLabel_2_1.setBounds(201, 55, 70, 14);
@@ -165,6 +142,42 @@ public class regSch {
 		lblNewLabel_6.setBounds(67, 121, 102, 14);
 		panel.add(lblNewLabel_6);
 		
+		int count = 0;
+		
+		try {
+			c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
+			st = c.createStatement();
+			System.out.println("ok");
+			rs = st.executeQuery("select * from sub");
+			while(rs.next()) {
+				subj.add(rs.getString("sub_name"));
+				
+			}
+			rs = st.executeQuery("select lname from users where user_type = 'professor'");
+			while(rs.next()) {
+				proff.add(rs.getString("lname"));
+			}
+			
+			rs = st.executeQuery("select * from sch");
+			while(rs.next()) {
+				in.add(rs.getInt("tin"));
+				out.add(rs.getInt("tout"));
+				sbj.add(rs.getString("sub"));
+				prf.add(rs.getString("prof"));
+				count++;
+			}
+			
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		JComboBox<String> sub = new JComboBox(subj.toArray());
+		sub.setBounds(410, 73, 191, 21);
+		panel.add(sub);
+		
+		JComboBox prof = new JComboBox(proff.toArray());
+		prof.setBounds(713, 73, 191, 21);
+		panel.add(prof);
+		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		tabbedPane.addTab("Delete", null, panel_1, null);
@@ -173,22 +186,7 @@ public class regSch {
 		table_1 = new JTable();
 		table_1.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		table_1.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-			},
-			new String[] {
-				"New column", "New column", "New column"
-			}
+			
 		));
 		table_1.setBounds(67, 139, 869, 295);
 		panel_1.add(table_1);
@@ -208,6 +206,62 @@ public class regSch {
 		});
 		btnClearEntry_2.setBounds(796, 466, 115, 30);
 		panel_1.add(btnClearEntry_2);
+		
+		JButton save = new JButton("Save");
+		save.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int tmin = Integer.parseInt(tin.getText());
+				int tmout = Integer.parseInt(tout.getText());
+				String s = sub.getSelectedItem().toString();
+				String p = prof.getSelectedItem().toString();
+				
+				try {
+					c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
+					st = c.createStatement();
+					System.out.println("ok");
+					rs = st.executeQuery("select * from sch");
+					
+					String str = "insert into sch"
+							+ "(tin,tout,sub,prof)"
+							+ " values ("+tmin+","+tmout+",'"+s+"','"+p+"')";
+					
+					st.executeUpdate(str);
+					JOptionPane.showMessageDialog(null, "Successfully Added a new schedule");
+					SwingUtilities.updateComponentTreeUI(frame);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		save.setBounds(674, 473, 115, 30);
+		panel.add(save);
+		DefaultTableModel tm = new DefaultTableModel();
+		
+		tm.addColumn("Time in");
+		tm.addColumn("Time out");
+		tm.addColumn("Subject");
+		tm.addColumn("Professor"); 
+		
+		int i = 0;
+		try {
+			rs = st.executeQuery("select * from sch");
+			while(rs.next()) {
+				
+				tm.insertRow(i,new Object[] {in.get(i),out.get(i),sbj.get(i),prf.get(i)});
+				i++;
+			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(67, 155, 833, 280);
+		panel.add(scrollPane);
+		
+		schd = new JTable();
+		
+		scrollPane.setViewportView(schd);
+		schd.setModel(tm);
 		
 		JLabel lblNewLabel_3 = new JLabel("Select Schedule to Delete");
 		lblNewLabel_3.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
@@ -233,23 +287,6 @@ public class regSch {
 		panel_2.setLayout(null);
 		
 		table_2 = new JTable();
-		table_2.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-			},
-			new String[] {
-				"New column", "New column", "New column"
-			}
-		));
 		table_2.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		table_2.setBounds(72, 151, 869, 295);
 		panel_2.add(table_2);
