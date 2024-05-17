@@ -66,7 +66,7 @@ public class gr extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				pf win = new pf();
+				stdWinMain win = new stdWinMain();
 				win.setVisible(true);
 			}
 		});

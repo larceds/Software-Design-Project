@@ -70,7 +70,7 @@ public class gr {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				pf win= new pf();
+				adminWinMain win= new adminWinMain();
 				win.setVisible(true);
 			}
 		});

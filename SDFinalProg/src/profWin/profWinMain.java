@@ -26,7 +26,7 @@ import javax.swing.JScrollBar;
 import javax.swing.JSeparator;
 import javax.swing.JScrollPane;
 
-public class pf extends JFrame {
+public class profWinMain extends JFrame {
     static Connection c = null ;
     static ResultSet rs=null;
 	private static final long serialVersionUID = 1L;
@@ -72,7 +72,7 @@ public class pf extends JFrame {
 			
 			public void run() {
 				try {
-					pf frame = new pf();
+					profWinMain frame = new profWinMain();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -86,7 +86,7 @@ public class pf extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public pf() {
+	public profWinMain() {
 		setAlwaysOnTop(true);
 		setBackground(new Color(255, 0, 0));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -104,7 +104,7 @@ public class pf extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				pf win=new pf();
+				profWinMain win=new profWinMain();
 				win.setVisible(true);
 			}
 		});
