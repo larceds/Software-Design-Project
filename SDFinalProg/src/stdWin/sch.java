@@ -136,7 +136,7 @@ public class sch {
 		frame.getContentPane().add(lblNewLabel_3);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(15, 176, 921, 336);
+		scrollPane.setBounds(43, 176, 893, 336);
 		frame.getContentPane().add(scrollPane);
 
 		try {
@@ -169,7 +169,35 @@ public class sch {
 		    };
 		    tblData.setFillsViewportHeight(true);
 		    tblData.setFont(new Font("Arial", Font.PLAIN, 9));
-		    tblData.setModel(model); 
+		    tblData.setModel(new DefaultTableModel(
+		    	new Object[][] {
+		    		{null, null, null, null, null, null, null},
+		    	},
+		    	new String[] {
+		    		"#", "Subject Code", "Description", "Lec", "Lab", "Units", "Schedule"
+		    	}
+		    ) {
+		    	boolean[] columnEditables = new boolean[] {
+		    		false, false, false, false, false, false, false
+		    	};
+		    	public boolean isCellEditable(int row, int column) {
+		    		return columnEditables[column];
+		    	}
+		    });
+		    tblData.getColumnModel().getColumn(0).setResizable(false);
+		    tblData.getColumnModel().getColumn(0).setPreferredWidth(24);
+		    tblData.getColumnModel().getColumn(0).setMaxWidth(2147483632);
+		    tblData.getColumnModel().getColumn(1).setResizable(false);
+		    tblData.getColumnModel().getColumn(2).setResizable(false);
+		    tblData.getColumnModel().getColumn(2).setPreferredWidth(341);
+		    tblData.getColumnModel().getColumn(3).setResizable(false);
+		    tblData.getColumnModel().getColumn(3).setPreferredWidth(35);
+		    tblData.getColumnModel().getColumn(4).setResizable(false);
+		    tblData.getColumnModel().getColumn(4).setPreferredWidth(35);
+		    tblData.getColumnModel().getColumn(5).setResizable(false);
+		    tblData.getColumnModel().getColumn(5).setPreferredWidth(40);
+		    tblData.getColumnModel().getColumn(6).setResizable(false);
+		    tblData.getColumnModel().getColumn(6).setPreferredWidth(297);
 
 		    scrollPane.setViewportView(tblData);
 
@@ -209,7 +237,7 @@ public class sch {
 		
 		JComboBox schoolYear = new JComboBox();
 		schoolYear.setFont(new Font("Tahoma", Font.BOLD, 10));
-		schoolYear.setModel(new DefaultComboBoxModel(new String[]{"2022 - 2023", "2023 - 2024", "2024 - 2025"}));
+		schoolYear.setModel(new DefaultComboBoxModel(new String[] {"2022 - 2023", "2023 - 2024", "2024 - 2025"}));
 		schoolYear.setBounds(112, 144, 110, 21);
 		frame.getContentPane().add(schoolYear);
 		
