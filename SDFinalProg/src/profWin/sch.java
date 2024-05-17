@@ -23,7 +23,6 @@ public class sch {
 
 	JFrame frame;
 	private JTable table;
-	private JTable table_1;
 
 	/**
 	 * Launch the application.
@@ -134,7 +133,7 @@ public class sch {
 		frame.getContentPane().add(lblNewLabel_3);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(33, 181, 911, 157);
+		scrollPane.setBounds(33, 181, 911, 338);
 		frame.getContentPane().add(scrollPane);
 		
 		table = new JTable();
@@ -206,51 +205,6 @@ public class sch {
 		lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
 		lblNewLabel.setBounds(0, 0, 977, 73);
 		frame.getContentPane().add(lblNewLabel);
-		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(19, 358, 952, 142);
-		frame.getContentPane().add(scrollPane_1);
-		
-		table_1 = new JTable();
-		scrollPane_1.setViewportView(table_1);
-		table_1.getTableHeader().setReorderingAllowed(false);
-		table_1.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-			},
-			new String[] {
-				"", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
-			}
-		) {
-			boolean[] columnEditables = new boolean[] {
-				false, false, false, false, false, false, false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
-		table_1.getColumnModel().getColumn(0).setResizable(false);
-		table_1.getColumnModel().getColumn(1).setResizable(false);
-		table_1.getColumnModel().getColumn(2).setResizable(false);
-		table_1.getColumnModel().getColumn(3).setResizable(false);
-		table_1.getColumnModel().getColumn(4).setResizable(false);
-		table_1.getColumnModel().getColumn(5).setResizable(false);
-		table_1.getColumnModel().getColumn(6).setResizable(false);
-		table_1.getColumnModel().getColumn(7).setResizable(false);
 		
 		JLabel lblNewLabel_4 = new JLabel("New label");
 		lblNewLabel_4.setBackground(new Color(240, 240, 240));
