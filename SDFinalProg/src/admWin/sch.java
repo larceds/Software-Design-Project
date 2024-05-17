@@ -22,7 +22,7 @@ import regWin.regSch;
 
 public class sch {
 
-	JFrame frame;
+	public JFrame frame;
 	private JTable table;
 	private JTable table_1;
 	private JTable table_2;

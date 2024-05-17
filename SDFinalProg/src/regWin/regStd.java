@@ -34,6 +34,9 @@ public class regStd {
 	ArrayList<String> namef = new ArrayList();
 	ArrayList<String> namem = new ArrayList();
 	ArrayList<String> namel = new ArrayList();
+	int yr;
+	int temp;
+	int section;
 	
 	String sex;
 
@@ -343,7 +346,6 @@ public class regStd {
 					e1.printStackTrace();
 				}
 				
-				//num.setText("Your id number is : "+number);
         		
         		String ln = lname.getText();
         		String fn = fname.getText();
@@ -363,31 +365,65 @@ public class regStd {
         		String s = (String)sy.getSelectedItem().toString();
         		String t = (String)term.getSelectedItem().toString();
         		String bd = bday.getText();
+        		
+        		
+        		if(lv.equalsIgnoreCase("first year")) {
+        			yr = 1;
+        		}else if(lv.equalsIgnoreCase("second year")){
+        			yr = 2;
+        		}else if(lv.equalsIgnoreCase("third year")) {
+        			yr = 3;
+        		}else {
+        			yr = 4;
+        		}
+        		
+        		try {
+					rs = st.executeQuery("select st_level from users where st_level = 'third year'");
+					while(rs.next()) {
+						temp++;
+					}
+					
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+        		
+        		if(temp <= 30) {
+					section = 1;
+				}else if(temp <= 60) {
+					section = 2;
+				}else if(temp <= 90) {
+					section = 3;
+				}else {
+					section = 4;
+				}
 
+        		System.out.println(temp+"\nTCPE "+yr+" - "+section);
         		if(namel.contains(ln) && namef.contains(fn) && namem.contains(mn)) {
         			JOptionPane.showMessageDialog(null, "Account has already been registered");
         		}else {
         			String reg = "insert into users "
-    						+"(lname,fname,mname,gender,age,bp,religion,cs,email,lrn,res_num,app,class,course,st_level,sy,term,user_type,cp,bday,id_num,pw)"
+    						+"(lname,fname,mname,gender,age,bp,religion,cs,email,lrn,res_num,app,class,course,st_level,sy,term,user_type,cp,bday,id_num,pw,s)"
     						+" values ('"+ln+"','"+fn+"','"+mn+"','"+sex+"',"+age1+",'"+bp+"','"+r
     						+"','"+civil+"','"+em+"',"+lr+","+rsa+",'"+ap
     						+"','"+cl+"','"+cr+"','"+lv+"','"+s+"','"+ t
-    						+"','student',"+num+",'"+bd+"',"+number+",'"+lname+"')";
+    						+"','student',"+num+",'"+bd+"',"+number+",'"+ln+"','TCPE "+String.valueOf(yr)+" - "+String.valueOf(section)+"')";
+        			
             		try {
             			c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
             			 st = c.createStatement();
             			System.out.println("ok");
-            			rs = st.executeQuery("select * from users");
-            			
-            			st.executeUpdate(reg);
-            			
             		
-            			
+            			rs = st.executeQuery("select * from users");
+            			System.out.println("ok1");
+            			st.executeUpdate(reg);
+            			System.out.println("ok2");
+            		
+            			JOptionPane.showMessageDialog(null, "Account has been successfully registered\n This is your id number : "+number+"\n This is your password : "+ln);
             		}catch (Exception e1) {
             			System.out.println("1");
 
             		}
-            		JOptionPane.showMessageDialog(null, "Account has been successfully registered\n This is your id number : "+number+"\n This is your password : "+lname);
+            		
         		}
         		
         		
