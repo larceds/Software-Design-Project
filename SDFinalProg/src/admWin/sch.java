@@ -6,11 +6,19 @@ import javax.swing.JFrame;
 import java.awt.Color;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import javax.swing.JScrollPane;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.RowFilter;
+
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -19,14 +27,15 @@ import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 import strWin.LogWindow;
 import regWin.regSch;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class sch {
 
 	JFrame frame;
-	private JTable table;
 	private JTable table_1;
-	private JTable table_2;
 	private JTextField txtSearchBar;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -60,6 +69,16 @@ public class sch {
 		frame.getContentPane().setLayout(null);
 		
 		txtSearchBar = new JTextField();
+		txtSearchBar.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				DefaultTableModel m= (DefaultTableModel) table.getModel();
+				TableRowSorter<DefaultTableModel> trs= new TableRowSorter<> ( m); 
+				trs.setRowFilter(RowFilter.regexFilter(txtSearchBar.getText()));
+				table.setRowSorter(trs);
+				table.addRowSelectionInterval(0, 0);
+			}
+		});
 		txtSearchBar.setHorizontalAlignment(SwingConstants.CENTER);
 		txtSearchBar.setText("Search...");
 		txtSearchBar.setBounds(62, 144, 125, 23);
@@ -200,103 +219,6 @@ public class sch {
 		frame.getContentPane().add(btnNewButton_1);
 		
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setForeground(new Color(255, 255, 255));
-		tabbedPane.setBackground(new Color(131, 7, 11));
-		tabbedPane.setBounds(62, 178, 836, 352);
-		frame.getContentPane().add(tabbedPane);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		tabbedPane.addTab("Set", null, scrollPane, null);
-		
-		table = new JTable();
-		table.getTableHeader().setReorderingAllowed(false);
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-			},
-			new String[] {
-				"Time", "Subject", "Course/Section", "Faculty Name", "Room"
-			}
-		));
-		scrollPane.setViewportView(table);
-		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		tabbedPane.addTab("Search", null, scrollPane_1, null);
-		
-		table_1 = new JTable();
-		table_1.getTableHeader().setReorderingAllowed(false);
-		table_1.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, ""},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-			},
-			new String[] {
-				"Time", "Subject", "Course/Section", "Faculty Name", "Room"
-			}
-		));
-		scrollPane_1.setViewportView(table_1);
-		
-		JScrollPane scrollPane_2 = new JScrollPane();
-		tabbedPane.addTab("Faculty", null, scrollPane_2, null);
-		
-		table_2 = new JTable();
-		table_2.getTableHeader().setReorderingAllowed(false);
-		table_2.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-			},
-			new String[] {
-				"Time", "Faculty Name", "Subject", "Course/Section", "Room"
-			}
-		));
-		scrollPane_2.setViewportView(table_2);
 		
 		JLabel lblNewLabel_4 = new JLabel();
 		lblNewLabel_4.setText("Welcome, null null null");
@@ -321,6 +243,61 @@ public class sch {
 		lblNewLabel_1.setBackground(new Color(131, 7, 11));
 		lblNewLabel_1.setBounds(0, 61, 975, 499);
 		new JLabel("New label");
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(48, 190, 885, 334);
+		frame.getContentPane().add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Time In", "Time Out", "Subject", "Professor", "Course/Section"
+			}
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		table.getColumnModel().getColumn(0).setResizable(false);
+		table.getColumnModel().getColumn(1).setResizable(false);
+		table.getColumnModel().getColumn(2).setResizable(false);
+		table.getColumnModel().getColumn(3).setResizable(false);
+		table.getColumnModel().getColumn(4).setResizable(false);
+		table.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		table.setRowSelectionAllowed(false);
+		table.setEnabled(false);
+		
+		try {
+			Connection c= DriverManager.getConnection("jdbc:mysql://localhost:3306/db", "sevin", "septin");
+			Statement st= c.createStatement();
+			ResultSet rs = st.executeQuery( "Select * From student");
+			ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
+			
+			int col= rsmd.getColumnCount();
+			String[] colName = new String[col];
+			for (int i=0;i<col;i++) {
+				colName[i]=rsmd.getColumnClassName(i+1);
+			}
+			
+			DefaultTableModel m= (DefaultTableModel) table.getModel();
+			while(rs.next()) {
+				Object[] rowData = new Object[col];
+		        for (int i = 0; i < col; i++) {
+		            rowData[i] = rs.getObject(i+1);
+			}
+		        m.addRow(rowData);}
+			System.out.println("success");
+		}catch(Exception e){
+			System.out.print("error");
+			e.printStackTrace();
+		}
+		
 		lblNewLabel_1.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
 		lblNewLabel_1.setBounds(0, 72, 975, 499);
 		frame.getContentPane().add(lblNewLabel_1);

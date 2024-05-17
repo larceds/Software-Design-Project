@@ -9,20 +9,29 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.RowFilter;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class acc {
 
 	JFrame frame;
 	private JTextField textField;
 	private JTable table;
-	private JTextField textField_1;
 	private JTextField textField_2;
 
 	/**
@@ -185,6 +194,16 @@ public class acc {
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		textField = new JTextField();
+		textField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				DefaultTableModel m= (DefaultTableModel) table.getModel();
+				TableRowSorter<DefaultTableModel> trs= new TableRowSorter<> ( m); 
+				trs.setRowFilter(RowFilter.regexFilter(textField.getText()));
+				table.setRowSorter(trs);
+				table.addRowSelectionInterval(0, 0);
+			}
+		});
 		textField.setBounds(80, 176, 126, 28);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
@@ -196,7 +215,6 @@ public class acc {
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null, null, null, null},
 			},
 			new String[] {
 				"New column", "New column", "New column", "New column", "New column", "New column", "New column"
@@ -219,26 +237,41 @@ public class acc {
 		scrollPane.setViewportView(table);
 		table.setFillsViewportHeight(true);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(80, 249, 126, 28);
-		frame.getContentPane().add(textField_1);
+		try {
+			Connection c= DriverManager.getConnection("jdbc:mysql://localhost:3306/db", "sevin", "septin");
+			Statement st= c.createStatement();
+			ResultSet rs = st.executeQuery( "Select * From accounts");
+			ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
+			
+			int col= rsmd.getColumnCount();
+			String[] colName = new String[col];
+			for (int i=0;i<col;i++) {
+				colName[i]=rsmd.getColumnClassName(i+1);
+			}
+			
+			DefaultTableModel m= (DefaultTableModel) table.getModel();
+			while(rs.next()) {
+				Object[] rowData = new Object[col];
+		        for (int i = 0; i < col; i++) {
+		            rowData[i] = rs.getObject(i+1);
+			}
+		        m.addRow(rowData);}
+			System.out.println("success");
+		}catch(Exception e){
+			System.out.print("error");
+			e.printStackTrace();
+		}
 		
-		JLabel lblNewLabel_3 = new JLabel("Student ID");
+		JLabel lblNewLabel_3 = new JLabel("Student Search");
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_3.setBounds(80, 152, 126, 27);
 		frame.getContentPane().add(lblNewLabel_3);
-		
-		JLabel lblNewLabel_3_1 = new JLabel("Student Name");
-		lblNewLabel_3_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3_1.setBounds(80, 223, 126, 27);
-		frame.getContentPane().add(lblNewLabel_3_1);
 		
 		JButton btnNewButton_7 = new JButton("Select");
 		btnNewButton_7.setBackground(new Color(131, 7, 11));
 		btnNewButton_7.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_7.setForeground(new Color(255, 255, 255));
-		btnNewButton_7.setBounds(102, 298, 89, 23);
+		btnNewButton_7.setBounds(90, 209, 101, 23);
 		frame.getContentPane().add(btnNewButton_7);
 		
 		textField_2 = new JTextField();
