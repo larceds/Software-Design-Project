@@ -4,30 +4,55 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
+import org.jdatepicker.JDatePicker;
+
+
+
 import javax.swing.JFrame;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.awt.event.ActionEvent;
+import java.awt.TextField;
 
 public class regStd {
+	Connection c = null;
+	Statement st = null;
+	ResultSet rs = null;
+	ArrayList<String> namef = new ArrayList();
+	ArrayList<String> namem = new ArrayList();
+	ArrayList<String> namel = new ArrayList();
+	
+	String sex;
 
     public JFrame frame;
-    private JTextField lastNameField;
-    private JTextField firstNameField;
-    private JTextField middleNameField;
-    private JTextField birthDateField;
-    private JTextField ageField;
-    private JTextField birthPlaceField;
-    private JTextField lrnField;
-    private JTextField cellphoneField;
-    private JTextField emailField;
-    private JTextField residenceField;
+    private JTextField lname;
+    private JTextField fname;
+    private JTextField mname;
+    private JTextField bday;
+    private JTextField age;
+    private JTextField bplace;
+    private JTextField lrn;
+    private JTextField email;
+    private JTextField res;
+    private JTextField cp;
 
     /**
      * Launch the application.
@@ -78,49 +103,64 @@ public class regStd {
         lblApplicationFor.setBounds(20, 30, 150, 30);
         panel_1.add(lblApplicationFor);
 
-        JComboBox<String> comboBoxApplicationFor = new JComboBox<>(new String[] {"Bachelor's Degree"});
-        comboBoxApplicationFor.setBounds(180, 30, 200, 30);
-        panel_1.add(comboBoxApplicationFor);
+        JComboBox<String> app = new JComboBox<>(new String[] {"----Select Application----"});
+        app.addItem("Masteral");
+        app.addItem("Senior High");
+        app.addItem("Bachelors Degree");
+        app.setBounds(180, 30, 200, 30);
+        panel_1.add(app);
 
         JLabel lblClassification = new JLabel("Classification:");
         lblClassification.setBounds(20, 70, 150, 30);
         panel_1.add(lblClassification);
 
-        JComboBox<String> comboBoxClassification = new JComboBox<>(new String[] {"New"});
-        comboBoxClassification.setBounds(180, 70, 200, 30);
-        panel_1.add(comboBoxClassification);
+        JComboBox<String> classi = new JComboBox<>(new String[] {"----Select Classification----"});
+        classi.addItem("Old");
+        classi.addItem("Transeferee");
+        classi.addItem("New");
+        classi.setBounds(180, 70, 200, 30);
+        panel_1.add(classi);
 
         JLabel lblCourse = new JLabel("Course/Program:");
         lblCourse.setBounds(20, 110, 150, 30);
         panel_1.add(lblCourse);
 
-        JComboBox<String> comboBoxCourse = new JComboBox<>(new String[] {"TCPE - BACHELOR OF SCIENCE IN COMPUTER ENGINEERING"});
-        comboBoxCourse.setBounds(180, 110, 400, 30);
-        panel_1.add(comboBoxCourse);
+        JComboBox<String> course = new JComboBox<>(new String[] {"----Select Course----"});
+        course.addItem("TCPE - BACHELOR OF SCIENCE IN COMPUTER ENGINEERING");
+        course.setBounds(180, 110, 400, 30);
+        panel_1.add(course);
 
         JLabel lblLevel = new JLabel("Level:");
         lblLevel.setBounds(20, 150, 150, 30);
         panel_1.add(lblLevel);
 
-        JComboBox<String> comboBoxLevel = new JComboBox<>(new String[] {"Year of the Student"});
-        comboBoxLevel.setBounds(180, 150, 200, 30);
-        panel_1.add(comboBoxLevel);
+        JComboBox<String> lvl = new JComboBox<>(new String[] {"----Select Year----"});
+        lvl.addItem("First Year");
+        lvl.addItem("Second Year");
+        lvl.addItem("Third Year");
+        lvl.addItem("Fourth Year");
+        lvl.setBounds(180, 150, 200, 30);
+        panel_1.add(lvl);
 
         JLabel lblSchoolYear = new JLabel("School Year:");
         lblSchoolYear.setBounds(20, 190, 150, 30);
         panel_1.add(lblSchoolYear);
 
-        JComboBox<String> comboBoxSchoolYear = new JComboBox<>(new String[] {"2024"});
-        comboBoxSchoolYear.setBounds(180, 190, 200, 30);
-        panel_1.add(comboBoxSchoolYear);
+        JComboBox<String> sy = new JComboBox<>(new String[] {"----Select School Year----"});
+        sy.addItem("2024 - 2025");
+        sy.addItem("2025 - 2026");
+        sy.setBounds(180, 190, 200, 30);
+        panel_1.add(sy);
 
         JLabel lblTerm = new JLabel("Term:");
         lblTerm.setBounds(20, 230, 150, 30);
         panel_1.add(lblTerm);
 
-        JComboBox<String> comboBoxTerm = new JComboBox<>(new String[] {"First"});
-        comboBoxTerm.setBounds(180, 230, 200, 30);
-        panel_1.add(comboBoxTerm);
+        JComboBox<String> term = new JComboBox<>(new String[] {"----Select Semester----"});
+        term.addItem("First Sem");
+        term.addItem("Second Sem");
+        term.setBounds(180, 230, 200, 30);
+        panel_1.add(term);
 
         JLabel lblName = new JLabel("Name:");
         lblName.setBounds(20, 270, 150, 30);
@@ -138,105 +178,243 @@ public class regStd {
         lblMiddleName.setBounds(580, 250, 150, 30);
         panel_1.add(lblMiddleName);
 
-        lastNameField = new JTextField();
-        lastNameField.setBounds(180, 270, 150, 30);
-        panel_1.add(lastNameField);
+        lname = new JTextField();
+        lname.setBounds(180, 270, 150, 30);
+        panel_1.add(lname);
 
-        firstNameField = new JTextField();
-        firstNameField.setBounds(380, 270, 150, 30);
-        panel_1.add(firstNameField);
+        fname = new JTextField();
+        fname.setBounds(380, 270, 150, 30);
+        panel_1.add(fname);
 
-        middleNameField = new JTextField();
-        middleNameField.setBounds(580, 270, 150, 30);
-        panel_1.add(middleNameField);
+        mname = new JTextField();
+        mname.setBounds(580, 270, 150, 30);
+        panel_1.add(mname);
 
         JLabel lblGender = new JLabel("Gender:");
         lblGender.setBounds(20, 310, 150, 30);
         panel_1.add(lblGender);
 
-        JRadioButton rdbtnMale = new JRadioButton("Male");
-        rdbtnMale.setBounds(180, 310, 100, 30);
-        panel_1.add(rdbtnMale);
+        JRadioButton buttonm = new JRadioButton("Male");
+        buttonm.addActionListener(new ActionListener() {
 
-        JRadioButton rdbtnFemale = new JRadioButton("Female");
-        rdbtnFemale.setBounds(280, 310, 100, 30);
-        panel_1.add(rdbtnFemale);
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				sex = "m";
+				
+			}
+        	
+        });
+        buttonm.setBounds(180, 310, 100, 30);
+        panel_1.add(buttonm);
+
+        JRadioButton buttonfe = new JRadioButton("Female");
+        buttonfe.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				sex = "f";
+				
+			}
+        	
+        });
+        buttonfe.setBounds(280, 310, 100, 30);
+        panel_1.add(buttonfe);
 
         ButtonGroup genderGroup = new ButtonGroup();
-        genderGroup.add(rdbtnMale);
-        genderGroup.add(rdbtnFemale);
+        genderGroup.add(buttonm);
+        genderGroup.add(buttonfe);
 
         JLabel lblBirthDate = new JLabel("Birth Date:");
         lblBirthDate.setBounds(20, 350, 150, 30);
         panel_1.add(lblBirthDate);
 
-        birthDateField = new JTextField();
-        birthDateField.setBounds(180, 350, 150, 30);
-        panel_1.add(birthDateField);
+        bday = new JTextField("mm/dd/yyy");
+        bday.setBounds(180, 350, 150, 30);
+        panel_1.add(bday);
 
         JLabel lblAge = new JLabel("Age:");
         lblAge.setBounds(380, 350, 50, 30);
         panel_1.add(lblAge);
 
-        ageField = new JTextField();
-        ageField.setBounds(420, 350, 50, 30);
-        panel_1.add(ageField);
+        age = new JTextField();
+        age.setBounds(420, 350, 50, 30);
+        panel_1.add(age);
 
         JLabel lblBirthPlace = new JLabel("Birth Place:");
         lblBirthPlace.setBounds(480, 350, 100, 30);
         panel_1.add(lblBirthPlace);
 
-        birthPlaceField = new JTextField();
-        birthPlaceField.setBounds(580, 350, 150, 30);
-        panel_1.add(birthPlaceField);
+        bplace = new JTextField();
+        bplace.setBounds(580, 350, 150, 30);
+        panel_1.add(bplace);
 
         JLabel lblReligion = new JLabel("Religion:");
         lblReligion.setBounds(20, 390, 150, 30);
         panel_1.add(lblReligion);
 
-        JComboBox<String> comboBoxReligion = new JComboBox<>(new String[] {"Catholic"});
-        comboBoxReligion.setBounds(180, 390, 200, 30);
-        panel_1.add(comboBoxReligion);
+        JComboBox<String> reli = new JComboBox<>(new String[] {"----Select Religion----"});
+        reli.addItem("Catholic");
+        reli.addItem("Christian");
+        reli.addItem("Iglesia ni Cristo");
+        reli.setBounds(180, 390, 200, 30);
+        panel_1.add(reli);
 
         JLabel lblCivilStatus = new JLabel("Civil Status:");
         lblCivilStatus.setBounds(20, 430, 150, 30);
         panel_1.add(lblCivilStatus);
 
-        JComboBox<String> comboBoxCivilStatus = new JComboBox<>(new String[] {"Single"});
-        comboBoxCivilStatus.setBounds(180, 430, 200, 30);
-        panel_1.add(comboBoxCivilStatus);
+        JComboBox<String> cs = new JComboBox<>(new String[] {"----Select Status----"});
+        cs.addItem("Single");
+        cs.addItem("Married");
+        cs.setBounds(180, 430, 200, 30);
+        panel_1.add(cs);
 
         JLabel lblCellphone = new JLabel("Cellphone Number:");
         lblCellphone.setBounds(20, 470, 150, 30);
         panel_1.add(lblCellphone);
 
-        cellphoneField = new JTextField();
-        cellphoneField.setBounds(180, 470, 200, 30);
-        panel_1.add(cellphoneField);
-
         JLabel lblEmail = new JLabel("Email:");
         lblEmail.setBounds(20, 510, 150, 30);
         panel_1.add(lblEmail);
 
-        emailField = new JTextField();
-        emailField.setBounds(180, 510, 200, 30);
-        panel_1.add(emailField);
+        email = new JTextField();
+        email.setBounds(180, 510, 200, 30);
+        panel_1.add(email);
 
         JLabel lblResidence = new JLabel("Residence Number:");
         lblResidence.setBounds(400, 510, 150, 30);
         panel_1.add(lblResidence);
 
-        residenceField = new JTextField();
-        residenceField.setBounds(580, 510, 150, 30);
-        panel_1.add(residenceField);
+        res = new JTextField();
+        res.setBounds(580, 511, 150, 30);
+        panel_1.add(res);
 
         JLabel lblLrn = new JLabel("LRN:");
         lblLrn.setBounds(400, 470, 150, 30);
         panel_1.add(lblLrn);
 
-        lrnField = new JTextField();
-        lrnField.setBounds(580, 470, 150, 30);
-        panel_1.add(lrnField);
+        lrn = new JTextField();
+        lrn.setBounds(580, 470, 150, 30);
+        panel_1.add(lrn);
+        
+        JLabel num = new JLabel("");
+        num.setEnabled(false);
+        num.setBounds(20, 559, 273, 13);
+        panel_1.add(num);
+        
+        JButton enrollbut = new JButton("Enroll");
+        enrollbut.addActionListener(new ActionListener() {
+        	int number;
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		num.setEnabled(true);
+        		
+        		ResultSetMetaData rsmd;
+        		int cc = 0;
+				try {
+					c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
+					st = c.createStatement();
+					rs = st.executeQuery("select * from users");
+					while(rs.next()) {
+						namel.add(rs.getString("lname"));
+						namef.add(rs.getString("fname"));
+						namem.add(rs.getString("mname"));
+						cc++;
+					}
+					
+					
+					if(sy.getSelectedIndex()== 1) {
+	        			if(lvl.getSelectedIndex()== 1) {
+	        				 number = 24100000 + cc;
+	        			}else if(lvl.getSelectedIndex() ==2) {
+	        				 number = 24200000 + cc;
+	        			}else if(lvl.getSelectedIndex() == 3) {
+	        				 number = 24300000 + cc;
+	        			}else {
+	        				 number = 24400000 + cc;
+	        			}
+	        		}else if(sy.getSelectedIndex()== 2){
+	        			if(lvl.getSelectedIndex()== 1) {
+	        				number = 25100000 + cc;
+	        			}else if(lvl.getSelectedIndex() ==2) {
+	        				number = 25200000 + cc;
+	        			}else if(lvl.getSelectedIndex() == 3) {
+	        				number = 25300000 + cc;
+	        			}else {
+	        				number = 25400000 + cc;
+	        			}
+	        		}
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				
+				//num.setText("Your id number is : "+number);
+        		
+        		String ln = lname.getText();
+        		String fn = fname.getText();
+        		String mn = mname.getText();
+        		int age1 = Integer.parseInt(age.getText());
+        		String bp = bplace.getText();
+        		String r = (String)reli.getSelectedItem().toString();
+        		String civil = (String)cs.getSelectedItem().toString();
+        		long num = Long.parseLong(cp.getText());
+        		String em = email.getText();
+        		long lr = Long.parseLong(lrn.getText());
+        		long rsa = Long.parseLong(res.getText());
+        		String ap = (String)app.getSelectedItem().toString();
+        		String cl = (String)classi.getSelectedItem().toString();
+        		String cr = (String)course.getSelectedItem().toString();
+        		String lv = (String)lvl.getSelectedItem().toString();
+        		String s = (String)sy.getSelectedItem().toString();
+        		String t = (String)term.getSelectedItem().toString();
+        		String bd = bday.getText();
+
+        		if(namel.contains(ln) && namef.contains(fn) && namem.contains(mn)) {
+        			JOptionPane.showMessageDialog(null, "Account has already been registered");
+        		}else {
+        			String reg = "insert into users "
+    						+"(lname,fname,mname,gender,age,bp,religion,cs,email,lrn,res_num,app,class,course,st_level,sy,term,user_type,cp,bday,id_num,pw)"
+    						+" values ('"+ln+"','"+fn+"','"+mn+"','"+sex+"',"+age1+",'"+bp+"','"+r
+    						+"','"+civil+"','"+em+"',"+lr+","+rsa+",'"+ap
+    						+"','"+cl+"','"+cr+"','"+lv+"','"+s+"','"+ t
+    						+"','student',"+num+",'"+bd+"',"+number+",'"+lname+"')";
+            		try {
+            			c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
+            			 st = c.createStatement();
+            			System.out.println("ok");
+            			rs = st.executeQuery("select * from users");
+            			
+            			st.executeUpdate(reg);
+            			
+            		
+            			
+            		}catch (Exception e1) {
+            			System.out.println("1");
+
+            		}
+            		JOptionPane.showMessageDialog(null, "Account has been successfully registered\n This is your id number : "+number+"\n This is your password : "+lname);
+        		}
+        		
+        		
+        	}
+        });
+        enrollbut.setBounds(780, 550, 150, 30);
+        panel_1.add(enrollbut);
+        
+        JButton backbut = new JButton("Back");
+        backbut.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        	}
+        });
+        backbut.setBounds(780, 10, 150, 30);
+        panel_1.add(backbut);
+        
+        cp = new JTextField();
+        cp.setBounds(180, 470, 200, 30);
+        panel_1.add(cp);
+        
+       
 
         JLabel lblWelcome = new JLabel("Welcome, Student");
         lblWelcome.setHorizontalAlignment(SwingConstants.CENTER);

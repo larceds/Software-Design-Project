@@ -2,6 +2,12 @@ package regWin;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,21 +18,28 @@ import java.awt.Color;
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
 import javax.swing.JComboBox;
 
 public class regProf {
+	Connection c = null;
+	Statement st = null;
+	ResultSet rs = null;
 
+	ArrayList<String> namef = new ArrayList();
+	ArrayList<String> namem = new ArrayList();
+	ArrayList<String> namel = new ArrayList();
+	
 	public JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_4;
-	private JTextField textField_7;
-	private JTextField textField_8;
+	private JTextField lname;
+	private JTextField deg;
+	private JTextField no;
+	private JTextField email;
+	private JTextField spe;
+	private JTextField na;
+	private JTextField mname;
+	private JTextField fname;
 
 	/**
 	 * Launch the application.
@@ -70,6 +83,60 @@ public class regProf {
 		btnNewButton.setBackground(new Color(255, 0, 0));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String ln = lname.getText();
+				String fn = fname.getText();
+				String mn = mname.getText();
+				String d = deg.getText();
+				String sp = spe.getText();
+				long num = Long.parseLong(no.getText());
+				String asso = na.getText();
+				String em = email.getText();
+				
+				int cc = 0;
+				try {
+					c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
+					st = c.createStatement();
+       			 	System.out.println("ok");
+					rs = st.executeQuery("select * from users");
+					while(rs.next()) {
+	    				namel.add(rs.getString("lname"));
+						namef.add(rs.getString("fname"));
+						namem.add(rs.getString("mname"));
+	    				cc++;
+	    			}
+				} catch (SQLException e1) {
+	
+					e1.printStackTrace(); 
+				}
+				
+				
+				if(namel.contains(ln) && namef.contains(fn) && namem.contains(mn)) {
+        			JOptionPane.showMessageDialog(null, "Account has already been registered");
+        		}else {
+				
+				try {
+        			c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
+        			 st = c.createStatement();
+        			System.out.println("ok");
+        			rs = st.executeQuery("select * from users");
+        			
+        			
+    				//int temp = 10000 + cc;
+    				int number = 24510000 + cc;
+        			
+        			String reg = "insert into users"
+    						+ "(lname,fname,mname,email,cp,pw,deg,spe,na,user_type,id_num)"
+    						+ " values ('"+ln+"','"+fn+"','"+mn+"','"+em+"',"+num+",'"+ln+"','"+d+"','"+sp+"','"+asso+"','professor',"+number+")";
+    				
+        			st.executeUpdate(reg);
+        			JOptionPane.showMessageDialog(null, "Account has been successfully registered\n This is your id number : "+number+"\n This is your password : "+ln);
+        			
+        			
+        		}catch (Exception e1) {
+        			System.out.println("1");
+
+        		}
+			}
 			}
 		});
 		
@@ -79,10 +146,10 @@ public class regProf {
 		btnNewButton_1.setBounds(778, 81, 89, 23);
 		panel.add(btnNewButton_1);
 		
-		textField_8 = new JTextField();
-		textField_8.setBounds(451, 295, 210, 20);
-		panel.add(textField_8);
-		textField_8.setColumns(10);
+		na = new JTextField();
+		na.setBounds(451, 295, 210, 20);
+		panel.add(na);
+		na.setColumns(10);
 		
 		JLabel lblNewLabel_8 = new JLabel("Nature of Association");
 		lblNewLabel_8.setForeground(Color.WHITE);
@@ -90,21 +157,10 @@ public class regProf {
 		lblNewLabel_8.setBounds(441, 270, 136, 14);
 		panel.add(lblNewLabel_8);
 		
-		textField_7 = new JTextField();
-		textField_7.setBounds(220, 295, 185, 20);
-		panel.add(textField_7);
-		textField_7.setColumns(10);
-		
-		JLabel lblNewLabel_7 = new JLabel("Date of Joining EAC");
-		lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_7.setForeground(Color.WHITE);
-		lblNewLabel_7.setBounds(210, 270, 116, 14);
-		panel.add(lblNewLabel_7);
-		
-		textField_4 = new JTextField();
-		textField_4.setBounds(220, 239, 444, 20);
-		panel.add(textField_4);
-		textField_4.setColumns(10);
+		spe = new JTextField();
+		spe.setBounds(220, 239, 444, 20);
+		panel.add(spe);
+		spe.setColumns(10);
 		
 		JLabel lblNewLabel_6 = new JLabel("Area of Specialization ");
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -112,27 +168,16 @@ public class regProf {
 		lblNewLabel_6.setBounds(220, 214, 143, 14);
 		panel.add(lblNewLabel_6);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(217, 382, 444, 20);
-		panel.add(textField_6);
+		email = new JTextField();
+		email.setColumns(10);
+		email.setBounds(217, 355, 444, 20);
+		panel.add(email);
 		
 		JLabel lblNewLabel_4_1_3 = new JLabel("Email Address:");
 		lblNewLabel_4_1_3.setForeground(Color.WHITE);
 		lblNewLabel_4_1_3.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_4_1_3.setBounds(210, 363, 129, 20);
+		lblNewLabel_4_1_3.setBounds(220, 325, 129, 20);
 		panel.add(lblNewLabel_4_1_3);
-		
-		JLabel lblNewLabel_4_1_2 = new JLabel("Designation:");
-		lblNewLabel_4_1_2.setForeground(Color.WHITE);
-		lblNewLabel_4_1_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_4_1_2.setBounds(441, 160, 195, 30);
-		panel.add(lblNewLabel_4_1_2);
-		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(453, 189, 211, 20);
-		panel.add(textField_5);
 		btnNewButton.setBounds(397, 413, 89, 23);
 		panel.add(btnNewButton);
 		
@@ -142,32 +187,33 @@ public class regProf {
 		lblNewLabel_5.setBounds(302, 84, 286, 14);
 		panel.add(lblNewLabel_5);
 		
-		JLabel lblNewLabel_4_1_1_1 = new JLabel("Number of Years of Experience");
-		lblNewLabel_4_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_4_1_1_1.setForeground(Color.WHITE);
-		lblNewLabel_4_1_1_1.setBounds(441, 315, 195, 23);
-		panel.add(lblNewLabel_4_1_1_1);
-		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(451, 337, 210, 20);
-		panel.add(textField_3);
-		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(220, 337, 185, 20);
-		panel.add(textField_2);
+		no = new JTextField();
+		no.setColumns(10);
+		no.setBounds(220, 295, 185, 20);
+		panel.add(no);
 		
 		JLabel lblNewLabel_4_1_1 = new JLabel("Contact NO:");
 		lblNewLabel_4_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_4_1_1.setForeground(Color.WHITE);
-		lblNewLabel_4_1_1.setBounds(210, 311, 96, 30);
+		lblNewLabel_4_1_1.setBounds(220, 262, 96, 30);
 		panel.add(lblNewLabel_4_1_1);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(220, 189, 185, 20);
-		panel.add(textField_1);
+		deg = new JTextField();
+		deg.setColumns(10);
+		deg.setBounds(220, 189, 185, 20);
+		
+		panel.add(deg);
+		
+		mname = new JTextField("Middlename");
+		mname.setColumns(10);
+		mname.setBounds(518, 143, 143, 20);
+		panel.add(mname);
+		
+		fname = new JTextField("Firstname");
+		fname.setColumns(10);
+		fname.setBounds(368, 143, 150, 20);
+		panel.add(fname);
+		
 		
 		JLabel lblNewLabel_4_1 = new JLabel("Degree:");
 		lblNewLabel_4_1.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -175,10 +221,10 @@ public class regProf {
 		lblNewLabel_4_1.setBounds(210, 160, 195, 30);
 		panel.add(lblNewLabel_4_1);
 		
-		textField = new JTextField();
-		textField.setBounds(220, 143, 444, 20);
-		panel.add(textField);
-		textField.setColumns(10);
+		lname = new JTextField("Lastname");
+		lname.setBounds(220, 143, 150, 20);
+		panel.add(lname);
+		lname.setColumns(10);
 		
 		JLabel lblNewLabel_4 = new JLabel("Full Name:");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -205,6 +251,10 @@ public class regProf {
 		lblNewLabel_1.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
 		lblNewLabel_1.setBounds(0, -92, 946, 607);
 		panel.add(lblNewLabel_1);
+		
+		
+		
+		
 		
 	}
 }
