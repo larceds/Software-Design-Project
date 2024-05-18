@@ -167,11 +167,11 @@ public class sch {
 		            return false; 
 		        }
 		    };
+		    tblData.setRowSelectionAllowed(false);
 		    tblData.setFillsViewportHeight(true);
 		    tblData.setFont(new Font("Arial", Font.PLAIN, 9));
 		    tblData.setModel(new DefaultTableModel(
 		    	new Object[][] {
-		    		{null, null, null, null, null, null, null},
 		    	},
 		    	new String[] {
 		    		"#", "Subject Code", "Description", "Lec", "Lab", "Units", "Schedule"

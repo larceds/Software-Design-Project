@@ -9,19 +9,28 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
+import javax.swing.RowFilter;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.ImageIcon;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class std {
 
 	JFrame frame;
 	private JTable table;
-	private JTextField txtStdNm;
 	private JTextField txtStdNum;
 
 	/**
@@ -68,18 +77,54 @@ public class std {
 		scrollPane.setBounds(393, 155, 541, 387);
 		frame.getContentPane().add(scrollPane);
 		
+		
+		
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		table.getTableHeader().setReorderingAllowed(false);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null},
-				{null, null, null},
 			},
 			new String[] {
-				"New column", "New column", "New column"
+				"Student ID", "Student Name", "Section", "Balance"
 			}
-		));
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		table.getColumnModel().getColumn(0).setResizable(false);
+		table.getColumnModel().getColumn(1).setResizable(false);
+		table.getColumnModel().getColumn(2).setResizable(false);
+		table.getColumnModel().getColumn(3).setResizable(false);
+		
+		try {
+			Connection c= DriverManager.getConnection("jdbc:mysql://localhost:3306/db", "sevin", "septin");
+			Statement st= c.createStatement();
+			ResultSet rs = st.executeQuery( "Select * From student");
+			ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
+			
+			int col= rsmd.getColumnCount();
+			String[] colName = new String[col];
+			for (int i=0;i<col;i++) {
+				colName[i]=rsmd.getColumnClassName(i+1);
+			}
+			
+			DefaultTableModel m= (DefaultTableModel) table.getModel();
+			while(rs.next()) {
+				Object[] rowData = new Object[col];
+		        for (int i = 0; i < col; i++) {
+		            rowData[i] = rs.getObject(i+1);
+			}
+		        m.addRow(rowData);}
+			System.out.println("success");
+		}catch(Exception e){
+			System.out.print("error");
+			e.printStackTrace();
+		}
 		
 		JButton btnReg = new JButton("Register Student");
 		btnReg.setForeground(new Color(255, 255, 255));
@@ -103,28 +148,28 @@ public class std {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnChcStd.setBounds(105, 274, 127, 23);
+		btnChcStd.setBounds(105, 218, 127, 23);
 		frame.getContentPane().add(btnChcStd);
 		
-		txtStdNm = new JTextField();
-		txtStdNm.setBounds(95, 187, 147, 20);
-		frame.getContentPane().add(txtStdNm);
-		txtStdNm.setColumns(10);
-		
 		txtStdNum = new JTextField();
-		txtStdNum.setBounds(95, 240, 147, 23);
+		txtStdNum.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				DefaultTableModel m= (DefaultTableModel) table.getModel();
+				TableRowSorter<DefaultTableModel> trs= new TableRowSorter<> ( m); 
+				trs.setRowFilter(RowFilter.regexFilter(txtStdNum.getText()));
+				table.setRowSorter(trs);
+				table.addRowSelectionInterval(0, 0);
+			}
+		});
+		txtStdNum.setBounds(95, 187, 147, 20);
 		frame.getContentPane().add(txtStdNum);
 		txtStdNum.setColumns(10);
 		
-		JLabel lblStdNum = new JLabel("Student Number");
+		JLabel lblStdNum = new JLabel("Student Search");
 		lblStdNum.setHorizontalAlignment(SwingConstants.CENTER);
-		lblStdNum.setBounds(95, 218, 147, 14);
+		lblStdNum.setBounds(95, 164, 147, 14);
 		frame.getContentPane().add(lblStdNum);
-		
-		JLabel lblStdNm_1 = new JLabel("Student Name");
-		lblStdNm_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblStdNm_1.setBounds(127, 162, 82, 14);
-		frame.getContentPane().add(lblStdNm_1);
 		
 		JButton btnNewButton = new JButton("Profile");
 		btnNewButton.setBackground(new Color(131, 7, 11));
