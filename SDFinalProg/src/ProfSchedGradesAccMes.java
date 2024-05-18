@@ -13,10 +13,12 @@ import javax.swing.SwingConstants;
 
 
 import javax.swing.JFrame;
+import javax.swing.JTextField;
 
 public class ProfSchedGradesAccMes {
 
 	private JFrame frame;
+	private JLabel txtWelcomeStudent;
 
 	/**
 	 * Launch the application.
@@ -46,85 +48,34 @@ public class ProfSchedGradesAccMes {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 939, 559);
+		frame.setBounds(100, 100, 1147, 715);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(Color.PINK);
-		panel.setBounds(0, 0, 923, 520);
+		panel.setBounds(0, 0, 1131, 676);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("__________________________________________________________________________________________________________________________________________________________________________________________________");
-		lblNewLabel_1_1.setForeground(Color.WHITE);
-		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel_1_1.setBackground(Color.PINK);
-		lblNewLabel_1_1.setBounds(0, 169, 948, 30);
-		panel.add(lblNewLabel_1_1);
+		JButton btnNewButton = new JButton("LOG OUT");
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnNewButton.setBounds(1032, 100, 89, 23);
+		panel.add(btnNewButton);
 		
-		JLabel lblNewLabel_2 = new JLabel("Welcome,");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewLabel_2.setBounds(46, 142, 132, 30);
-		panel.add(lblNewLabel_2);
+		txtWelcomeStudent = new JLabel();
+		txtWelcomeStudent.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtWelcomeStudent.setText("WELCOME STUDENT");
+		txtWelcomeStudent.setBounds(10, 102, 130, 20);
+		panel.add(txtWelcomeStudent);
 		
-		JLabel lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setIcon(new ImageIcon("C:\\Users\\admin\\Desktop\\Screenshot 2024-04-19 100536.png"));
-		lblNewLabel_3.setBounds(-380, 115, 1677, 420);
-		panel.add(lblNewLabel_3);
-		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\admin\\Desktop\\Screenshot 2024-04-19 085307.png"));
-		lblNewLabel.setBounds(0, 0, 923, 85);
+		JLabel lblNewLabel = new JLabel("BackGround");
+		lblNewLabel.setBounds(0, 0, 1131, 91);
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Gaming\\Downloads\\434627077_1175237720161374_3404114073950410921_n.jpg"));
 		panel.add(lblNewLabel);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(138, 0, 0));
-		panel_1.setBounds(0, 82, 923, 46);
-		panel.add(panel_1);
-		panel_1.setLayout(null);
-		
-		JButton btnNewButton = new JButton("Profile");
-		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.setBackground(new Color(170, 0, 0));
-		btnNewButton.setBounds(10, 11, 89, 23);
-		panel_1.add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("Schedule");
-		btnNewButton_1.setForeground(new Color(255, 255, 255));
-		btnNewButton_1.setBackground(new Color(170, 0, 0));
-		btnNewButton_1.setBounds(109, 11, 89, 23);
-		panel_1.add(btnNewButton_1);
-		
-		JButton btnNewButton_1_1 = new JButton("Grades");
-		btnNewButton_1_1.setForeground(new Color(255, 255, 255));
-		btnNewButton_1_1.setBackground(new Color(170, 0, 0));
-		btnNewButton_1_1.setBounds(208, 11, 89, 23);
-		panel_1.add(btnNewButton_1_1);
-		
-		JButton btnNewButton_1_1_1 = new JButton("Account");
-		btnNewButton_1_1_1.setForeground(new Color(255, 255, 255));
-		btnNewButton_1_1_1.setBackground(new Color(170, 0, 0));
-		btnNewButton_1_1_1.setBounds(307, 11, 89, 23);
-		panel_1.add(btnNewButton_1_1_1);
-		
-		JButton btnNewButton_1_1_1_1 = new JButton("Messages");
-		btnNewButton_1_1_1_1.setForeground(new Color(255, 255, 255));
-		btnNewButton_1_1_1_1.setBackground(new Color(170, 0, 0));
-		btnNewButton_1_1_1_1.setBounds(406, 11, 97, 23);
-		panel_1.add(btnNewButton_1_1_1_1);
-		
-		JButton btnNewButton_1_1_1_1_1 = new JButton("Logout");
-		btnNewButton_1_1_1_1_1.setForeground(Color.WHITE);
-		btnNewButton_1_1_1_1_1.setBackground(new Color(170, 0, 0));
-		btnNewButton_1_1_1_1_1.setBounds(824, 11, 89, 23);
-		panel_1.add(btnNewButton_1_1_1_1_1);
-		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\Student.DESKTOP-GF5TTT1\\Desktop\\4.png"));
-		lblNewLabel_1.setBounds(0, 130, 923, 390);
+		JLabel lblNewLabel_1 = new JLabel("LOGO");
+		lblNewLabel_1.setBounds(0, 87, 1131, 589);
+		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\Gaming\\Downloads\\435025794_1107787247218589_5248061200249681595_n.png"));
 		panel.add(lblNewLabel_1);
 	}
-
 }
