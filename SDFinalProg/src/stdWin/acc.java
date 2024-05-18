@@ -112,6 +112,20 @@ public class acc {
 		btnNewButton_3.setBounds(288, 78, 89, 23);
 		frame.getContentPane().add(btnNewButton_3);
 		
+		JButton btnNewButton_4 = new JButton("Logout");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				strWin.LogWindow win = new strWin.LogWindow();
+				win.frame.setVisible(true);
+			}
+		});
+		btnNewButton_4.setForeground(new Color(255, 255, 255));
+		btnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_4.setBackground(new Color(131, 7, 11));
+		btnNewButton_4.setBounds(789, 78, 89, 23);
+		frame.getContentPane().add(btnNewButton_4);
+		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(63, 161, 781, 323);
 		frame.getContentPane().add(scrollPane);
@@ -167,7 +181,7 @@ public class acc {
 		}catch(Exception e){
 			System.out.print("error");
 			e.printStackTrace();
-		
+		}
 		JLabel lblNewLabel_4 = new JLabel();
 		lblNewLabel_4.setText("Welcome, null null null");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -178,13 +192,6 @@ public class acc {
 		lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
 		lblNewLabel.setBounds(0, 0, 907, 67);
 		frame.getContentPane().add(lblNewLabel);
-		
-		JButton btnNewButton_4 = new JButton("Logout");
-		btnNewButton_4.setForeground(new Color(255, 255, 255));
-		btnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton_4.setBackground(new Color(131, 7, 11));
-		btnNewButton_4.setBounds(789, 78, 89, 23);
-		frame.getContentPane().add(btnNewButton_4);
 		
 		JLabel lblNewLabel_1 = new JLabel("New label");
 		lblNewLabel_1.setIcon(new ImageIcon(getClass().getResource("/bg2.png")));
@@ -202,4 +209,4 @@ public class acc {
 		frame.getContentPane().add(lblNewLabel_3);
 		
 			}
-}}
+}
