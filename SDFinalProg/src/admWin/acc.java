@@ -19,6 +19,7 @@ import javax.swing.table.TableRowSorter;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
@@ -285,6 +286,27 @@ public class acc {
 		frame.getContentPane().add(lblNewLabel_3_1_1);
 		
 		JButton btnNewButton_8 = new JButton("Enter");
+		btnNewButton_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+				Connection c= DriverManager.getConnection("jdbc:mysql://localhost:3306/db", "sevin", "septin");
+				Statement st= c.createStatement();
+				PreparedStatement ps = c.prepareStatement("UPDATE accounts" +  "set balance = balance -?" +" where student_id =?");
+				try(ps){
+					ps.setFloat(1, Float.parseFloat(textField_2.getText()));
+					ps.setNString(2, textField.getText());
+					ps.executeUpdate();
+					
+				}
+				
+				
+				
+				
+			}catch(Exception c){
+				c.printStackTrace();
+			}
+			}	
+		});
 		btnNewButton_8.setForeground(new Color(255, 255, 255));
 		btnNewButton_8.setBackground(new Color(131, 7, 11));
 		btnNewButton_8.setBounds(102, 428, 89, 23);
