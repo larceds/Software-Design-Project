@@ -28,7 +28,9 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class std {
-
+	Connection c = null;
+	Statement st = null;
+	ResultSet rs = null;
 	JFrame frame;
 	private JTable table;
 	private JTextField txtStdNum;
@@ -86,7 +88,7 @@ public class std {
 			new Object[][] {
 			},
 			new String[] {
-				"Student ID", "Student Name", "Section", "Balance"
+				"Student ID", "Student Name", "Section"
 			}
 		) {
 			boolean[] columnEditables = new boolean[] {
@@ -99,12 +101,12 @@ public class std {
 		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(1).setResizable(false);
 		table.getColumnModel().getColumn(2).setResizable(false);
-		table.getColumnModel().getColumn(3).setResizable(false);
+		//table.getColumnModel().getColumn(3).setResizable(false);
 		
 		try {
-			Connection c= DriverManager.getConnection("jdbc:mysql://localhost:3306/db", "sevin", "septin");
-			Statement st= c.createStatement();
-			ResultSet rs = st.executeQuery( "Select * From student");
+			c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
+			 st= c.createStatement();
+			 rs = st.executeQuery( "Select id_num,fname,s From users where user_type = 'student'");
 			ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
 			
 			int col= rsmd.getColumnCount();
@@ -196,7 +198,7 @@ public class std {
 				win.frame.setVisible(true);
 			}
 		});
-		btnNewButton_1.setBounds(463, 83, 89, 23);
+		btnNewButton_1.setBounds(374, 83, 89, 23);
 		frame.getContentPane().add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Courses");
@@ -254,11 +256,6 @@ public class std {
 		});
 		btnNewButton_5.setBounds(116, 83, 89, 23);
 		frame.getContentPane().add(btnNewButton_5);
-		
-		JButton btnNewButton_6 = new JButton("Account");
-		btnNewButton_6.setForeground(new Color(255, 255, 255));
-		btnNewButton_6.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton_6.setBackground(new Color(131, 7, 11));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -266,8 +263,6 @@ public class std {
 				win.frame.setVisible(true);
 			}
 		});
-		btnNewButton_6.setBounds(374, 83, 89, 23);
-		frame.getContentPane().add(btnNewButton_6);
 		
 		JButton btnNewButton_7 = new JButton("Professors");
 		btnNewButton_7.setForeground(new Color(255, 255, 255));
@@ -280,14 +275,8 @@ public class std {
 				win.frame.setVisible(true);
 			}
 		});
-		btnNewButton_7.setBounds(550, 83, 89, 23);
+		btnNewButton_7.setBounds(454, 83, 89, 23);
 		frame.getContentPane().add(btnNewButton_7);
-		
-		JLabel lblNewLabel_4 = new JLabel();
-		lblNewLabel_4.setText("Welcome, null null null");
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_4.setBounds(28, 117, 389, 14);
-		frame.getContentPane().add(lblNewLabel_4);
 		
 		JLabel lblLogo = new JLabel("logo");
 		lblLogo.setIcon(new ImageIcon(getClass().getResource("/logo.png")));

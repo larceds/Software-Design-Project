@@ -307,7 +307,7 @@ public class regStd {
         		
         		num.setEnabled(true);
         		
-        		ResultSetMetaData rsmd;
+        		//ResultSetMetaData rsmd;
         		int cc = 0;
 				try {
 					c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
@@ -402,21 +402,26 @@ public class regStd {
         			JOptionPane.showMessageDialog(null, "Account has already been registered");
         		}else {
         			String reg = "insert into users "
-    						+"(lname,fname,mname,gender,age,bp,religion,cs,email,lrn,res_num,app,class,course,st_level,sy,term,user_type,cp,bday,id_num,pw,s)"
+    						+"(lname,fname,mname,gender,age,bp,religion,cs,email,lrn,res_num,app,class,course,st_level,sy,term,user_type,cp,bday,id_num,pw,s,un)"
     						+" values ('"+ln+"','"+fn+"','"+mn+"','"+sex+"',"+age1+",'"+bp+"','"+r
     						+"','"+civil+"','"+em+"',"+lr+","+rsa+",'"+ap
     						+"','"+cl+"','"+cr+"','"+lv+"','"+s+"','"+ t
-    						+"','student',"+num+",'"+bd+"',"+number+",'"+ln+"','TCPE "+String.valueOf(yr)+" - "+String.valueOf(section)+"')";
-        			
+    						+"','student',"+num+",'"+bd+"',"+number+",'"+ln+"','TCPE "+String.valueOf(yr)+" - "+String.valueOf(section)+"',"+30+")";
+        			String str = "create table "+ln+"_gr (subject varchar(50), prelim int, midterm int, finals int, overall int)";
+        			String str1 = "create table "+ln+"_sch (subcode varchar(15), des varchar(50), un int, sch varchar(50))";
             		try {
             			c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
             			 st = c.createStatement();
             			System.out.println("ok");
-            		
+            			
             			rs = st.executeQuery("select * from users");
             			System.out.println("ok1");
             			st.executeUpdate(reg);
+            			st.executeUpdate(str);
+            			st.executeUpdate(str1);
             			System.out.println("ok2");
+            			
+            			
             		
             			JOptionPane.showMessageDialog(null, "Account has been successfully registered\n This is your id number : "+number+"\n This is your password : "+ln);
             		}catch (Exception e1) {

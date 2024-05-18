@@ -32,6 +32,7 @@ public class LogWindow {
 	Connection c = null;
 	Statement st = null;
 	ResultSet rs = null;
+	public static String log;
 	
 	ArrayList<Integer> num = new ArrayList();
 	ArrayList<String> pw = new ArrayList();
@@ -200,6 +201,7 @@ public class LogWindow {
 					 
 					 if(pw.get(counter).equalsIgnoreCase(String.valueOf(password.getPassword()))) {
 						 JOptionPane.showMessageDialog(null, "Successfully Logged in \n Welcome!");
+						 log = pw.get(counter);
 						 if(user_type.get(counter).equals("student")) {
 								frame.dispose();
 								stdWinMain student = new stdWinMain();
