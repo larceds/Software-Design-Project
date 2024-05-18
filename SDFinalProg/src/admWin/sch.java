@@ -32,19 +32,13 @@ import java.awt.event.KeyEvent;
 
 public class sch {
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	public JFrame frame;
 	private JTable table;
-=======
-	JFrame frame;
->>>>>>> f7c1f12 (sql functions for admin and student)
-=======
-	JFrame frame;
->>>>>>> cb4cb45a19e22045598f601179075a3b1112aee4
+
+
 	private JTable table_1;
 	private JTextField txtSearchBar;
-	private JTable table;
 
 	/**
 	 * Launch the application.
