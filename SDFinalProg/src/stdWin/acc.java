@@ -10,6 +10,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Font;
@@ -107,6 +112,20 @@ public class acc {
 		btnNewButton_3.setBounds(288, 78, 89, 23);
 		frame.getContentPane().add(btnNewButton_3);
 		
+		JButton btnNewButton_4 = new JButton("Logout");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				strWin.LogWindow win = new strWin.LogWindow();
+				win.frame.setVisible(true);
+			}
+		});
+		btnNewButton_4.setForeground(new Color(255, 255, 255));
+		btnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_4.setBackground(new Color(131, 7, 11));
+		btnNewButton_4.setBounds(789, 78, 89, 23);
+		frame.getContentPane().add(btnNewButton_4);
+		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(63, 161, 781, 323);
 		frame.getContentPane().add(scrollPane);
@@ -119,29 +138,13 @@ public class acc {
 		scrollPane.setViewportView(table);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null},
 			},
 			new String[] {
-				"School Year", "Semester", "Year Level", "O.R. Date", "O.R. No.", "Assessment", "Assessment", "Payment", "Balance"
+				"School Year", "Semester", "Year Level", "O.R. Date", "Assessment", "Payment", "Balance"
 			}
 		) {
 			boolean[] columnEditables = new boolean[] {
-				false, false, false, false, false, false, false, false, false
+				false, false, false, false, false, false, false
 			};
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
@@ -154,9 +157,31 @@ public class acc {
 		table.getColumnModel().getColumn(4).setResizable(false);
 		table.getColumnModel().getColumn(5).setResizable(false);
 		table.getColumnModel().getColumn(6).setResizable(false);
-		table.getColumnModel().getColumn(7).setResizable(false);
-		table.getColumnModel().getColumn(8).setResizable(false);
 		
+		try {
+			Connection c= DriverManager.getConnection("jdbc:mysql://localhost:3306/db", "sevin", "septin");
+			Statement st= c.createStatement();
+			ResultSet rs = st.executeQuery( "Select * From account");
+			ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
+			
+			int col= rsmd.getColumnCount();
+			String[] colName = new String[col];
+			for (int i=0;i<col;i++) {
+				colName[i]=rsmd.getColumnClassName(i+1);
+			}
+			
+			DefaultTableModel m= (DefaultTableModel) table.getModel();
+			while(rs.next()) {
+				Object[] rowData = new Object[col];
+		        for (int i = 0; i < col; i++) {
+		            rowData[i] = rs.getObject(i+1);
+			}
+		        m.addRow(rowData);}
+			System.out.println("success");
+		}catch(Exception e){
+			System.out.print("error");
+			e.printStackTrace();
+		}
 		JLabel lblNewLabel_4 = new JLabel();
 		lblNewLabel_4.setText("Welcome, null null null");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -167,13 +192,6 @@ public class acc {
 		lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
 		lblNewLabel.setBounds(0, 0, 907, 67);
 		frame.getContentPane().add(lblNewLabel);
-		
-		JButton btnNewButton_4 = new JButton("Logout");
-		btnNewButton_4.setForeground(new Color(255, 255, 255));
-		btnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton_4.setBackground(new Color(131, 7, 11));
-		btnNewButton_4.setBounds(789, 78, 89, 23);
-		frame.getContentPane().add(btnNewButton_4);
 		
 		JLabel lblNewLabel_1 = new JLabel("New label");
 		lblNewLabel_1.setIcon(new ImageIcon(getClass().getResource("/bg2.png")));
