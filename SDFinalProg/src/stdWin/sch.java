@@ -21,15 +21,18 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class sch {
+	static Connection c = null;
+	static Statement st = null;
+	static ResultSet rs = null;
 
 	JFrame frame;
-	private JTable tblData;
+	private JTable table;
 
 	public static void main(String[] args) {
 		try {
-		    Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/schedule", "root", "villena");
-		    Statement st = c.createStatement();
-		    ResultSet rs = st.executeQuery("SELECT * FROM schedule");
+			c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
+		    st = c.createStatement();
+		    rs = st.executeQuery("SELECT * FROM schedule");
 		    System.out.println("success");
 		} catch (Exception e) {
 		    System.out.println("error");
@@ -66,6 +69,19 @@ public class sch {
 				win.setVisible(true);
 			}
 		});
+		
+		DefaultTableModel m = new DefaultTableModel();
+		m.addColumn("Subject Code");
+		m.addColumn("Description");
+		m.addColumn("Units");
+		m.addColumn("Schedule");
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(43, 170, 907, 334);
+		frame.getContentPane().add(scrollPane);
+		
+		table = new JTable(m);
+		scrollPane.setViewportView(table);
 		btnNewButton.setBounds(101, 82, 74, 24);
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(128, 0, 0));
@@ -134,14 +150,9 @@ public class sch {
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel_3.setBounds(33, 147, 88, 13);
 		frame.getContentPane().add(lblNewLabel_3);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(43, 176, 893, 336);
-		frame.getContentPane().add(scrollPane);
 
 		try {
-		    Class.forName("com.mysql.cj.jdbc.Driver");
-		    Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/schedule", "root", "villena");
+		    
 		    Statement st = c.createStatement();
 		    ResultSet rs = st.executeQuery("SELECT * FROM schedule");
 		    ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
@@ -161,46 +172,6 @@ public class sch {
 		        model.addRow(rowData); 
 		    }
 
-		    tblData = new JTable() {
-		        @Override
-		        public boolean isCellEditable(int row, int column) {
-		            return false; 
-		        }
-		    };
-		    tblData.setRowSelectionAllowed(false);
-		    tblData.setFillsViewportHeight(true);
-		    tblData.setFont(new Font("Arial", Font.PLAIN, 9));
-		    tblData.setModel(new DefaultTableModel(
-		    	new Object[][] {
-		    	},
-		    	new String[] {
-		    		"#", "Subject Code", "Description", "Lec", "Lab", "Units", "Schedule"
-		    	}
-		    ) {
-		    	boolean[] columnEditables = new boolean[] {
-		    		false, false, false, false, false, false, false
-		    	};
-		    	public boolean isCellEditable(int row, int column) {
-		    		return columnEditables[column];
-		    	}
-		    });
-		    tblData.getColumnModel().getColumn(0).setResizable(false);
-		    tblData.getColumnModel().getColumn(0).setPreferredWidth(24);
-		    tblData.getColumnModel().getColumn(0).setMaxWidth(2147483632);
-		    tblData.getColumnModel().getColumn(1).setResizable(false);
-		    tblData.getColumnModel().getColumn(2).setResizable(false);
-		    tblData.getColumnModel().getColumn(2).setPreferredWidth(341);
-		    tblData.getColumnModel().getColumn(3).setResizable(false);
-		    tblData.getColumnModel().getColumn(3).setPreferredWidth(35);
-		    tblData.getColumnModel().getColumn(4).setResizable(false);
-		    tblData.getColumnModel().getColumn(4).setPreferredWidth(35);
-		    tblData.getColumnModel().getColumn(5).setResizable(false);
-		    tblData.getColumnModel().getColumn(5).setPreferredWidth(40);
-		    tblData.getColumnModel().getColumn(6).setResizable(false);
-		    tblData.getColumnModel().getColumn(6).setPreferredWidth(297);
-
-		    scrollPane.setViewportView(tblData);
-
 		    System.out.println("success");
 		} catch (Exception e) {
 		    System.out.println("error");
@@ -208,8 +179,7 @@ public class sch {
 		}
 		
 		try {
-		    Class.forName("com.mysql.cj.jdbc.Driver");
-		    Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/schedule", "root", "villena");
+		    
 		    Statement st = c.createStatement();
 		    ResultSet rs = st.executeQuery("SELECT * FROM schedule.timetable");
 		    ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
@@ -237,7 +207,7 @@ public class sch {
 		
 		JComboBox schoolYear = new JComboBox();
 		schoolYear.setFont(new Font("Tahoma", Font.BOLD, 10));
-		schoolYear.setModel(new DefaultComboBoxModel(new String[] {"2022 - 2023", "2023 - 2024", "2024 - 2025"}));
+		schoolYear.setModel(new DefaultComboBoxModel(new String[] { "2023 - 2024", "2024 - 2025"}));
 		schoolYear.setBounds(112, 144, 110, 21);
 		frame.getContentPane().add(schoolYear);
 		
@@ -249,8 +219,7 @@ public class sch {
 				if(selectedOption.equals("First")) {
 					if(selectedOption1.equals("2022 - 2023")) {
 						try {
-			                Class.forName("com.mysql.cj.jdbc.Driver");
-			                Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/schedule", "root", "villena");
+			                
 			                Statement st = c.createStatement();
 			                ResultSet rs = st.executeQuery("SELECT * FROM schedule.schedule");
 			                ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
@@ -269,7 +238,7 @@ public class sch {
 			                    }
 			                    model.addRow(rowData);
 			                }
-
+			                /*
 			                tblData = new JTable() {
 			                    @Override
 			                    public boolean isCellEditable(int row, int column) {
@@ -281,15 +250,14 @@ public class sch {
 			                tblData.setModel(model);
 
 			                scrollPane.setViewportView(tblData);
-
+			                */
 			                System.out.println("success");
 			            } catch (Exception a) {
 			                System.out.println("error");
 			                a.printStackTrace();
 			            }
 						try {
-						    Class.forName("com.mysql.cj.jdbc.Driver");
-						    Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/schedule", "root", "villena");
+						    
 						    Statement st = c.createStatement();
 						    ResultSet rs = st.executeQuery("SELECT * FROM schedule.timetable");
 						    ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
@@ -318,8 +286,7 @@ public class sch {
 					
 					} else if(selectedOption1.equals("2023 - 2024")) {
 						try {
-			                Class.forName("com.mysql.cj.jdbc.Driver");
-			                Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/schedule", "root", "villena");
+			                
 			                Statement st = c.createStatement();
 			                ResultSet rs = st.executeQuery("SELECT * FROM schedule.schedule_2");
 			                ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
@@ -337,7 +304,7 @@ public class sch {
 			                    }
 			                    model.addRow(rowData);
 			                }
-
+/*
 			                tblData = new JTable() {
 			                    @Override
 			                    public boolean isCellEditable(int row, int column) {
@@ -349,15 +316,14 @@ public class sch {
 			                tblData.setModel(model);
 
 			                scrollPane.setViewportView(tblData);
-
+			                */
 			                System.out.println("success");
 			            } catch (Exception b) {
 			                System.out.println("error");
 			                b.printStackTrace();
 			            }
 						try {
-						    Class.forName("com.mysql.cj.jdbc.Driver");
-						    Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/schedule", "root", "villena");
+						    
 						    Statement st = c.createStatement();
 						    ResultSet rs = st.executeQuery("SELECT * FROM schedule.timetable_2");
 						    ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
@@ -384,8 +350,7 @@ public class sch {
 						}
 					} else if(selectedOption.equals("2024 - 2025")) {
 						try {
-			                Class.forName("com.mysql.cj.jdbc.Driver");
-			                Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/schedule", "root", "villena");
+			                
 			                Statement st = c.createStatement();
 			                ResultSet rs = st.executeQuery("SELECT * FROM schedule.schedule_3");
 			                ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
@@ -404,7 +369,7 @@ public class sch {
 			                    }
 			                    model.addRow(rowData);
 			                }
-
+/*
 			                tblData = new JTable() {
 			                    @Override
 			                    public boolean isCellEditable(int row, int column) {
@@ -416,15 +381,14 @@ public class sch {
 			                tblData.setModel(model);
 
 			                scrollPane.setViewportView(tblData);
-
+*/
 			                System.out.println("success");
 			            } catch (Exception c) {
 			                System.out.println("error");
 			                c.printStackTrace();
 			            }
 						try {
-						    Class.forName("com.mysql.cj.jdbc.Driver");
-						    Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/schedule", "root", "villena");
+						    
 						    Statement st = c.createStatement();
 						    ResultSet rs = st.executeQuery("SELECT * FROM schedule.timetable_3");
 						    ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
@@ -455,8 +419,7 @@ public class sch {
 				} else if(selectedOption.equals("Second")) {
 					if(selectedOption1.equals("2022 - 2023")) {
 						try {
-			                Class.forName("com.mysql.cj.jdbc.Driver");
-			                Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/schedule", "root", "villena");
+			                
 			                Statement st = c.createStatement();
 			                ResultSet rs = st.executeQuery("SELECT * FROM schedule.schedule_4");
 			                ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
@@ -475,7 +438,7 @@ public class sch {
 			                    }
 			                    model.addRow(rowData);
 			                }
-
+			                /*
 			                tblData = new JTable() {
 			                    @Override
 			                    public boolean isCellEditable(int row, int column) {
@@ -487,15 +450,14 @@ public class sch {
 			                tblData.setModel(model);
 
 			                scrollPane.setViewportView(tblData);
-
+							*/
 			                System.out.println("success");
 			            } catch (Exception d) {
 			                System.out.println("error");
 			                d.printStackTrace();
 			            }
 						try {
-						    Class.forName("com.mysql.cj.jdbc.Driver");
-						    Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/schedule", "root", "villena");
+						    
 						    Statement st = c.createStatement();
 						    ResultSet rs = st.executeQuery("SELECT * FROM schedule.timetable_4");
 						    ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
@@ -524,8 +486,7 @@ public class sch {
 						
 					} else if(selectedOption1.equals("2023 - 2024")) {
 						try {
-			                Class.forName("com.mysql.cj.jdbc.Driver");
-			                Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/schedule", "root", "villena");
+			                
 			                Statement st = c.createStatement();
 			                ResultSet rs = st.executeQuery("SELECT * FROM schedule.schedule_5");
 			                ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
@@ -543,7 +504,7 @@ public class sch {
 			                    }
 			                    model.addRow(rowData);
 			                }
-
+/*
 			                tblData = new JTable() {
 			                    @Override
 			                    public boolean isCellEditable(int row, int column) {
@@ -555,15 +516,14 @@ public class sch {
 			                tblData.setModel(model);
 
 			                scrollPane.setViewportView(tblData);
-
+*/
 			                System.out.println("success");
 			            } catch (Exception f) {
 			                System.out.println("error");
 			                f.printStackTrace();
 			            }
 						try {
-						    Class.forName("com.mysql.cj.jdbc.Driver");
-						    Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/schedule", "root", "villena");
+						    
 						    Statement st = c.createStatement();
 						    ResultSet rs = st.executeQuery("SELECT * FROM schedule.timetable_5");
 						    ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
@@ -591,8 +551,7 @@ public class sch {
 						}
 					} else if(selectedOption1.equals("2024 - 2025")) {
 						try {
-			                Class.forName("com.mysql.cj.jdbc.Driver");
-			                Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/schedule", "root", "villena");
+			               
 			                Statement st = c.createStatement();
 			                ResultSet rs = st.executeQuery("SELECT * FROM schedule.schedule_6" + "SELECT * FROM schedule.timetable_6");
 			                ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
@@ -611,7 +570,7 @@ public class sch {
 			                    }
 			                    model.addRow(rowData);
 			                }
-
+/*
 			                tblData = new JTable() {
 			                    @Override
 			                    public boolean isCellEditable(int row, int column) {
@@ -623,15 +582,14 @@ public class sch {
 			                tblData.setModel(model);
 
 			                scrollPane.setViewportView(tblData);
-
+*/
 			                System.out.println("success");
 			            } catch (Exception g) {
 			                System.out.println("error");
 			                g.printStackTrace();
 			            }
 						try {
-						    Class.forName("com.mysql.cj.jdbc.Driver");
-						    Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/schedule", "root", "villena");
+						    
 						    Statement st = c.createStatement();
 						    ResultSet rs = st.executeQuery("SELECT * FROM schedule.timetable_6");
 						    ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
@@ -661,8 +619,7 @@ public class sch {
 					
 				} else if(selectedOption.equals("Summer")) {
 					try {
-					    Class.forName("com.mysql.cj.jdbc.Driver");
-					    Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/schedule", "root", "villena");
+					    
 					    Statement st = c.createStatement();
 					    ResultSet rs = st.executeQuery("SELECT * FROM schedule_6");
 					    ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
@@ -681,7 +638,7 @@ public class sch {
 					        }
 					        model.addRow(rowData); 
 					    }
-
+/*
 					    tblData = new JTable() {
 					        @Override
 					        public boolean isCellEditable(int row, int column) {
@@ -693,7 +650,7 @@ public class sch {
 					    tblData.setModel(model); 
 
 					    scrollPane.setViewportView(tblData);
-
+*/
 					    System.out.println("success");
 					} catch (Exception d) {
 					    System.out.println("error");
@@ -735,7 +692,7 @@ public class sch {
 		JLabel lblNewLabel_4 = new JLabel("New label");
 		lblNewLabel_4.setBackground(new Color(240, 240, 240));
 		lblNewLabel_4.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
-		lblNewLabel_4.setBounds(0, 120, 1147, 453);
+		lblNewLabel_4.setBounds(0, 116, 1147, 453);
 		frame.getContentPane().add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("New label");

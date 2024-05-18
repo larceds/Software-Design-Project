@@ -5,6 +5,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.awt.event.ActionEvent;
 import javax.swing.JToolBar;
 import javax.swing.JTabbedPane;
@@ -25,13 +32,17 @@ import java.awt.Color;
 import javax.swing.DefaultComboBoxModel;
 
 public class crs {
+	Connection c = null;
+	Statement st = null;
+	ResultSet rs = null;
 
 	JFrame frame;
 	private JTable table;
 	private JTable table_1;
 	private JTextField txtSearchBar;
 	private JTextField txtSearchBar_1;
-
+	HashSet<String> cr = new HashSet();
+	HashSet<String> un = new HashSet();
 	/**
 	 * Launch the application.
 	 */
@@ -123,26 +134,18 @@ public class crs {
 		btnNewButton_5.setBounds(291, 70, 89, 23);
 		frame.getContentPane().add(btnNewButton_5);
 		
-		JButton btnNewButton_6 = new JButton("Account");
-		btnNewButton_6.setForeground(new Color(255, 255, 255));
-		btnNewButton_6.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton_6.setBackground(new Color(131, 7, 11));
-		btnNewButton_6.addActionListener(new ActionListener() {
+		JButton btnStudents = new JButton("Students");
+		btnStudents.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				acc win= new acc();
-				win.frame.setVisible(true);
-				
+				std st = new std();
+				st.frame.setVisible(true);
 			}
 		});
-		btnNewButton_6.setBounds(378, 70, 89, 23);
-		frame.getContentPane().add(btnNewButton_6);
-		
-		JButton btnStudents = new JButton("Students");
 		btnStudents.setBackground(new Color(131, 7, 11));
 		btnStudents.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnStudents.setForeground(new Color(255, 255, 255));
-		btnStudents.setBounds(465, 70, 89, 23);
+		btnStudents.setBounds(380, 70, 89, 23);
 		frame.getContentPane().add(btnStudents);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
@@ -159,33 +162,18 @@ public class crs {
 		scrollPane.setBounds(10, 50, 807, 300);
 		panel_4.add(scrollPane);
 		
-		table = new JTable();
+		DefaultTableModel tbl = new DefaultTableModel();
+		
+		table = new JTable(tbl);
 		table.setRowSelectionAllowed(false);
 		table.getTableHeader().setReorderingAllowed(false);
 		table.setEnabled(false);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
+				{"TCPE - BACHELOR OF SCIENCE IN COMPUTER ENGINEERING","30"}
 			},
 			new String[] {
-				"Course Name", "Units", "Subjects"
+				"Course Name", "Units"
 			}
 		) {
 			boolean[] columnEditables = new boolean[] {
@@ -197,7 +185,33 @@ public class crs {
 		});
 		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(1).setResizable(false);
-		table.getColumnModel().getColumn(2).setResizable(false);
+		//table.getColumnModel().getColumn(2).setResizable(false);
+		
+		
+		/*
+		try {
+			c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
+			 st= c.createStatement();
+			 rs = st.executeQuery( "Select course , un From users");
+			 while(rs.next()) {
+				 cr.add(rs.getString("course"));
+				 un.add(rs.getString("un"));
+			 }
+			int size = cr.size();
+			while(size != 0) {
+				int temp = 0;
+				tbl.insertRow(0, new Object[] {cr.toArray(),un.toArray()});
+				size--;
+				temp++;
+			}
+			 
+			 
+			System.out.println("success");
+		}catch(Exception e){
+			System.out.print("error");
+			e.printStackTrace();
+		}
+		*/
 		scrollPane.setViewportView(table);
 		
 		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
@@ -229,35 +243,54 @@ public class crs {
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(34, 49, 769, 304);
 		panel_2.add(scrollPane_1);
+		DefaultTableModel n=null;
 		
-		table_1 = new JTable();
+		table_1 = new JTable(n);
 		table_1.setToolTipText("");
 		table_1.getTableHeader().setReorderingAllowed(false);
 		table_1.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
 			},
 			new String[] {
-				"Subject Name", "Subject Code", "#Units", "Pre-Requisites"
+				"Subject Name", "Subject Code", "#Units"
 			}
 		));
+		table_1.getColumnModel().getColumn(0).setResizable(false);
+		table_1.getColumnModel().getColumn(1).setResizable(false);
+		table_1.getColumnModel().getColumn(2).setResizable(false);
+		
+		table_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		table_1.setRowSelectionAllowed(false);
+		table_1.setEnabled(false);
+		try {
+			c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
+			 st= c.createStatement();
+			 rs = st.executeQuery( "Select * From sub");
+			
+			ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
+			
+			int col= rsmd.getColumnCount();
+		String[] colName = new String[col];
+			for (int i=0;i<col;i++) {
+		colName[i]=rsmd.getColumnClassName(i+1);
+			}
+			
+			DefaultTableModel m= (DefaultTableModel) table_1.getModel();
+			while(rs.next()) {
+				Object[] rowData = new Object[col];
+		        for (int i = 0; i < col; i++) {
+		            rowData[i] = rs.getObject(i+1);
+			}
+		       m.addRow(rowData);}
+			 
+			 
+			System.out.println("success");
+		}catch(Exception e){
+			System.out.print("error");
+			e.printStackTrace();
+		}
+		
+		
 		scrollPane_1.setViewportView(table_1);
 		
 		JButton btnNewButton_7 = new JButton("Manage Subjects");
@@ -308,14 +341,8 @@ public class crs {
 				win.frame.setVisible(true);
 			}
 		});
-		btnNewButton_8.setBounds(552, 70, 99, 23);
+		btnNewButton_8.setBounds(471, 70, 99, 23);
 		frame.getContentPane().add(btnNewButton_8);
-		
-		JLabel lblNewLabel_4 = new JLabel();
-		lblNewLabel_4.setText("Welcome, null null null");
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_4.setBounds(32, 104, 389, 14);
-		frame.getContentPane().add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_6 = new JLabel("New label");
 		lblNewLabel_6.setIcon(new ImageIcon(getClass().getResource("/logo.png")));

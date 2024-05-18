@@ -31,7 +31,9 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class sch {
-
+	Connection c = null;
+	Statement st = null;
+	ResultSet rs = null;
 
 	public JFrame frame;
 	private JTable table;
@@ -99,22 +101,8 @@ public class sch {
 				win.frame.setVisible(true);
 			}
 		});
-		btnNewButton_4_2_1.setBounds(452, 78, 89, 24);
+		btnNewButton_4_2_1.setBounds(368, 78, 89, 24);
 		frame.getContentPane().add(btnNewButton_4_2_1);
-		
-		JButton btnNewButton_4_2 = new JButton("Account");
-		btnNewButton_4_2.setForeground(new Color(255, 255, 255));
-		btnNewButton_4_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton_4_2.setBackground(new Color(131, 7, 11));
-		btnNewButton_4_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				acc win = new acc();
-				win.frame.setVisible(true);
-			}
-		});
-		btnNewButton_4_2.setBounds(366, 78, 89, 24);
-		frame.getContentPane().add(btnNewButton_4_2);
 		
 		JButton btnNewButton_4_1 = new JButton("LOG OUT");
 		btnNewButton_4_1.setBackground(new Color(131, 7, 11));
@@ -197,7 +185,7 @@ public class sch {
 				win.frame.setVisible(true);
 			}
 		});
-		btnNewButton.setBounds(538, 78, 89, 24);
+		btnNewButton.setBounds(452, 78, 89, 24);
 		frame.getContentPane().add(btnNewButton);
 		frame.setBounds(100, 100, 991, 610);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -220,14 +208,6 @@ public class sch {
 		});
 		btnNewButton_1.setBounds(752, 144, 132, 23);
 		frame.getContentPane().add(btnNewButton_1);
-		
-		
-		
-		JLabel lblNewLabel_4 = new JLabel();
-		lblNewLabel_4.setText("Welcome, null null null");
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_4.setBounds(33, 113, 389, 14);
-		frame.getContentPane().add(lblNewLabel_4);
 		
 		JLabel lblNewLabel = new JLabel("logo");
 		lblNewLabel.setBounds(0, 0, 975, 73);
@@ -253,6 +233,7 @@ public class sch {
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
+		
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
@@ -277,15 +258,16 @@ public class sch {
 		table.setEnabled(false);
 		
 		try {
-			Connection c= DriverManager.getConnection("jdbc:mysql://localhost:3306/db", "sevin", "septin");
-			Statement st= c.createStatement();
-			ResultSet rs = st.executeQuery( "Select * From student");
+			c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
+			 st= c.createStatement();
+			 rs = st.executeQuery( "Select * From sch");
+			
 			ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
 			
 			int col= rsmd.getColumnCount();
-			String[] colName = new String[col];
+		String[] colName = new String[col];
 			for (int i=0;i<col;i++) {
-				colName[i]=rsmd.getColumnClassName(i+1);
+		colName[i]=rsmd.getColumnClassName(i+1);
 			}
 			
 			DefaultTableModel m= (DefaultTableModel) table.getModel();
@@ -294,7 +276,9 @@ public class sch {
 		        for (int i = 0; i < col; i++) {
 		            rowData[i] = rs.getObject(i+1);
 			}
-		        m.addRow(rowData);}
+		       m.addRow(rowData);}
+			 
+			 
 			System.out.println("success");
 		}catch(Exception e){
 			System.out.print("error");

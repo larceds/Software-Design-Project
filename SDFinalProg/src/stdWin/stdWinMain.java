@@ -25,8 +25,10 @@ import javax.swing.JSpinner;
 import javax.swing.JScrollBar;
 import javax.swing.JSeparator;
 import javax.swing.JScrollPane;
+import strWin.LogWindow;
 
 public class stdWinMain extends JFrame {
+	static LogWindow login = new LogWindow();
     static Connection c = null ;
     static ResultSet rs=null;
 	private static final long serialVersionUID = 1L;
@@ -49,18 +51,18 @@ public class stdWinMain extends JFrame {
 	private JTextField txtSingle;
 	private JTextField textField_3;
 	private JTextField textField_4;
-	
 	/**
 	 * Launch the application.
 	 * @throws ClassNotFoundException 
 	 */
 	public static void main(String[] args){
 		
+		
 		//==============================================================================================
 		try {
-			  c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/view1","root","kenn232004");
+			  c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
 			  Statement st=c.createStatement();
-			  rs=st.executeQuery("select * from profview");
+			  rs=st.executeQuery("select * from users");
 			System.out.println("not gwenchana");	
 			}catch (Exception e){
 			System.out.println("gwenchanay");
@@ -68,7 +70,7 @@ public class stdWinMain extends JFrame {
 		Statement st;
 		try {
 			st=c.createStatement();
-			rs=st.executeQuery("select * from profview");
+			rs=st.executeQuery("select * from users");
 			String s ="insert into profview"+"(lastname,firstname,Middlename,email)"+"values ('asd','fgh','qwe','rty')";
 			//st.executeUpdate(s);
 		} catch (SQLException e) {
@@ -95,6 +97,8 @@ public class stdWinMain extends JFrame {
 	 * Create the frame.
 	 */
 	public stdWinMain() {
+		System.out.println(login.log);
+		
 		setAlwaysOnTop(true);
 		setBackground(new Color(255, 0, 0));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

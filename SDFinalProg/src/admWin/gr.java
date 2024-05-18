@@ -21,13 +21,26 @@ import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.awt.event.ActionEvent;
 import strWin.LogWindow;
 import java.awt.Color;
 import java.awt.Font;
 
 public class gr {
-
+	String cs = null;
+	Connection c = null;
+	Statement st = null;
+	ResultSet rs = null;
+	ArrayList<String> subj = new ArrayList();
+	HashSet<String> crse = new HashSet();
 	JFrame frame;
 	private JTable table;
 
@@ -119,20 +132,6 @@ public class gr {
 		btnNewButton_3.setBounds(292, 69, 89, 23);
 		frame.getContentPane().add(btnNewButton_3);
 		
-		JButton btnNewButton_4 = new JButton("Account");
-		btnNewButton_4.setForeground(new Color(255, 255, 255));
-		btnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton_4.setBackground(new Color(131, 7, 11));
-		btnNewButton_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				acc win = new acc();
-				win.frame.setVisible(true);
-			}
-		});
-		btnNewButton_4.setBounds(379, 69, 89, 23);
-		frame.getContentPane().add(btnNewButton_4);
-		
 		JButton btnNewButton_5 = new JButton("Students");
 		btnNewButton_5.setForeground(new Color(255, 255, 255));
 		btnNewButton_5.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -144,7 +143,7 @@ public class gr {
 				win.frame.setVisible(true);
 			}
 		});
-		btnNewButton_5.setBounds(464, 69, 89, 23);
+		btnNewButton_5.setBounds(381, 69, 89, 23);
 		frame.getContentPane().add(btnNewButton_5);
 		
 		JButton btnNewButton_7 = new JButton("Professors");
@@ -158,7 +157,7 @@ public class gr {
 				win.frame.setVisible(true);
 			}
 		});
-		btnNewButton_7.setBounds(551, 69, 102, 23);
+		btnNewButton_7.setBounds(469, 69, 102, 23);
 		frame.getContentPane().add(btnNewButton_7);
 		
 		JButton btnNewButton_6 = new JButton("Logout");
@@ -180,25 +179,70 @@ public class gr {
 		scrollPane.setBounds(66, 193, 859, 273);
 		frame.getContentPane().add(scrollPane);
 		
+		try {
+			c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
+			 st= c.createStatement();
+			rs=st.executeQuery("select s from users where user_type = 'student'");
+			while(rs.next()) {
+				crse.add(rs.getString("s"));
+			}
+		} catch (SQLException e1) {
+
+			e1.printStackTrace();
+		}
+		
+		
+		JComboBox crs = new JComboBox(crse.toArray());
+		crs.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		//crs.setModel(new DefaultComboBoxModel());
+		crs.setBounds(315, 126, 97, 23);
+		frame.getContentPane().add(crs);
+		
+		try {
+			c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
+			 st= c.createStatement();
+			rs=st.executeQuery("select sub_name from sub");
+			while(rs.next()) {
+				subj.add(rs.getString("sub_name"));
+			}
+			
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		
+		
+		JComboBox sub = new JComboBox(subj.toArray());
+		
+		//sub.setModel(new DefaultComboBoxModel());
+		sub.setBounds(69, 126, 201, 23);
+		frame.getContentPane().add(sub);
+		
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		table.getTableHeader().setReorderingAllowed(false);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
+				/*
 				{Boolean.FALSE, null, null, null, null},
 				{null, null, null, null, null},
 				{null, null, null, null, null},
+				*/
 			},
 			new String[] {
-				"", "Student ID", "Prelim", "Midterm", "Finals"
+				 "Student ID", "Prelim", "Midterm", "Finals"
 			}
 		) {
+			/*
 			Class[] columnTypes = new Class[] {
 				Boolean.class, Object.class, Double.class, Double.class, Double.class
 			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
+			*/
 			boolean[] columnEditables = new boolean[] {
 				true, false, false, false, false
 			};
@@ -206,11 +250,48 @@ public class gr {
 				return columnEditables[column];
 			}
 		});
+		
 		table.getColumnModel().getColumn(1).setResizable(false);
 		table.getColumnModel().getColumn(2).setResizable(false);
 		table.getColumnModel().getColumn(3).setResizable(false);
-		table.getColumnModel().getColumn(4).setResizable(false);
+		//table.getColumnModel().getColumn(4).setResizable(false);
 		
+		sub.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource()==sub) {
+					cs = sub.getSelectedItem().toString();
+					System.out.println(cs);
+				}
+			}
+		});
+		
+		try {
+			c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
+			 st= c.createStatement();
+			 rs = st.executeQuery( "select st_id, prelims, midterms , finals from tempgrd where sub ='"+cs+"'" );
+			
+			ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
+			
+			int col= rsmd.getColumnCount();
+		String[] colName = new String[col];
+			for (int i=0;i<col;i++) {
+		colName[i]=rsmd.getColumnClassName(i+1);
+			}
+			
+			DefaultTableModel m= (DefaultTableModel) table.getModel();
+			while(rs.next()) {
+				Object[] rowData = new Object[col];
+		        for (int i = 0; i < col; i++) {
+		            rowData[i] = rs.getObject(i+1);
+			}
+		       m.addRow(rowData);}
+			 
+			 
+			System.out.println("success");
+		}catch(Exception e){
+			System.out.print("error");
+			e.printStackTrace();
+		}
 		JButton btnNewButton = new JButton("Approve");
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton.setBackground(new Color(131, 7, 11));
@@ -218,6 +299,7 @@ public class gr {
 		btnNewButton.setBounds(10, 477, 89, 23);
 		frame.getContentPane().add(btnNewButton);
 		
+		/*
 		JCheckBox chckbxNewCheckBox = new JCheckBox("Select All ");
 		chckbxNewCheckBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -226,23 +308,9 @@ public class gr {
 		});
 		chckbxNewCheckBox.setBounds(69, 167, 97, 23);
 		frame.getContentPane().add(chckbxNewCheckBox);
+		*/
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Section"}));
-		comboBox.setBounds(182, 126, 97, 23);
-		frame.getContentPane().add(comboBox);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Subject"}));
-		comboBox_1.setBounds(69, 126, 97, 23);
-		frame.getContentPane().add(comboBox_1);
-		
-		JLabel lblNewLabel_4 = new JLabel();
-		lblNewLabel_4.setText("Welcome, null null null");
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_4.setBounds(45, 101, 389, 14);
-		
-		frame.getContentPane().add(lblNewLabel_4);
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
 		lblNewLabel.setBounds(0, 0, 975, 65);

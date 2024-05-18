@@ -15,11 +15,19 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Font;
 
 public class prof {
+	Connection c = null;
+	Statement st = null;
+	ResultSet rs = null;
 
 	JFrame frame;
 	private JTable table;
@@ -113,20 +121,6 @@ public class prof {
 		btnCrs.setBounds(285, 82, 89, 23);
 		frame.getContentPane().add(btnCrs);
 		
-		JButton btnAcc = new JButton("Account");
-		btnAcc.setBackground(new Color(131, 7, 11));
-		btnAcc.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnAcc.setForeground(new Color(255, 255, 255));
-		btnAcc.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				acc win= new acc();
-				win.frame.setVisible(true);
-			}
-		});
-		btnAcc.setBounds(373, 82, 89, 23);
-		frame.getContentPane().add(btnAcc);
-		
 		JButton btnStd = new JButton("Students");
 		btnStd.setForeground(new Color(255, 255, 255));
 		btnStd.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -138,7 +132,7 @@ public class prof {
 				win.frame.setVisible(true);
 			}
 		});
-		btnStd.setBounds(453, 82, 89, 23);
+		btnStd.setBounds(372, 82, 89, 23);
 		frame.getContentPane().add(btnStd);
 		
 		JButton btnprof = new JButton("Professors");
@@ -152,7 +146,7 @@ public class prof {
 				win.frame.setVisible(true);
 			}
 		});
-		btnprof.setBounds(539, 82, 99, 23);
+		btnprof.setBounds(457, 82, 99, 23);
 		frame.getContentPane().add(btnprof);
 		
 		JButton btnlog = new JButton("Logout");
@@ -177,13 +171,39 @@ public class prof {
 		table.getTableHeader().setReorderingAllowed(false);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null},
 			},
 			new String[] {
-				"Professor Name", "Course Specialization", "Schedule"
+				"Professor Name", "Course Specialization"
 			}
 		));
 		scrollPane.setViewportView(table);
+		try {
+			c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
+			 st= c.createStatement();
+			 rs = st.executeQuery( "select lname,spe from users where user_type = 'professor' ");
+			
+			ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
+			
+			int col= rsmd.getColumnCount();
+		String[] colName = new String[col];
+			for (int i=0;i<col;i++) {
+		colName[i]=rsmd.getColumnClassName(i+1);
+			}
+			
+			DefaultTableModel m= (DefaultTableModel) table.getModel();
+			while(rs.next()) {
+				Object[] rowData = new Object[col];
+		        for (int i = 0; i < col; i++) {
+		            rowData[i] = rs.getObject(i+1);
+			}
+		       m.addRow(rowData);}
+			 
+			 
+			System.out.println("success");
+		}catch(Exception e){
+			System.out.print("error");
+			e.printStackTrace();
+		}
 		
 		textField = new JTextField();
 		textField.setBounds(47, 151, 140, 20);
@@ -210,12 +230,6 @@ public class prof {
 		});
 		btnNewButton_1.setBounds(768, 140, 89, 23);
 		frame.getContentPane().add(btnNewButton_1);
-		
-		JLabel lblNewLabel_4 = new JLabel();
-		lblNewLabel_4.setText("Welcome, null null null");
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_4.setBounds(34, 126, 389, 14);
-		frame.getContentPane().add(lblNewLabel_4);
 		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/logo.png")));

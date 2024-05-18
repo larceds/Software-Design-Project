@@ -173,7 +173,7 @@ public class gr extends JFrame {
 		table.getColumnModel().getColumn(4).setResizable(false);
 		
 		try {
-			Connection c= DriverManager.getConnection("jdbc:mysql://localhost:3306/db", "sevin", "septin");
+			Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
 			Statement st= c.createStatement();
 			ResultSet rs = st.executeQuery( "Select * From grades");
 			ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
