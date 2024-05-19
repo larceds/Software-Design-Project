@@ -417,8 +417,8 @@ public class regStd {
             			rs = st.executeQuery("select * from users");
             			System.out.println("ok1");
             			st.executeUpdate(reg);
-            			st.executeUpdate(str);
-            			st.executeUpdate(str1);
+            			//st.executeUpdate(str);
+            			//st.executeUpdate(str1);
             			System.out.println("ok2");
             			
             			

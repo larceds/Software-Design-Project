@@ -1,6 +1,7 @@
 package admWin;
 
 import java.awt.BorderLayout;
+import regWin.regAdm;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -452,7 +453,14 @@ public class adminWinMain extends JFrame {
 		btnNewButton_6.setBounds(383, 79, 97, 23);
 		contentPane.add(btnNewButton_6);
 		
-		JButton btnNewButton_7 = new JButton("Change Password");
+		JButton btnNewButton_7 = new JButton("Add Account");
+		btnNewButton_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				regAdm ad = new regAdm();
+				dispose();
+				ad.frame.setVisible(true);
+			}
+		});
 		btnNewButton_7.setBackground(new Color(131, 7, 11));
 		btnNewButton_7.setForeground(new Color(255, 255, 255));
 		btnNewButton_7.setFont(new Font("Tahoma", Font.BOLD, 11));

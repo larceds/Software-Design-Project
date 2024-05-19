@@ -1,6 +1,7 @@
 package stdWin;
 
 import java.awt.EventQueue;
+import strWin.LogWindow;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -12,6 +13,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
@@ -26,6 +28,10 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
 public class gr extends JFrame {
+	Connection c = null;
+	Statement st = null;
+	ResultSet rs = null;
+	static LogWindow log = new LogWindow();
 
 	private JPanel contentPane;
 	private JTable table;
@@ -50,6 +56,7 @@ public class gr extends JFrame {
 	 * Create the frame.
 	 */
 	public gr() {
+		System.out.println(log.idn);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 991, 610);
 		contentPane = new JPanel();
@@ -114,9 +121,23 @@ public class gr extends JFrame {
 		btnNewButton_3.setBounds(849, 76, 89, 23);
 		contentPane.add(btnNewButton_3);
 		
-		JLabel lblNewLabel = new JLabel("Welcome, Poging Roge (22-1-00380)");
+		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setBounds(22, 112, 308, 14);
 		contentPane.add(lblNewLabel);
+		
+		try {
+			c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
+			st = c.createStatement();
+			rs = st.executeQuery("select fname from users where lname ='"+log.log+"'");
+			while(rs.next()) {
+				lblNewLabel.setText("Welcome "+log.log+", "+rs.getString("fname")+" ("+log.idn+")");
+			}
+		} catch (SQLException e1) {
+
+			e1.printStackTrace();
+		}
+		
+		
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
@@ -149,6 +170,7 @@ public class gr extends JFrame {
 		scrollPane.setBounds(10, 0, 876, 327);
 		panel_1.add(scrollPane);
 		
+		
 		table = new JTable();
 		table.setRowSelectionAllowed(false);
 		table.setBackground(new Color(255, 255, 255));
@@ -173,43 +195,29 @@ public class gr extends JFrame {
 		table.getColumnModel().getColumn(4).setResizable(false);
 		
 		try {
-			Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
-			Statement st= c.createStatement();
-			ResultSet rs = st.executeQuery( "Select * From grades");
+			c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
+			st= c.createStatement();
+			rs=st.executeQuery("select sub,prelims,midterms,finals,overall from grd where st_id = "+log.idn);
 			ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
 			
 			int col= rsmd.getColumnCount();
 			String[] colName = new String[col];
-			for (int i=0;i<col;i++) {
-				colName[i]=rsmd.getColumnClassName(i+1);
-			}
-			
-			DefaultTableModel m= (DefaultTableModel) table.getModel();
-			while(rs.next()) {
-				Object[] rowData = new Object[col];
-		        for (int i = 0; i < col; i++) {
-		            rowData[i] = rs.getObject(i+1);
-			}
-		        m.addRow(rowData);}
-			System.out.println("success");
-		}catch(Exception e){
-			System.out.print("error");
-			e.printStackTrace();
+				for (int i=0;i<col;i++) {
+			colName[i]=rsmd.getColumnClassName(i+1);
+				}
+				
+				DefaultTableModel m= (DefaultTableModel) table.getModel();
+				
+				m.setRowCount(0); //Resets table rows to 0 to let system add new rows
+				while(rs.next()) {
+					Object[] rowData = new Object[col];
+			        for (int i = 0; i < col; i++) {
+			            rowData[i] = rs.getObject(i+1);
+				}
+			       m.addRow(rowData);}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
 		}
-		
-		JButton btnNewButton_2_1 = new JButton("Account");
-		btnNewButton_2_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton_2_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				acc win=new acc();
-				win.frame.setVisible(true);
-			}
-		});
-		btnNewButton_2_1.setForeground(Color.WHITE);
-		btnNewButton_2_1.setBackground(new Color(128, 0, 0));
-		btnNewButton_2_1.setBounds(287, 76, 89, 23);
-		contentPane.add(btnNewButton_2_1);
 		
 		JLabel lblNewLabel_6 = new JLabel("New label");
 		lblNewLabel_6.setIcon(new ImageIcon(getClass().getResource("/bg2.png")));

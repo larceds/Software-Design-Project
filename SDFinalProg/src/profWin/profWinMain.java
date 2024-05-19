@@ -25,15 +25,21 @@ import javax.swing.JSpinner;
 import javax.swing.JScrollBar;
 import javax.swing.JSeparator;
 import javax.swing.JScrollPane;
+import strWin.LogWindow;
 
 public class profWinMain extends JFrame {
-    static Connection c = null ;
-    static ResultSet rs=null;
+	static LogWindow login = new LogWindow();
+    static Connection c  ;
+    static ResultSet rs;
+    static Statement st;
+    String ln;
+    String fn;
+    String mn;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField txtTyson;
-	private JTextField txtMike;
-	private JTextField txtKingkong;
+	private JTextField lname;
+	private JTextField fname;
+	private JTextField mname;
 	private JTextField txtComputerScience;
 	private JTextField txtWebDeveloperAnd;
 	private JTextField txtDataProcessingInformation;
@@ -49,22 +55,18 @@ public class profWinMain extends JFrame {
 	public static void main(String[] args){
 		
 		//==============================================================================================
+		
+		
 		try {
-			  c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/view1","root","kenn232004");
-			  Statement st=c.createStatement();
-			  rs=st.executeQuery("select * from profview");
-			System.out.println("not gwenchana");	
-			}catch (Exception e){
-			System.out.println("gwenchanay");
-			}
-		Statement st;
-		try {
+			c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
 			st=c.createStatement();
-			rs=st.executeQuery("select * from profview");
-			String s ="insert into profview"+"(lastname,firstname,Middlename,email)"+"values ('asd','fgh','qwe','rty')";
+			rs=st.executeQuery("select * from users where lname = '"+login.log+"'");
+			//String s ="insert into profview"+"(lastname,firstname,Middlename,email)"+"values ('asd','fgh','qwe','rty')";
 			//st.executeUpdate(s);
+			
+			System.out.println("gwenchana");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			System.out.println("gwenchanay");
 			e.printStackTrace();
 		}
 		//=========================================================================================================
@@ -87,6 +89,23 @@ public class profWinMain extends JFrame {
 	 * Create the frame.
 	 */
 	public profWinMain() {
+		System.out.println(login.log);
+		System.out.println(login.idn);
+		
+		try {
+			c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
+			st=c.createStatement();
+			rs=st.executeQuery("select * from users where lname = '"+login.log+"'");
+			while(rs.next()) {
+				ln = rs.getString("lname");
+				fn = rs.getString("fname");
+				mn = rs.getString("mname");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		setAlwaysOnTop(true);
 		setBackground(new Color(255, 0, 0));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -122,7 +141,7 @@ public class profWinMain extends JFrame {
 		btnNewButton_1.setBackground(new Color(128, 0, 0));
 		btnNewButton_1.setForeground(new Color(255, 255, 255));
 		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton_1.setBounds(204, 79, 89, 23);
+		btnNewButton_1.setBounds(236, 79, 89, 23);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Schedule");
@@ -136,7 +155,7 @@ public class profWinMain extends JFrame {
 		btnNewButton_2.setBackground(new Color(128, 0, 0));
 		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
-		btnNewButton_2.setBounds(116, 79, 89, 23);
+		btnNewButton_2.setBounds(116, 79, 117, 23);
 		contentPane.add(btnNewButton_2);
 		
 		JLabel lblNewLabel_1 = new JLabel("New label");
@@ -166,8 +185,6 @@ public class profWinMain extends JFrame {
 		lblNewLabel_3.setFont(new Font("Sitka Text", Font.BOLD, 15));
 		lblNewLabel_3.setBounds(61, 152, 172, 32);
 		contentPane.add(lblNewLabel_3);
-		
-		JLabel lblNewLabel_4 = new JLabel();
 		try {
 			c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/view1","root","kenn232004");
 			  Statement st=c.createStatement();
@@ -180,19 +197,15 @@ public class profWinMain extends JFrame {
 				  fname=rs.getString(2);
 				   Lname = rs.getString(1);
 			  }
-			  lblNewLabel_4.setText("Welcome, " + Lname + " " + fname +" " + mname);
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			
 		}
 		
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_4.setBounds(38, 113, 389, 14);
-		contentPane.add(lblNewLabel_4);
-		
-		txtTyson = new JTextField();
-		txtTyson.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtTyson.setHorizontalAlignment(SwingConstants.CENTER);
+		lname = new JTextField(ln);
+		lname.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lname.setHorizontalAlignment(SwingConstants.CENTER);
+		/*
 		try {
 			c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/view1","root","kenn232004");
 			  Statement st=c.createStatement();
@@ -201,19 +214,20 @@ public class profWinMain extends JFrame {
 			  while(rs.next()) {
 				   Lname = rs.getString(1);
 			  }
-			txtTyson.setText(Lname);
+			lname.setText(Lname);
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			
-		}
-		txtTyson.setEditable(false);
-		txtTyson.setBounds(38, 195, 167, 20);
-		contentPane.add(txtTyson);
-		txtTyson.setColumns(10);
+		}*/
+		lname.setEditable(false);
+		lname.setBounds(38, 195, 167, 20);
+		contentPane.add(lname);
+		lname.setColumns(10);
 		
-		txtMike = new JTextField();
-		txtMike.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtMike.setHorizontalAlignment(SwingConstants.CENTER);
+		fname = new JTextField(fn);
+		fname.setFont(new Font("Tahoma", Font.BOLD, 11));
+		fname.setHorizontalAlignment(SwingConstants.CENTER);
+		/*
 		try {
 			c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/view1","root","kenn232004");
 			  Statement st=c.createStatement();
@@ -222,18 +236,19 @@ public class profWinMain extends JFrame {
 			  while(rs.next()) {
 				   Lname = rs.getString(1);
 			  }
-			txtMike.setText(Lname);
+			fname.setText(Lname);
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			
-		}
-		txtMike.setEditable(false);
-		txtMike.setBounds(208, 195, 172, 20);
-		contentPane.add(txtMike);
-		txtMike.setColumns(10);
+		}*/
+		fname.setEditable(false);
+		fname.setBounds(208, 195, 172, 20);
+		contentPane.add(fname);
+		fname.setColumns(10);
 		
-		txtKingkong = new JTextField();
-		txtKingkong.setEditable(false);
+		mname = new JTextField(mn);
+		mname.setEditable(false);
+		/*
 		try {
 			c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/view1","root","kenn232004");
 			  Statement st=c.createStatement();
@@ -242,16 +257,17 @@ public class profWinMain extends JFrame {
 			  while(rs.next()) {
 				   Lname = rs.getString(1);
 			  }
-			txtKingkong.setText(Lname);
+			mname.setText(Lname);
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			
-		}
-		txtKingkong.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtKingkong.setHorizontalAlignment(SwingConstants.CENTER);
-		txtKingkong.setBounds(383, 195, 167, 20);
-		contentPane.add(txtKingkong);
-		txtKingkong.setColumns(10);
+		}*/
+		
+		mname.setFont(new Font("Tahoma", Font.BOLD, 11));
+		mname.setHorizontalAlignment(SwingConstants.CENTER);
+		mname.setBounds(383, 195, 167, 20);
+		contentPane.add(mname);
+		mname.setColumns(10);
 		
 		JLabel lblNewLabel_5 = new JLabel("Last Name");
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 12));
