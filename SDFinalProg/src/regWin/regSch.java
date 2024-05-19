@@ -66,6 +66,7 @@ public class regSch {
 	int row;
 	int i;
 	private JTextField editSEC;
+	private JTextField tr_edit;
 
 	/**
 	 * Launch the application.
@@ -121,29 +122,29 @@ public class regSch {
 		panel.add(done);
 		
 		tin = new JTextField();
-		tin.setBounds(111, 74, 70, 20);
+		tin.setBounds(67, 74, 70, 20);
 		panel.add(tin);
 		tin.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Time in");
-		lblNewLabel_2.setBounds(111, 55, 70, 14);
+		lblNewLabel_2.setBounds(67, 55, 70, 14);
 		panel.add(lblNewLabel_2);
 		
 		JLabel lblNewJgoodiesLabel = DefaultComponentFactory.getInstance().createLabel("Subject");
-		lblNewJgoodiesLabel.setBounds(304, 55, 92, 14);
+		lblNewJgoodiesLabel.setBounds(227, 55, 92, 14);
 		panel.add(lblNewJgoodiesLabel);
 		
 		tout = new JTextField();
 		tout.setColumns(10);
-		tout.setBounds(201, 74, 70, 20);
+		tout.setBounds(147, 74, 70, 20);
 		panel.add(tout);
 		
 		JLabel lblNewLabel_2_1 = new JLabel("Time out");
-		lblNewLabel_2_1.setBounds(201, 55, 70, 14);
+		lblNewLabel_2_1.setBounds(147, 55, 70, 14);
 		panel.add(lblNewLabel_2_1);
 		
 		JLabel lblNewLabel_2_2 = new JLabel("Profesor");
-		lblNewLabel_2_2.setBounds(510, 55, 70, 14);
+		lblNewLabel_2_2.setBounds(428, 55, 70, 14);
 		panel.add(lblNewLabel_2_2);
 		
 		JLabel lblNewJgoodiesLabel_1 = DefaultComponentFactory.getInstance().createLabel("Schedule Registration");
@@ -186,11 +187,11 @@ public class regSch {
 			e1.printStackTrace();
 		}
 		JComboBox<String> sub = new JComboBox(subj.toArray());
-		sub.setBounds(304, 73, 191, 21);
+		sub.setBounds(227, 73, 191, 21);
 		panel.add(sub);
 		
 		JComboBox prof = new JComboBox(proff.toArray());
-		prof.setBounds(507, 73, 191, 21);
+		prof.setBounds(428, 73, 191, 21);
 		panel.add(prof);
 		
 		JPanel panel_1 = new JPanel();
@@ -257,8 +258,21 @@ public class regSch {
 		}
 		
 		JComboBox sect = new JComboBox(section.toArray());
-		sect.setBounds(719, 73, 102, 21);
+		sect.setBounds(629, 73, 102, 21);
 		panel.add(sect);
+		
+		JComboBox tr = new JComboBox(new Object[] {"First","Second","Summer"});
+		tr.setBounds(741, 73, 102, 21);
+		panel.add(tr);
+		
+		try {
+			rs = st.executeQuery("select s from users");
+			while(rs.next()) {
+				section.add(rs.getString("s"));
+			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
 		
 		JButton save = new JButton("Save");
 		save.addActionListener(new ActionListener() {
@@ -268,6 +282,7 @@ public class regSch {
 				String s = sub.getSelectedItem().toString();
 				String p = prof.getSelectedItem().toString();
 				String se = sect.getSelectedItem().toString();
+				String t = tr.getSelectedItem().toString();
 				
 				try {
 					c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
@@ -276,8 +291,8 @@ public class regSch {
 					rs = st.executeQuery("select * from sch");
 					
 					String str = "insert into sch"
-							+ "(tin,tout,sub,prof,sec)"
-							+ " values ("+tmin+","+tmout+",'"+s+"','"+p+"','"+se+"')";
+							+ "(tin,tout,sub,prof,sec,term)"
+							+ " values ("+tmin+","+tmout+",'"+s+"','"+p+"','"+se+"','"+t+"')";
 					
 					st.executeUpdate(str);
 					JOptionPane.showMessageDialog(null, "Successfully Added a new schedule");
@@ -296,7 +311,7 @@ public class regSch {
 		tm.addColumn("Time out");
 		tm.addColumn("Subject");
 		tm.addColumn("Professor"); 
-		tm.addColumn("Sectiom");
+		tm.addColumn("Section");
 		
 		
 		try {
@@ -320,17 +335,14 @@ public class regSch {
 		schd.setModel(tm);
 		
 		JLabel lblNewLabel_8 = new JLabel("Section");
-		lblNewLabel_8.setBounds(722, 56, 45, 13);
+		lblNewLabel_8.setBounds(629, 56, 45, 13);
 		panel.add(lblNewLabel_8);
 		
-		try {
-			rs = st.executeQuery("select s from users");
-			while(rs.next()) {
-				section.add(rs.getString("s"));
-			}
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
+		JLabel lblNewLabel_9 = new JLabel("Term");
+		lblNewLabel_9.setBounds(739, 56, 45, 13);
+		panel.add(lblNewLabel_9);
+		
+		
 		
 		/*
 		JButton ref = new JButton("Refresh");
@@ -415,22 +427,22 @@ public class regSch {
 		
 		schTIN = new JTextField();
 		schTIN.setColumns(10);
-		schTIN.setBounds(111, 88, 70, 20);
+		schTIN.setBounds(72, 88, 70, 20);
 		panel_2.add(schTIN);
 		
 		schTOUT = new JTextField();
 		schTOUT.setColumns(10);
-		schTOUT.setBounds(199, 88, 70, 20);
+		schTOUT.setBounds(152, 88, 70, 20);
 		panel_2.add(schTOUT);
 		
 		schSUB = new JTextField();
 		schSUB.setColumns(10);
-		schSUB.setBounds(302, 88, 169, 20);
+		schSUB.setBounds(232, 88, 169, 20);
 		panel_2.add(schSUB);
 		
 		schPRF = new JTextField();
 		schPRF.setColumns(10);
-		schPRF.setBounds(499, 88, 169, 20);
+		schPRF.setBounds(411, 88, 169, 20);
 		panel_2.add(schPRF);
 		
 		scrollPane_2.setBounds(72, 151, 869, 295);
@@ -439,7 +451,7 @@ public class regSch {
 		
 		editSEC = new JTextField();
 		editSEC.setColumns(10);
-		editSEC.setBounds(698, 88, 70, 20);
+		editSEC.setBounds(590, 88, 70, 20);
 		panel_2.add(editSEC);
 		
 		schedTBL.addMouseListener(new MouseAdapter() {
@@ -489,19 +501,19 @@ public class regSch {
 		
 		
 		JLabel lblNewLabel_7 = new JLabel("Time in");
-		lblNewLabel_7.setBounds(111, 73, 46, 14);
+		lblNewLabel_7.setBounds(72, 73, 46, 14);
 		panel_2.add(lblNewLabel_7);
 		
 		JLabel lblNewLabel_7_1 = new JLabel("Time out");
-		lblNewLabel_7_1.setBounds(199, 73, 70, 14);
+		lblNewLabel_7_1.setBounds(148, 73, 70, 14);
 		panel_2.add(lblNewLabel_7_1);
 		
 		JLabel lblNewLabel_7_2 = new JLabel("Subject ");
-		lblNewLabel_7_2.setBounds(302, 73, 56, 14);
+		lblNewLabel_7_2.setBounds(232, 73, 56, 14);
 		panel_2.add(lblNewLabel_7_2);
 		
 		JLabel lblNewLabel_7_3 = new JLabel("Profesor ");
-		lblNewLabel_7_3.setBounds(499, 73, 63, 14);
+		lblNewLabel_7_3.setBounds(411, 73, 63, 14);
 		panel_2.add(lblNewLabel_7_3);
 		
 		JButton done3 = new JButton("Done");
@@ -517,8 +529,17 @@ public class regSch {
 		panel_2.add(done3);
 		
 		JLabel lblNewLabel_8_1 = new JLabel("Section");
-		lblNewLabel_8_1.setBounds(698, 74, 45, 13);
+		lblNewLabel_8_1.setBounds(590, 74, 45, 13);
 		panel_2.add(lblNewLabel_8_1);
+		
+		JLabel lblNewLabel_10 = new JLabel("Term");
+		lblNewLabel_10.setBounds(672, 74, 45, 13);
+		panel_2.add(lblNewLabel_10);
+		
+		tr_edit = new JTextField();
+		tr_edit.setBounds(672, 88, 96, 19);
+		panel_2.add(tr_edit);
+		tr_edit.setColumns(10);
 		
 		
 		

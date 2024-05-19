@@ -4,6 +4,7 @@ import java.sql.Connection;
 import stdWin.stdWinMain;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Struct;
 import java.util.ArrayList;
@@ -33,10 +34,13 @@ public class LogWindow {
 	Statement st = null;
 	ResultSet rs = null;
 	public static String log;
+	public static int idn;
+	public static String sect;
 	
 	ArrayList<Integer> num = new ArrayList();
 	ArrayList<String> pw = new ArrayList();
 	ArrayList<String> user_type = new ArrayList();
+	ArrayList<String> sec = new ArrayList();
 
 ;
 	public JFrame frame;
@@ -127,6 +131,8 @@ public class LogWindow {
 		panel_1.add(id);
 		id.setColumns(10);
 		
+		
+		
 		JPasswordField password = new JPasswordField("");
 		password.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		password.setForeground(Color.BLACK);
@@ -190,6 +196,7 @@ public class LogWindow {
 						num.add(rs.getInt("id_num"));
 						pw.add(rs.getString("lname"));
 						user_type.add(rs.getString("user_type"));
+						sec.add(rs.getString("s"));
 					}
 					
 					 System.out.println("Connection established");
@@ -201,11 +208,14 @@ public class LogWindow {
 					 
 					 if(pw.get(counter).equalsIgnoreCase(String.valueOf(password.getPassword()))) {
 						 JOptionPane.showMessageDialog(null, "Successfully Logged in \n Welcome!");
+						 sect = sec.get(counter);
 						 log = pw.get(counter);
+						 idn =Integer.parseInt(id.getText());
 						 if(user_type.get(counter).equals("student")) {
 								frame.dispose();
 								stdWinMain student = new stdWinMain();
 								student.setVisible(true);
+								
 							}else if(user_type.get(counter).equals("professor")){
 								frame.dispose();
 								profWinMain prof = new profWinMain();
@@ -221,6 +231,8 @@ public class LogWindow {
 					 }
 					
 				   } catch(Exception err) {System.out.print(err);}
+				
+				
 			}});
 		
 	}

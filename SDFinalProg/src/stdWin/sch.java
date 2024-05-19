@@ -19,20 +19,23 @@ import javax.swing.JScrollPane;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import strWin.LogWindow;
 
 public class sch {
 	static Connection c = null;
 	static Statement st = null;
 	static ResultSet rs = null;
+	public static LogWindow log = new LogWindow();
 
 	JFrame frame;
 	private JTable table;
 
 	public static void main(String[] args) {
+		
 		try {
 			c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
 		    st = c.createStatement();
-		    rs = st.executeQuery("SELECT * FROM schedule");
+		    rs = st.executeQuery("SELECT * FROM sch");
 		    System.out.println("success");
 		} catch (Exception e) {
 		    System.out.println("error");
@@ -46,6 +49,7 @@ public class sch {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				
 			}
 		});
 	}
@@ -54,6 +58,7 @@ public class sch {
 		initialize();
 	}
 	private void initialize() {
+		System.out.println(log.sect);
 		frame = new JFrame();
 		frame.getContentPane().setEnabled(false);
 		frame.getContentPane().setBackground(Color.PINK);
@@ -69,23 +74,44 @@ public class sch {
 				win.setVisible(true);
 			}
 		});
-		
+		/*
 		DefaultTableModel m = new DefaultTableModel();
 		m.addColumn("Subject Code");
 		m.addColumn("Description");
 		m.addColumn("Units");
-		m.addColumn("Schedule");
-		
+		m.addColumn("Time in");
+		m.addColumn("Time out");
+		*/
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(43, 170, 907, 334);
 		frame.getContentPane().add(scrollPane);
 		
-		table = new JTable(m);
+		table = new JTable();
 		scrollPane.setViewportView(table);
 		btnNewButton.setBounds(101, 82, 74, 24);
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(128, 0, 0));
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		table.setModel(new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {
+					 "Subject", "Prof", "Time in", "Time out"
+				}
+			) {
+				boolean[] columnEditables = new boolean[] {
+					false, false, true, false, false
+				};
+				public boolean isCellEditable(int row, int column) {
+					return columnEditables[column];
+				}
+			});
+		
+		table.getColumnModel().getColumn(0).setResizable(false);
+		table.getColumnModel().getColumn(1).setResizable(false);
+		table.getColumnModel().getColumn(2).setResizable(false);
+		table.getColumnModel().getColumn(3).setResizable(false);
+		//table.getColumnModel().getColumn(4).setResizable(false);
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Profile");
@@ -111,7 +137,7 @@ public class sch {
 				win.frame.setVisible(true);
 			}
 		});
-		btnSchedule.setBounds(169, 82, 77, 24);
+		btnSchedule.setBounds(169, 82, 97, 24);
 		btnSchedule.setForeground(new Color(255, 255, 255));
 		btnSchedule.setBackground(new Color(128, 0, 0));
 		btnSchedule.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -151,37 +177,12 @@ public class sch {
 		lblNewLabel_3.setBounds(33, 147, 88, 13);
 		frame.getContentPane().add(lblNewLabel_3);
 
-		try {
-		    
-		    Statement st = c.createStatement();
-		    ResultSet rs = st.executeQuery("SELECT * FROM schedule");
-		    ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
-		    
-		    int cols = rsmd.getColumnCount();
-		    String[] colName = new String[cols];
-		    for (int i = 0; i < cols; i++) {
-		        colName[i] = rsmd.getColumnName(i + 1);
-		    }
-		    
-		    DefaultTableModel model = new DefaultTableModel(colName, 0);
-		    while (rs.next()) {
-		        Object[] rowData = new Object[cols];
-		        for (int i = 0; i < cols; i++) {
-		            rowData[i] = rs.getObject(i + 1);
-		        }
-		        model.addRow(rowData); 
-		    }
-
-		    System.out.println("success");
-		} catch (Exception e) {
-		    System.out.println("error");
-		    e.printStackTrace();
-		}
 		
+		/*
 		try {
 		    
 		    Statement st = c.createStatement();
-		    ResultSet rs = st.executeQuery("SELECT * FROM schedule.timetable");
+		    ResultSet rs = st.executeQuery("SELECT * FROM sch");
 		    ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
 		    
 		    int cols = rsmd.getColumnCount();
@@ -204,24 +205,61 @@ public class sch {
 		    System.out.println("error");
 		    e.printStackTrace();
 		}
+		*/
 		
 		JComboBox schoolYear = new JComboBox();
 		schoolYear.setFont(new Font("Tahoma", Font.BOLD, 10));
-		schoolYear.setModel(new DefaultComboBoxModel(new String[] { "2023 - 2024", "2024 - 2025"}));
+		schoolYear.setModel(new DefaultComboBoxModel(new String[] { "2024 - 2025", "2025 - 2026"}));
 		schoolYear.setBounds(112, 144, 110, 21);
 		frame.getContentPane().add(schoolYear);
 		
 		JComboBox semester = new JComboBox();
 		semester.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String sy = schoolYear.getSelectedItem().toString();
+				String sem = semester.getSelectedItem().toString();
+				
+				try {
+					c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
+				    Statement st = c.createStatement();
+				    ResultSet rs = st.executeQuery("SELECT sub, prof, tin, tout FROM sch where sec = '"+log.sect+"' && sy = '"+sy+"' && term = '"+sem+"'");
+				    ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
+				    
+				    int cols = rsmd.getColumnCount();
+				    String[] colName = new String[cols];
+				    for (int i = 0; i < cols; i++) {
+				        colName[i] = rsmd.getColumnName(i + 1);
+				    }
+				    
+				    DefaultTableModel model = (DefaultTableModel) table.getModel();
+				    model.setRowCount(0);
+				    while (rs.next()) {
+				        Object[] rowData = new Object[cols];
+				        for (int i = 0; i < cols; i++) {
+				            rowData[i] = rs.getObject(i + 1);
+				        }
+				        model.addRow(rowData); 
+				    }
+
+				    System.out.println("success");
+				} catch (Exception e2) {
+				    System.out.println("error");
+				    e2.printStackTrace();
+				}
+			}
+		});
+		/*
+		semester.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				String selectedOption = (String) semester.getSelectedItem();
 				String selectedOption1 = (String) schoolYear.getSelectedItem();
+				
 				if(selectedOption.equals("First")) {
 					if(selectedOption1.equals("2022 - 2023")) {
 						try {
 			                
 			                Statement st = c.createStatement();
-			                ResultSet rs = st.executeQuery("SELECT * FROM schedule.schedule");
+			                ResultSet rs = st.executeQuery("SELECT * FROM sch");
 			                ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
 
 			                int cols = rsmd.getColumnCount();
@@ -238,7 +276,7 @@ public class sch {
 			                    }
 			                    model.addRow(rowData);
 			                }
-			                /*
+			                
 			                tblData = new JTable() {
 			                    @Override
 			                    public boolean isCellEditable(int row, int column) {
@@ -250,7 +288,7 @@ public class sch {
 			                tblData.setModel(model);
 
 			                scrollPane.setViewportView(tblData);
-			                */
+			                
 			                System.out.println("success");
 			            } catch (Exception a) {
 			                System.out.println("error");
@@ -304,7 +342,7 @@ public class sch {
 			                    }
 			                    model.addRow(rowData);
 			                }
-/*
+
 			                tblData = new JTable() {
 			                    @Override
 			                    public boolean isCellEditable(int row, int column) {
@@ -316,7 +354,7 @@ public class sch {
 			                tblData.setModel(model);
 
 			                scrollPane.setViewportView(tblData);
-			                */
+			                
 			                System.out.println("success");
 			            } catch (Exception b) {
 			                System.out.println("error");
@@ -369,7 +407,7 @@ public class sch {
 			                    }
 			                    model.addRow(rowData);
 			                }
-/*
+
 			                tblData = new JTable() {
 			                    @Override
 			                    public boolean isCellEditable(int row, int column) {
@@ -381,7 +419,7 @@ public class sch {
 			                tblData.setModel(model);
 
 			                scrollPane.setViewportView(tblData);
-*/
+
 			                System.out.println("success");
 			            } catch (Exception c) {
 			                System.out.println("error");
@@ -438,7 +476,7 @@ public class sch {
 			                    }
 			                    model.addRow(rowData);
 			                }
-			                /*
+			                
 			                tblData = new JTable() {
 			                    @Override
 			                    public boolean isCellEditable(int row, int column) {
@@ -450,7 +488,7 @@ public class sch {
 			                tblData.setModel(model);
 
 			                scrollPane.setViewportView(tblData);
-							*/
+							
 			                System.out.println("success");
 			            } catch (Exception d) {
 			                System.out.println("error");
@@ -504,7 +542,7 @@ public class sch {
 			                    }
 			                    model.addRow(rowData);
 			                }
-/*
+
 			                tblData = new JTable() {
 			                    @Override
 			                    public boolean isCellEditable(int row, int column) {
@@ -516,7 +554,7 @@ public class sch {
 			                tblData.setModel(model);
 
 			                scrollPane.setViewportView(tblData);
-*/
+
 			                System.out.println("success");
 			            } catch (Exception f) {
 			                System.out.println("error");
@@ -570,7 +608,7 @@ public class sch {
 			                    }
 			                    model.addRow(rowData);
 			                }
-/*
+
 			                tblData = new JTable() {
 			                    @Override
 			                    public boolean isCellEditable(int row, int column) {
@@ -582,7 +620,7 @@ public class sch {
 			                tblData.setModel(model);
 
 			                scrollPane.setViewportView(tblData);
-*/
+
 			                System.out.println("success");
 			            } catch (Exception g) {
 			                System.out.println("error");
@@ -638,7 +676,7 @@ public class sch {
 					        }
 					        model.addRow(rowData); 
 					    }
-/*
+
 					    tblData = new JTable() {
 					        @Override
 					        public boolean isCellEditable(int row, int column) {
@@ -650,7 +688,7 @@ public class sch {
 					    tblData.setModel(model); 
 
 					    scrollPane.setViewportView(tblData);
-*/
+
 					    System.out.println("success");
 					} catch (Exception d) {
 					    System.out.println("error");
@@ -660,6 +698,7 @@ public class sch {
 				
 			}
 		});
+		*/
 		semester.setModel(new DefaultComboBoxModel(new String[] {"First", "Second", "Summer"}));
 		semester.setFont(new Font("Tahoma", Font.BOLD, 11));
 		semester.setBounds(267, 144, 88, 21);
@@ -669,20 +708,6 @@ public class sch {
 		lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
 		lblNewLabel.setBounds(0, 0, 1137, 73);
 		frame.getContentPane().add(lblNewLabel);
-		
-		JButton btnSchedule_1 = new JButton("Account");
-		btnSchedule_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				acc win= new acc();
-				win.frame.setVisible(true);
-			}
-		});
-		btnSchedule_1.setForeground(new Color(255, 255, 255));
-		btnSchedule_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnSchedule_1.setBackground(new Color(128, 0, 0));
-		btnSchedule_1.setBounds(244, 82, 77, 24);
-		frame.getContentPane().add(btnSchedule_1);
 		
 		JLabel lblNewLabel_5_1 = new JLabel("New label");
 		lblNewLabel_5_1.setIcon(new ImageIcon(getClass().getResource("/bg2.png")));

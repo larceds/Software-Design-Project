@@ -13,6 +13,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import javax.swing.JCheckBox;
@@ -33,15 +34,20 @@ import java.awt.event.ActionEvent;
 import strWin.LogWindow;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class gr {
 	String cs = null;
 	Connection c = null;
 	Statement st = null;
 	ResultSet rs = null;
+	int row;
+	int value;
 	ArrayList<String> subj = new ArrayList();
 	HashSet<String> crse = new HashSet();
 	JFrame frame;
+	int[] grades = new int[4];
 	private JTable table;
 
 	/**
@@ -176,6 +182,8 @@ public class gr {
 		frame.getContentPane().add(btnNewButton_6);
 		
 		JScrollPane scrollPane = new JScrollPane();
+		
+		
 		scrollPane.setBounds(66, 193, 859, 273);
 		frame.getContentPane().add(scrollPane);
 		
@@ -222,6 +230,26 @@ public class gr {
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				row=table.getSelectedRow();
+				value =(int) table.getModel().getValueAt(row, 0);
+				try {
+					rs = st.executeQuery("select prelims,midterms,finals from tempgrd where st_id = "+value);
+					while(rs.next()) {
+						grades[0]= Integer.parseInt(rs.getString("prelims"));
+						grades[1]= Integer.parseInt(rs.getString("midterms"));
+						grades[2]= Integer.parseInt(rs.getString("finals"));
+						grades[3]= (grades[0] +grades[1]+grades[2])/3;
+					}
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		
 		table.getTableHeader().setReorderingAllowed(false);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -269,6 +297,7 @@ public class gr {
 						
 						ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
 						
+						
 						int col= rsmd.getColumnCount();
 					String[] colName = new String[col];
 						for (int i=0;i<col;i++) {
@@ -296,12 +325,30 @@ public class gr {
 		});
 		
 		
-		JButton btnNewButton = new JButton("Approve");
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton.setBackground(new Color(131, 7, 11));
-		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.setBounds(10, 477, 89, 23);
-		frame.getContentPane().add(btnNewButton);
+		JButton app = new JButton("Approve");
+		app.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
+					st = c.createStatement();
+					//rs = st.executeQuery("select * from tempgrd");
+					String str = "delete from tempgrd where st_id = "+value+" && sub ='"+sub.getSelectedItem().toString()+"'";
+					st.executeUpdate(str);
+					str = "insert into grd (st_id,prelims,midterms,finals,sub,overall) "
+							+ "values ("+value+","+grades[0]+","+grades[1]+","+grades[2]+",'"+sub.getSelectedItem().toString()+"',"+grades[3]+")";
+					st.executeUpdate(str);
+					JOptionPane.showMessageDialog(null, "Grades Approved!");
+				} catch (SQLException e1) {
+
+					e1.printStackTrace();
+				}
+			}
+		});
+		app.setFont(new Font("Tahoma", Font.BOLD, 11));
+		app.setBackground(new Color(131, 7, 11));
+		app.setForeground(new Color(255, 255, 255));
+		app.setBounds(66, 476, 89, 23);
+		frame.getContentPane().add(app);
 		
 		/*
 		JCheckBox chckbxNewCheckBox = new JCheckBox("Select All ");

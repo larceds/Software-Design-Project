@@ -363,6 +363,7 @@ public class stdWinMain extends JFrame {
 		txtTyson.setEnabled(false);
 		txtTyson.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtTyson.setHorizontalAlignment(SwingConstants.CENTER);
+		/*
 		try {
 			c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/view1","root","kenn232004");
 			  Statement st=c.createStatement();
@@ -376,6 +377,7 @@ public class stdWinMain extends JFrame {
 			// TODO Auto-generated catch block
 			
 		}
+		*/
 		txtTyson.setEditable(false);
 		txtTyson.setBounds(133, 335, 170, 20);
 		contentPane.add(txtTyson);
@@ -385,6 +387,7 @@ public class stdWinMain extends JFrame {
 		txtMike.setEnabled(false);
 		txtMike.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtMike.setHorizontalAlignment(SwingConstants.CENTER);
+		/*
 		try {
 			c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/view1","root","kenn232004");
 			  Statement st=c.createStatement();
@@ -398,6 +401,7 @@ public class stdWinMain extends JFrame {
 			// TODO Auto-generated catch block
 			
 		}
+		*/
 		txtMike.setEditable(false);
 		txtMike.setBounds(302, 335, 170, 20);
 		contentPane.add(txtMike);
@@ -406,6 +410,7 @@ public class stdWinMain extends JFrame {
 		txtKingkong = new JTextField();
 		txtKingkong.setEnabled(false);
 		txtKingkong.setEditable(false);
+		/*
 		try {
 			c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/view1","root","kenn232004");
 			  Statement st=c.createStatement();
@@ -419,6 +424,7 @@ public class stdWinMain extends JFrame {
 			// TODO Auto-generated catch block
 			
 		}
+		*/
 		txtKingkong.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtKingkong.setHorizontalAlignment(SwingConstants.CENTER);
 		txtKingkong.setBounds(471, 335, 170, 20);
@@ -538,6 +544,7 @@ public class stdWinMain extends JFrame {
 		txtMiketysoncvteaceduph.setEditable(false);
 		txtMiketysoncvteaceduph.setEnabled(false);
 		txtMiketysoncvteaceduph.setFont(new Font("Tahoma", Font.BOLD, 11));
+		/*
 		try {
 			c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/view1","root","kenn232004");
 			  Statement st=c.createStatement();
@@ -551,6 +558,7 @@ public class stdWinMain extends JFrame {
 			// TODO Auto-generated catch block
 			
 		}
+		*/
 		txtMiketysoncvteaceduph.setBounds(357, 376, 143, 20);
 		contentPane.add(txtMiketysoncvteaceduph);
 		txtMiketysoncvteaceduph.setColumns(10);
@@ -567,20 +575,6 @@ public class stdWinMain extends JFrame {
 		txtTeachingYears.setBounds(357, 424, 143, 20);
 		contentPane.add(txtTeachingYears);
 		txtTeachingYears.setColumns(10);
-		
-		JButton btnNewButton_2_1 = new JButton("Account");
-		btnNewButton_2_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				acc win= new  acc();
-				win.frame.setVisible(true);
-			}
-		});
-		btnNewButton_2_1.setForeground(Color.WHITE);
-		btnNewButton_2_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton_2_1.setBackground(new Color(128, 0, 0));
-		btnNewButton_2_1.setBounds(286, 79, 89, 23);
-		contentPane.add(btnNewButton_2_1);
 		
 		JButton btnNewButton_3_1 = new JButton("Change Password");
 		btnNewButton_3_1.setForeground(Color.WHITE);
