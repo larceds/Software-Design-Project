@@ -261,37 +261,41 @@ public class gr {
 				if(e.getSource()==sub) {
 					cs = sub.getSelectedItem().toString();
 					System.out.println(cs);
+			//Placed connection inside ComboBox listener 		
+					try {
+						c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
+						 st= c.createStatement();
+						 rs = st.executeQuery( "select st_id, prelims, midterms , finals from tempgrd where sub ='"+cs+"'" );
+						
+						ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
+						
+						int col= rsmd.getColumnCount();
+					String[] colName = new String[col];
+						for (int i=0;i<col;i++) {
+					colName[i]=rsmd.getColumnClassName(i+1);
+						}
+						
+						DefaultTableModel m= (DefaultTableModel) table.getModel();
+						
+						m.setRowCount(0); //Resets table rows to 0 to let system add new rows
+						while(rs.next()) {
+							Object[] rowData = new Object[col];
+					        for (int i = 0; i < col; i++) {
+					            rowData[i] = rs.getObject(i+1);
+						}
+					       m.addRow(rowData);}
+						 
+						 
+						System.out.println("success");
+					}catch(Exception e1){
+						System.out.print("error");
+						e1.printStackTrace();
+					}
 				}
 			}
 		});
 		
-		try {
-			c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
-			 st= c.createStatement();
-			 rs = st.executeQuery( "select st_id, prelims, midterms , finals from tempgrd where sub ='"+cs+"'" );
-			
-			ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
-			
-			int col= rsmd.getColumnCount();
-		String[] colName = new String[col];
-			for (int i=0;i<col;i++) {
-		colName[i]=rsmd.getColumnClassName(i+1);
-			}
-			
-			DefaultTableModel m= (DefaultTableModel) table.getModel();
-			while(rs.next()) {
-				Object[] rowData = new Object[col];
-		        for (int i = 0; i < col; i++) {
-		            rowData[i] = rs.getObject(i+1);
-			}
-		       m.addRow(rowData);}
-			 
-			 
-			System.out.println("success");
-		}catch(Exception e){
-			System.out.print("error");
-			e.printStackTrace();
-		}
+		
 		JButton btnNewButton = new JButton("Approve");
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton.setBackground(new Color(131, 7, 11));
