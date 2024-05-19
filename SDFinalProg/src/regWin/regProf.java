@@ -80,7 +80,7 @@ public class regProf {
 		
 		JButton btnNewButton = new JButton("Register");
 		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.setBackground(new Color(255, 0, 0));
+		btnNewButton.setBackground(new Color(128, 0, 0));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String ln = lname.getText();
@@ -141,8 +141,16 @@ public class regProf {
 		});
 		
 		JButton btnNewButton_1 = new JButton("Back");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				admWin.prof win = new admWin.prof();
+				win.frame.setVisible(true);
+				
+			}
+		});
 		btnNewButton_1.setForeground(new Color(255, 255, 255));
-		btnNewButton_1.setBackground(Color.RED);
+		btnNewButton_1.setBackground(new Color(128, 0, 0));
 		btnNewButton_1.setBounds(778, 81, 89, 23);
 		panel.add(btnNewButton_1);
 		

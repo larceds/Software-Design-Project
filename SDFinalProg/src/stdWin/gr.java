@@ -137,38 +137,9 @@ public class gr extends JFrame {
 			e1.printStackTrace();
 		}
 		
-		
-		
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.WHITE);
-		panel.setBounds(22, 133, 920, 402);
-		contentPane.add(panel);
-		panel.setLayout(null);
-		
-		JLabel lblNewLabel_1 = new JLabel("Attention to all students");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_1.setBounds(360, 11, 158, 14);
-		panel.add(lblNewLabel_1);
-		
-		JLabel lblNewLabel_2 = new JLabel("\tViewing of grades online is strictly for personal use only! Students who want an official copy from the Registrar for interoffice transaction's , must make a request for the official document from the Registrar's Office.  \r\n");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		lblNewLabel_2.setBounds(10, 25, 867, 28);
-		panel.add(lblNewLabel_2);
-		
-		JLabel lblNewLabel_3 = new JLabel("Your GRADES posted in AIMS from the previous school years were part of the data we migrated from the old enrollment system and are still subject for checking and validation from the registrar.");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		lblNewLabel_3.setBounds(48, 48, 848, 14);
-		panel.add(lblNewLabel_3);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(255, 255, 255));
-		panel_1.setBounds(10, 64, 886, 327);
-		panel.add(panel_1);
-		panel_1.setLayout(null);
-		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 0, 876, 327);
-		panel_1.add(scrollPane);
+		scrollPane.setBounds(47, 137, 876, 369);
+		contentPane.add(scrollPane);
 		
 		
 		table = new JTable();

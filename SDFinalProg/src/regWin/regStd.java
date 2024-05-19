@@ -26,6 +26,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.TextField;
+import javax.swing.ImageIcon;
 
 public class regStd {
 	Connection c = null;
@@ -301,6 +302,8 @@ public class regStd {
         panel_1.add(num);
         
         JButton enrollbut = new JButton("Enroll");
+        enrollbut.setForeground(new Color(255, 255, 255));
+        enrollbut.setBackground(new Color(128, 0, 0));
         enrollbut.addActionListener(new ActionListener() {
         	int number;
         	public void actionPerformed(ActionEvent e) {
@@ -438,17 +441,27 @@ public class regStd {
         panel_1.add(enrollbut);
         
         JButton backbut = new JButton("Back");
+        backbut.setForeground(new Color(255, 255, 255));
+        backbut.setBackground(new Color(128, 0, 0));
         backbut.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		frame.dispose();
+        		admWin.std win = new admWin.std();
+        		win.frame.setVisible(true);
         		
         	}
         });
-        backbut.setBounds(780, 10, 150, 30);
+        backbut.setBounds(767, 30, 150, 30);
         panel_1.add(backbut);
         
         cp = new JTextField();
         cp.setBounds(180, 470, 200, 30);
         panel_1.add(cp);
+        
+        JLabel lblNewLabel_1 = new JLabel("New label");
+        lblNewLabel_1.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
+        lblNewLabel_1.setBounds(0, 22, 940, 568);
+        panel_1.add(lblNewLabel_1);
         
        
 
@@ -457,5 +470,10 @@ public class regStd {
         lblWelcome.setFont(new Font("Tahoma", Font.BOLD, 20));
         lblWelcome.setBounds(20, 10, 940, 30);
         panel.add(lblWelcome);
+        
+        JLabel lblNewLabel = new JLabel("New label");
+        lblNewLabel.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
+        lblNewLabel.setBounds(0, 0, 967, 701);
+        panel.add(lblNewLabel);
     }
 }

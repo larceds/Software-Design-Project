@@ -19,6 +19,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class regSub {
 	Connection c = null;
@@ -58,7 +59,7 @@ public class regSub {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 518, 441);
+		frame.setBounds(100, 100, 518, 276);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -93,14 +94,21 @@ public class regSub {
 		frame.getContentPane().add(lblNewLabel_2);
 		
 		JButton back = new JButton("Back");
+		back.setBackground(new Color(128, 0, 0));
+		back.setForeground(new Color(255, 255, 255));
 		back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				admWin.crs win = new admWin.crs();
+				win.frame.setVisible(true);
 			}
 		});
-		back.setBounds(303, 344, 175, 21);
+		back.setBounds(245, 186, 175, 21);
 		frame.getContentPane().add(back);
 		
 		JButton save = new JButton("Save Subject");
+		save.setForeground(new Color(255, 255, 255));
+		save.setBackground(new Color(128, 0, 0));
 		save.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String s = sub.getText();
@@ -127,12 +135,12 @@ public class regSub {
 				
 			}
 		});
-		save.setBounds(303, 310, 170, 23);
+		save.setBounds(33, 185, 170, 23);
 		frame.getContentPane().add(save);
 		
 		JLabel lblNewLabel_4 = new JLabel("");
-		lblNewLabel_4.setIcon(new ImageIcon("C:\\Users\\Santos\\Desktop\\repo\\Software-Design-Project\\SDFinalProg\\src\\imgs\\bg.jpg"));
-		lblNewLabel_4.setBounds(0, 0, 502, 402);
+		lblNewLabel_4.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
+		lblNewLabel_4.setBounds(0, 0, 502, 237);
 		frame.getContentPane().add(lblNewLabel_4);
 		
 		

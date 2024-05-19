@@ -31,7 +31,7 @@ public class std {
 	Connection c = null;
 	Statement st = null;
 	ResultSet rs = null;
-	JFrame frame;
+	public JFrame frame;
 	private JTable table;
 	private JTextField txtStdNum;
 
@@ -142,17 +142,6 @@ public class std {
 		btnReg.setBounds(95, 448, 137, 23);
 		frame.getContentPane().add(btnReg);
 		
-		JButton btnChcStd = new JButton("Check Student");
-		btnChcStd.setBackground(new Color(131, 7, 11));
-		btnChcStd.setForeground(new Color(255, 255, 255));
-		btnChcStd.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnChcStd.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnChcStd.setBounds(105, 218, 127, 23);
-		frame.getContentPane().add(btnChcStd);
-		
 		txtStdNum = new JTextField();
 		txtStdNum.addKeyListener(new KeyAdapter() {
 			@Override
@@ -161,7 +150,6 @@ public class std {
 				TableRowSorter<DefaultTableModel> trs= new TableRowSorter<> ( m); 
 				trs.setRowFilter(RowFilter.regexFilter(txtStdNum.getText()));
 				table.setRowSorter(trs);
-				table.addRowSelectionInterval(0, 0);
 			}
 		});
 		txtStdNum.setBounds(95, 187, 147, 20);

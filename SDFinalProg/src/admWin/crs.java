@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.awt.event.ActionEvent;
 import javax.swing.JToolBar;
+import javax.swing.RowFilter;
 import javax.swing.JTabbedPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -23,6 +24,7 @@ import javax.swing.JMenu;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import javax.swing.JList;
@@ -30,13 +32,15 @@ import javax.swing.JComboBox;
 import javax.swing.JMenuBar;
 import java.awt.Color;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class crs {
 	Connection c = null;
 	Statement st = null;
 	ResultSet rs = null;
 
-	JFrame frame;
+	public JFrame frame;
 	private JTable table;
 	private JTable table_1;
 	private JTextField txtSearchBar;
@@ -218,18 +222,16 @@ public class crs {
 		tabbedPane_1.setBounds(0, 0, 0, 0);
 		panel_4.add(tabbedPane_1);
 		
-		JButton btnNewButton_1 = new JButton("Manage Courses");
-		btnNewButton_1.setBackground(new Color(131, 7, 11));
-		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton_1.setForeground(new Color(255, 255, 255));
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		txtSearchBar = new JTextField();
+		txtSearchBar.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				DefaultTableModel m= (DefaultTableModel) table.getModel();
+				TableRowSorter<DefaultTableModel> trs= new TableRowSorter<> ( m); 
+				trs.setRowFilter(RowFilter.regexFilter(txtSearchBar.getText()));
+				table.setRowSorter(trs);
 			}
 		});
-		btnNewButton_1.setBounds(639, 17, 141, 22);
-		panel_4.add(btnNewButton_1);
-		
-		txtSearchBar = new JTextField();
 		txtSearchBar.setText(" Search Bar...");
 		txtSearchBar.setBounds(27, 11, 135, 27);
 		panel_4.add(txtSearchBar);
@@ -299,12 +301,24 @@ public class crs {
 		btnNewButton_7.setBackground(new Color(131, 7, 11));
 		btnNewButton_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				regWin.regSub win = new regWin.regSub();
+				win.frame.setVisible(true);
 			}
 		});
 		btnNewButton_7.setBounds(654, 15, 132, 23);
 		panel_2.add(btnNewButton_7);
 		
 		txtSearchBar_1 = new JTextField();
+		txtSearchBar_1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				DefaultTableModel m= (DefaultTableModel) table.getModel();
+				TableRowSorter<DefaultTableModel> trs= new TableRowSorter<> ( m); 
+				trs.setRowFilter(RowFilter.regexFilter(txtSearchBar_1.getText()));
+				table.setRowSorter(trs);
+			}
+		});
 		txtSearchBar_1.setText("Search Bar... ");
 		txtSearchBar_1.setBounds(34, 11, 129, 27);
 		panel_2.add(txtSearchBar_1);

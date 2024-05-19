@@ -7,10 +7,12 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 import strWin.LogWindow;
 
 import javax.swing.JTextField;
+import javax.swing.RowFilter;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
@@ -23,13 +25,15 @@ import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class prof {
 	Connection c = null;
 	Statement st = null;
 	ResultSet rs = null;
 
-	JFrame frame;
+	public JFrame frame;
 	private JTable table;
 	private JTextField textField;
 
@@ -206,16 +210,18 @@ public class prof {
 		}
 		
 		textField = new JTextField();
+		textField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				DefaultTableModel m= (DefaultTableModel) table.getModel();
+				TableRowSorter<DefaultTableModel> trs= new TableRowSorter<> ( m); 
+				trs.setRowFilter(RowFilter.regexFilter(textField.getText()));
+				table.setRowSorter(trs);
+			}
+		});
 		textField.setBounds(47, 151, 140, 20);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
-		
-		JButton btnNewButton = new JButton("View");
-		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.setBackground(new Color(131, 7, 11));
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton.setBounds(197, 148, 89, 23);
-		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Register ");
 		btnNewButton_1.setBackground(new Color(131, 7, 11));

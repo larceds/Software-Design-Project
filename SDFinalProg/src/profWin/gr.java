@@ -148,7 +148,8 @@ public class gr {
 		        btnNewButton.addActionListener(new ActionListener() {
 		            public void actionPerformed(ActionEvent e) {
 		            	frame.dispose();
-		                //openGradesWindow();
+		                gr win = new gr();
+		                win.frame.setVisible(true);
 		            }
 		        });
 		        btnNewButton.setForeground(new Color(255, 255, 255));
@@ -184,6 +185,13 @@ public class gr {
 		        btnSchedule.setFont(new Font("Tahoma", Font.BOLD, 11));
 		        
 		        JButton btnNewButton_3 = new JButton("Logout");
+		        btnNewButton_3.addActionListener(new ActionListener() {
+		        	public void actionPerformed(ActionEvent e) {
+		        		frame.dispose();
+		        		strWin.LogWindow win = new strWin.LogWindow();
+		        		win.frame.setVisible(true);
+		        	}
+		        });
 		        btnNewButton_3.setBackground(new Color(131, 7, 11));
 		        btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		        btnNewButton_3.setForeground(new Color(255, 255, 255));
@@ -271,14 +279,8 @@ public class gr {
 		        frame.getContentPane().add(f);
 		        f.setColumns(10);
 		        
-		        //int temp2= (Integer.parseInt(p.getText())+Integer.parseInt(m.getText())+Integer.parseInt(f.getText()))/3;
-		        //String temp = String.valueOf(temp2);
-		        //System.out.println(temp2);
-		        
 		        o = new JTextField();
 		        o.setBounds(425, 150, 96, 19);
-		        //o.setEditable(false);
-		        //o.setText(temp);
 		        frame.getContentPane().add(o);
 		        o.setColumns(10);
 		        
@@ -336,66 +338,11 @@ public class gr {
 		        });
 		        btnNewButton_4.setBounds(550, 149, 85, 21);
 		        frame.getContentPane().add(btnNewButton_4);
-		        
-		        
-		        
+		          
 		        JLabel lblNewLabel_3 = new JLabel("New label");
 		        lblNewLabel_3.setIcon(new ImageIcon(getClass().getResource("/bg.jpg")));
 		        lblNewLabel_3.setBounds(-10, 104, 985, 424);
 		        frame.getContentPane().add(lblNewLabel_3);
-		        
-		        
-
-        // Other buttons and components omitted for brevity
-    }
-
-    /**
-     * Open the grades window.
-     */
-		    private void openGradesWindow() {
-			    	frame = new JFrame("Grades - 1st Semester");
-			        frame.setSize(600, 400);
-			        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	
-			        String[] columnNames = {"Subject", "Prelim", "Midterm", "Finals", "Average"};
-			        Object[][] data = {
-			            {"Numerical Method", 85, 78, 90, null},
-			            {"FEC Lecture", 80, 75, 85, null},	
-			            {"Art App", 88, 82, 87, null},
-			            {"Software Design Lecture", 75, 70, 80, null},
-			            {"Survival Technique", 90, 85, 95, null},
-			            {"FEC Lab", 85, 80, 88, null},
-			            {"Ethics", 92, 88, 95, null},
-			            {"Rizal", 78, 75, 85, null},
-			            {"Software Design Lab", 80, 76, 82, null}
-			        };
-	
-			        DefaultTableModel model = new DefaultTableModel(data, columnNames) {
-			            @Override
-			            public Class<?> getColumnClass(int columnIndex) {
-			                return columnIndex == 0 ? String.class : Integer.class;
-			            }
-	
-			            @Override
-			            public boolean isCellEditable(int row, int column) {
-			                return false;
-			            }
-			        };
-	
-			        JTable table = new JTable(model);
-	
-			        // Calculate average for each row and add to the table
-			        for (int row = 0; row < model.getRowCount(); row++) {
-			            int sum = 0;
-			            for (int col = 1; col < 4; col++) {
-			                sum += (int) model.getValueAt(row, col);
-			            }
-			            double average = sum / 3.0;
-			            model.setValueAt(String.format("%.2f", average), row, 4);
-			        }
-	
-			        JScrollPane scrollPane = new JScrollPane(table);
-			        frame.getContentPane().add(scrollPane);
-			        frame.setVisible(true);
+		     
 			    }
 			}

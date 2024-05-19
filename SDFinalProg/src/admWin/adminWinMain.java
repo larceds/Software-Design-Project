@@ -450,10 +450,10 @@ public class adminWinMain extends JFrame {
 				
 			}
 		});
-		btnNewButton_6.setBounds(383, 79, 97, 23);
+		btnNewButton_6.setBounds(382, 79, 97, 23);
 		contentPane.add(btnNewButton_6);
 		
-		JButton btnNewButton_7 = new JButton("Add Account");
+		JButton btnNewButton_7 = new JButton("Add Admin");
 		btnNewButton_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				regAdm ad = new regAdm();

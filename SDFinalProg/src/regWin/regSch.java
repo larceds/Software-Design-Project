@@ -110,6 +110,9 @@ public class regSch {
 		panel.setLayout(null);
 		
 		JButton done = new JButton("Done");
+		done.setForeground(new Color(255, 255, 255));
+		done.setBackground(new Color(128, 0, 0));
+		done.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		done.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -238,6 +241,8 @@ public class regSch {
 		del.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		
 		JButton done2 = new JButton("Done");
+		done2.setForeground(new Color(255, 255, 255));
+		done2.setBackground(new Color(128, 0, 0));
 		done2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -275,6 +280,8 @@ public class regSch {
 		}
 		
 		JButton save = new JButton("Save");
+		save.setForeground(new Color(255, 255, 255));
+		save.setBackground(new Color(128, 0, 0));
 		save.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int tmin = Integer.parseInt(tin.getText());
@@ -372,6 +379,8 @@ public class regSch {
 		panel_1.add(lblNewLabel_3);
 		
 		JButton dele = new JButton("Delete");
+		dele.setBackground(new Color(255, 255, 255));
+		dele.setForeground(new Color(255, 255, 255));
 		dele.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -480,6 +489,8 @@ public class regSch {
 		panel_2.add(lblNewLabel_5);
 		
 		JButton schSAVE = new JButton("Save");
+		schSAVE.setForeground(new Color(255, 255, 255));
+		schSAVE.setBackground(new Color(128, 0, 0));
 		schSAVE.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -517,6 +528,8 @@ public class regSch {
 		panel_2.add(lblNewLabel_7_3);
 		
 		JButton done3 = new JButton("Done");
+		done3.setBackground(new Color(128, 0, 0));
+		done3.setForeground(new Color(255, 255, 255));
 		done3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();

@@ -136,7 +136,7 @@ public class LogWindow {
 		JPasswordField password = new JPasswordField("");
 		password.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		password.setForeground(Color.BLACK);
-		password.setBounds(41, 199, 548, 30);
+		password.setBounds(41, 199, 528, 30);
 		panel_1.add(password);
 		
 		JButton btnNewButton = new JButton("Clear Entries");
@@ -147,13 +147,13 @@ public class LogWindow {
 			}
 		});
 		btnNewButton.setForeground(Color.WHITE);
-		btnNewButton.setBackground(new Color(194, 41, 14));
+		btnNewButton.setBackground(new Color(128, 0, 0));
 		btnNewButton.setBounds(41, 269, 147, 32);
 		panel_1.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Login");
 		btnNewButton_1.setForeground(Color.WHITE);
-		btnNewButton_1.setBackground(new Color(194, 41, 14));
+		btnNewButton_1.setBackground(new Color(128, 0, 0));
 		btnNewButton_1.setBounds(485, 269, 104, 32);
 		panel_1.add(btnNewButton_1);
 		
@@ -164,6 +164,21 @@ public class LogWindow {
 		lblNewLabel_4_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_4_1.setBounds(41, 159, 129, 30);
 		panel_1.add(lblNewLabel_4_1);
+		
+		JButton btnShowPassword = new JButton("Show Password");
+		btnShowPassword.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 if (password.getEchoChar() == '\u2022') { //Password is hidden
+			            password.setEchoChar((char) 0); // will show the password
+			        } else {
+			            password.setEchoChar('\u2022'); // will hide the password
+			        }
+			    }
+		});
+		btnShowPassword.setForeground(Color.WHITE);
+		btnShowPassword.setBackground(new Color(128, 0, 0));
+		btnShowPassword.setBounds(568, 199, 21, 32);
+		panel_1.add(btnShowPassword);
 	
 		
 		JLabel logo = new JLabel("New label");
