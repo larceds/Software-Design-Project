@@ -74,8 +74,9 @@ public class adminWinMain extends JFrame {
 				 mname = rs.getString("mname");
 						
 			}
-			
-			
+			System.out.println(last);
+			System.out.println(first);
+			System.out.println(mname);
 			//String s ="insert into profview"+"(lastname,firstname,Middlename,email)"+"values ('asd','fgh','qwe','rty')";
 			//st.executeUpdate(s);
 		} catch (SQLException e) {
@@ -202,7 +203,7 @@ public class adminWinMain extends JFrame {
 			
 		}
 		*/
-		lnm = new JTextField();
+		lnm = new JTextField(last);
 		lnm.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lnm.setHorizontalAlignment(SwingConstants.CENTER);
 		/*
@@ -225,7 +226,7 @@ public class adminWinMain extends JFrame {
 		contentPane.add(lnm);
 		lnm.setColumns(10);
 		
-		fnm = new JTextField();
+		fnm = new JTextField(first);
 		fnm.setFont(new Font("Tahoma", Font.BOLD, 11));
 		fnm.setHorizontalAlignment(SwingConstants.CENTER);
 		/*
@@ -248,7 +249,7 @@ public class adminWinMain extends JFrame {
 		contentPane.add(fnm);
 		fnm.setColumns(10);
 		
-		mnm = new JTextField();
+		mnm = new JTextField(mname);
 		mnm.setEditable(false);
 		/*
 		try {
@@ -452,20 +453,6 @@ public class adminWinMain extends JFrame {
 		});
 		btnNewButton_6.setBounds(382, 79, 97, 23);
 		contentPane.add(btnNewButton_6);
-		
-		JButton btnNewButton_7 = new JButton("Add Admin");
-		btnNewButton_7.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				regAdm ad = new regAdm();
-				dispose();
-				ad.frame.setVisible(true);
-			}
-		});
-		btnNewButton_7.setBackground(new Color(131, 7, 11));
-		btnNewButton_7.setForeground(new Color(255, 255, 255));
-		btnNewButton_7.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton_7.setBounds(740, 470, 134, 23);
-		contentPane.add(btnNewButton_7);
 		
 		JButton btnNewButton_8 = new JButton("Professors");
 		btnNewButton_8.setFont(new Font("Tahoma", Font.BOLD, 11));

@@ -1,6 +1,7 @@
 package strWin;
 
 import java.sql.Connection;
+
 import stdWin.stdWinMain;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -27,6 +28,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import profWin.profWinMain;
 import admWin.adminWinMain;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 @SuppressWarnings("unused")
 public class LogWindow {
@@ -134,6 +137,20 @@ public class LogWindow {
 		
 		
 		JPasswordField password = new JPasswordField("");
+		/*
+		password.addKeyListener(new KeyAdapter() {
+			
+			private KeyEvent evt;
+
+			public void keyPressed(KeyEvent e) {
+			if (e.getSource()==password) {
+				if(String.val) {
+					
+				}
+			}
+			}
+		});
+		*/
 		password.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		password.setForeground(Color.BLACK);
 		password.setBounds(41, 199, 528, 30);
@@ -152,6 +169,11 @@ public class LogWindow {
 		panel_1.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Login");
+		btnNewButton_1.addKeyListener(new KeyAdapter() {
+			
+			public void keyPressed(KeyEvent e) {
+			}
+		});
 		btnNewButton_1.setForeground(Color.WHITE);
 		btnNewButton_1.setBackground(new Color(128, 0, 0));
 		btnNewButton_1.setBounds(485, 269, 104, 32);
@@ -216,9 +238,14 @@ public class LogWindow {
 					
 					 System.out.println("Connection established");
 					 int counter = 0;
-					 while(num.get(counter).equals(Integer.parseInt(id.getText()))!=true) {
-						 counter++;
+					 if(num.contains(Integer.parseInt(id.getText()))) {
+						 while(num.get(counter).equals(Integer.parseInt(id.getText()))!=true) {
+							 counter++;
+						 }
+					 }else {
+						 JOptionPane.showMessageDialog(null, "Incorrect credentials");
 					 }
+					
 					 System.out.println(counter);
 					 
 					 if(pw.get(counter).equalsIgnoreCase(String.valueOf(password.getPassword()))) {
@@ -242,7 +269,9 @@ public class LogWindow {
 								admin.setVisible(true);
 							}
 					 }else {
-						 JOptionPane.showMessageDialog(null, "Incorrect credentials \n INITIATING SELF DESTRUCT");
+						 JOptionPane.showMessageDialog(null, "Incorrect credentials");
+						 id.setText(null);
+						 password.setText(null);
 					 }
 					
 				   } catch(Exception err) {System.out.print(err);}

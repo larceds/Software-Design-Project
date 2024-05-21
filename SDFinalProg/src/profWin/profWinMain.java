@@ -428,13 +428,6 @@ public class profWinMain extends JFrame {
 		contentPane.add(txtMiketysoncvteaceduph);
 		txtMiketysoncvteaceduph.setColumns(10);
 		
-		JButton btnNewButton_3_1 = new JButton("Change Password");
-		btnNewButton_3_1.setForeground(Color.WHITE);
-		btnNewButton_3_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton_3_1.setBackground(new Color(128, 0, 0));
-		btnNewButton_3_1.setBounds(781, 454, 131, 23);
-		contentPane.add(btnNewButton_3_1);
-		
 		JLabel lblNewLabel_15 = new JLabel("New label");
 		lblNewLabel_15.setIcon(new ImageIcon(getClass().getResource("/bg2.png")));
 		lblNewLabel_15.setBounds(0, 67, 975, 41);

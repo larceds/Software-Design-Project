@@ -265,12 +265,15 @@ public class crs {
 		table_1.setRowSelectionAllowed(false);
 		table_1.setEnabled(false);
 		try {
+			//Connection to sql
 			c = DriverManager.getConnection("jdbc:mysql://localhost:3306/software_finals","root","10272001");
 			 st= c.createStatement();
+			 //get data from sql
 			 rs = st.executeQuery( "Select * From sub");
 			
 			ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
 			
+			//create table layout
 			int col= rsmd.getColumnCount();
 		String[] colName = new String[col];
 			for (int i=0;i<col;i++) {
